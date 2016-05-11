@@ -71,7 +71,7 @@ public class MenuWindow extends JFrame {
         createOrder.setToolTipText("Create a new Order.");
         createOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                launchCreateCustomer();
+                launchCreateOrder();
             }
         });
         menuOrd.add(createOrder);
@@ -97,6 +97,18 @@ public class MenuWindow extends JFrame {
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
         CreateCustomerInterface aux = new CreateCustomerInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refresh();
+    }
+    
+    
+    private void launchCreateOrder() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        CreateOrderInterface aux = new CreateOrderInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refresh();
