@@ -66,7 +66,7 @@ public class MenuWindow extends JFrame {
         
         //Ajout logos
         logoGenindexe = new ImageIcon(MenuWindow.class.getResource("../images/logoGenindexe.png"));
-        logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(240, 200, Image.SCALE_DEFAULT));
+        logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(472, 295, Image.SCALE_DEFAULT));
         middle.setIcon(logo1);
         
 
