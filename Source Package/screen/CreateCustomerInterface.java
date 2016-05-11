@@ -91,10 +91,10 @@ public class CreateCustomerInterface extends JLabel {
         // Initialisation of the text fields
         name = new JTextField();
         name.setPreferredSize(new Dimension(200, 24));
-        //Name.setColumns(20);
+        name.setToolTipText("Enter the name of the company.");
         town = new JTextField();
         town.setPreferredSize(new Dimension(200, 24));
-        //Place.setColumns(20);
+        town.setToolTipText("Enter the town where the city is based.");
 
         // Panels modification
         centre.setLayout(new GridBagLayout());
