@@ -59,6 +59,8 @@ public class MenuWindow extends JFrame {
         middle.setOpaque(true);
         middle.setBackground(Color.WHITE);
         south = new JLabel();
+        south.setOpaque(true);
+        south.setBackground(Color.WHITE);
         south.setHorizontalAlignment(SwingConstants.CENTER); 
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
