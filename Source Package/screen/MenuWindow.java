@@ -82,6 +82,7 @@ public class MenuWindow extends JFrame {
         homePage.setToolTipText("Return to the Homepage.");
         homePage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                south.setText("");
                 delMiddle();
             }
         });
