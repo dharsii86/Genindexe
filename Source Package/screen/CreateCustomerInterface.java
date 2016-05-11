@@ -135,9 +135,13 @@ public class CreateCustomerInterface extends JLabel {
         gbUnderTitle.gridy = 1;
         gbUnderTitle.gridwidth = 2;
         JPanel underTitle = new JPanel();
+        underTitle.setOpaque(true);
+        underTitle.setBackground(Color.WHITE);
         underTitle.setPreferredSize(new Dimension(100, 100));
 
         // Insertions
+        centre.setOpaque(true);
+        centre.setBackground(Color.WHITE);
         centre.add(underTitle, gbUnderTitle);
         centre.add(nameLabel, gbNameLab);
         centre.add(name, gbName);
@@ -150,7 +154,7 @@ public class CreateCustomerInterface extends JLabel {
         this.setLayout(new BorderLayout());
 
         this.add(centre, BorderLayout.CENTER);
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.WHITE);
         this.setVisible(true);
     }
 
