@@ -77,6 +77,7 @@ public class CreateCustomerInterface extends JLabel {
 
                     if (ok) {
                         okFrame = new ValidationOK();
+                        close();
                     } else if (!ok) {
                         notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "This customer already exists.");
                     }
@@ -84,7 +85,7 @@ public class CreateCustomerInterface extends JLabel {
                 } else {
                     notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "A field is empty.");
                 }
-                close();
+                
             }
         });
         
