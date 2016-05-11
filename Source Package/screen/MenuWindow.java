@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
 /**
- * Manage the interface of the menu.
+ * Manage the interface of the menu.  nononnonon
  *
  * @author SCRUM Group 2.
  */
