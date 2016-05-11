@@ -14,7 +14,7 @@ public class ValidationOK {
      */
     public ValidationOK() {
 
-        AutoCloseDialog.showAutoCloseDialog(null, "Success", "The customer creation is done", 3000L);
+        AutoCloseDialog.showAutoCloseDialog(null, "Success", "The customer creation is done", 5000L);
     }
 
 }
