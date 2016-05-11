@@ -56,6 +56,7 @@ public class MenuWindow extends JFrame {
         menuCust = new JMenu("Customer");
         menuBar.add(menuCust);
         itemAddCust = new JMenuItem("Create");
+        itemAddCust.setToolTipText("Create a new Customer.");
         itemAddCust.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 launchCreateCustomer();
@@ -67,6 +68,7 @@ public class MenuWindow extends JFrame {
         menuOrd = new JMenu("Order");
         menuBar.add(menuOrd);
         createOrder = new JMenuItem("Create");
+        createOrder.setToolTipText("Create a new Order.");
         createOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 launchCreateCustomer();
