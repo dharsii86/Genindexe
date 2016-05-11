@@ -18,14 +18,16 @@ public class ConnectionDB {
     Connection conn = null; // set in the constructor, create the connection with the database
     Statement stmt = null;
     ResultSet result = null;
-
+    static final String DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost/genindexe";
+    static final String DRIVERCONNECTION_USER = "root";
+    static final String DRIVERCONNECTION_PWD = "root";
     /**
      * ConnexionDB class constructor. Create a connexion to the database.
      */
     public ConnectionDB() {
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/genindexe", "root", "");
+            conn = DriverManager.getConnection(DRIVERCONNECTION_ROAD, DRIVERCONNECTION_USER, DRIVERCONNECTION_PWD);
             // connection successful
             stmt = conn.createStatement();
 
@@ -95,7 +97,7 @@ public class ConnectionDB {
         ResultSet result = null;
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/genindexe", "root", "");
+            conn = DriverManager.getConnection(DRIVERCONNECTION_ROAD, DRIVERCONNECTION_USER, DRIVERCONNECTION_PWD);
             // connection successful
             stmt = conn.createStatement();
             stmt.executeUpdate(req);
@@ -142,7 +144,7 @@ public class ConnectionDB {
         String res = "";
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/genindexe", "root", "");
+            conn = DriverManager.getConnection(DRIVERCONNECTION_ROAD, DRIVERCONNECTION_USER, DRIVERCONNECTION_PWD);
             // connection successful
             stmt = conn.createStatement();
             result = stmt.executeQuery(req);
@@ -196,7 +198,7 @@ public class ConnectionDB {
         String data = "";
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/genindexe", "root", "");
+            conn = DriverManager.getConnection(DRIVERCONNECTION_ROAD, DRIVERCONNECTION_USER, DRIVERCONNECTION_PWD);
             // connection successful
             stmt = conn.createStatement();
             result = stmt.executeQuery(req);
