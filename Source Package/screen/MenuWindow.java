@@ -24,10 +24,14 @@ public class MenuWindow extends JFrame {
     private JLabel south;
     
     private JMenuBar menuBar;
+    
     private JMenu menuCust;
     private JMenu menuOrd;
+    private JMenu home;
+    
     private JMenuItem itemAddCust;
     private JMenuItem createOrder;
+    private JMenuItem homePage;
 
     /**
      * MenuWindow class constructor. Allow to create a window that show a menu.
@@ -51,6 +55,18 @@ public class MenuWindow extends JFrame {
 
         // Create the menu bar.
         menuBar = new JMenuBar();
+        
+        // Build the Home page Menu
+        home = new JMenu("Home");
+        homePage = new JMenuItem("Home Page"); 
+        homePage.setToolTipText("Return to the Homepage.");
+        homePage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                delMiddle();
+            }
+        });
+        menuBar.add(homePage);
+        
 
         // Build the Customer's menu.
         menuCust = new JMenu("Customer");
@@ -86,7 +102,10 @@ public class MenuWindow extends JFrame {
 
     public void delMiddle() {
         System.out.println("Debug close in del Middle");
-        middle.remove(0);
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
         refresh();
 
     }
