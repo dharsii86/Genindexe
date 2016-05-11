@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 package screen;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -41,10 +38,11 @@ public class CreateOrderInterface extends JPanel{
     
     private JButton validate,cancel;
     
-    String[] nameCategory = {"Animal", "Animal2"};
-    String[] nameAnalysis = {"Analysis"};
-    String[] nameSpecies = {"Species"};
-    String[] nameClient = {"Client"};
+    String[] nameCategory = {"Category", "Category2"};
+    String[] nameAnalysis = {};
+    String[] nameSpecies = {};
+    String[] tabCustTown = {"Client town","bbbb","aaaaa"};
+    String[] tabCustName = {};
     
 
     public CreateOrderInterface(JFrame jf) {
@@ -59,11 +57,11 @@ public class CreateOrderInterface extends JPanel{
         analyse = new JComboBox(nameAnalysis);
         category = new JComboBox(nameCategory);
         espece = new JComboBox(nameSpecies);
-        custName = new JComboBox(nameClient);
-        custTown = new JComboBox(nameClient);
+        custName = new JComboBox(tabCustName);
+        custTown = new JComboBox(tabCustTown);
         
-        custName.setEditable(true);
-        custTown.setEditable(true);
+        /*custName.setEditable(true);
+        custTown.setEditable(true);*/
         
         
         
@@ -93,21 +91,22 @@ public class CreateOrderInterface extends JPanel{
         //-------
         gbTitle.gridx = gbX + 1;
         gbTitle.gridy = gbY + 0;
-        gbTitle.gridwidth = 2;
+        gbTitle.gridwidth = 3;
         gbTitle.anchor = GridBagConstraints.CENTER;
         
         JPanel panSStitle = new JPanel();
-        panSStitle.setPreferredSize(new Dimension(100,150));
+        panSStitle.setPreferredSize(new Dimension(100,80));
+        panSStitle.setBackground(Color.white);
         GridBagConstraints gbpan1 = new GridBagConstraints();
         gbpan1.gridx = gbX + 2;
         gbpan1.gridy = gbY + 1;
         
         //-------//ici ajouter un panel vide pour avoir une meilleur taille
         gbLabelNbSpl.gridx = gbX + 0;
-        gbLabelNbSpl.gridy = gbY + 2;
+        gbLabelNbSpl.gridy = gbY + 6;
         //-------
         gbNbSpl.gridx = gbX + 1;
-        gbNbSpl.gridy = gbY + 2;
+        gbNbSpl.gridy = gbY + 6;
         //-------
         gbCat.gridx = gbX + -1;
         gbCat.gridy = gbY + 3;
@@ -133,8 +132,8 @@ public class CreateOrderInterface extends JPanel{
        
         /*Ajout dans les Panels*/
         this.add(title,gbTitle);
-        //this.add(labelNbSamples,gbLabelNbSpl);
-        //this.add(nbSpl,gbNbSpl);
+        this.add(labelNbSamples,gbLabelNbSpl);
+        this.add(nbSpl,gbNbSpl);
         this.add(category,gbCat);
         this.add(espece,gbSpe);
         this.add(analyse,gbAna);
@@ -151,7 +150,7 @@ public class CreateOrderInterface extends JPanel{
         /*Gestion de la page*/
         this.setBackground(Color.GRAY);
         
-        this.setPreferredSize(new Dimension(300, 220));
+        this.setPreferredSize(new Dimension(200, 100));
         this.setVisible(true);
     }
     
@@ -168,13 +167,13 @@ public class CreateOrderInterface extends JPanel{
     }
     
     public void setAbleDemandeur( String[] S){
-            nameClient = S;
+            //tab = S;
             this.setVisible(false);
             this.setVisible(true);
     }
     
     public void setAbleSpecies( String[] S){
-            nameSpecies = S;
+            //nameSpecies = S;
             this.setVisible(false);
             this.setVisible(true);
     }
