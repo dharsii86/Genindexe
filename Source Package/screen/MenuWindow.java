@@ -68,11 +68,12 @@ public class MenuWindow extends JFrame {
         
         
         //Ajout logos
-        logoGenindexe = new ImageIcon(MenuWindow.class.getResource("../images/logoGenindexe.png"));
+        
+        logoGenindexe = new ImageIcon(this.getClass().getResource("../images/logoGenindexe.png"));
         logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(472, 295, Image.SCALE_DEFAULT));
         middle.setIcon(logo1);
         
-        Image logoTeam = Toolkit.getDefaultToolkit().getImage(MenuWindow.class.getResource("../images/logo Scrum.png"));
+        Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logo Scrum.png"));
         this.setIconImage(logoTeam);
                 
         // Create the menu bar.
