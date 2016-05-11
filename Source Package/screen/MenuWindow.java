@@ -3,8 +3,10 @@ package screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -22,6 +24,7 @@ public class MenuWindow extends JFrame {
     // Declarations 
     private JLabel middle;
     private JLabel south;
+    private JLabel genindexe;
     
     private JMenuBar menuBar;
     
@@ -32,6 +35,11 @@ public class MenuWindow extends JFrame {
     private JMenuItem itemAddCust;
     private JMenuItem createOrder;
     private JMenuItem homePage;
+    
+    private ImageIcon logoGenindexe;
+    private ImageIcon logoTeam;
+    private ImageIcon logo1;
+    private ImageIcon logo2;
 
     /**
      * MenuWindow class constructor. Allow to create a window that show a menu.
@@ -46,12 +54,21 @@ public class MenuWindow extends JFrame {
         this.setResizable(true);
         this.requestFocus();
         setLayout(new BorderLayout());
-        middle = new JLabel();
+        middle = new JLabel("",JLabel.CENTER);
+        middle.setOpaque(true);
+        middle.setBackground(Color.WHITE);
         south = new JLabel();
         south.setHorizontalAlignment(SwingConstants.CENTER); 
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
         this.add(south, BorderLayout.SOUTH);
+        
+        
+        //Ajout logos
+        logoGenindexe = new ImageIcon("C:/Users/willa/Desktop/images/téléchargement.png");
+        logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(240, 200, Image.SCALE_DEFAULT));
+        middle.setIcon(logo1);
+        
 
         // Create the menu bar.
         menuBar = new JMenuBar();
