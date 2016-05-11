@@ -4,7 +4,7 @@ import nf.Customer;
 
 /**
  *
- * @author thoma
+ * @author thomas
  */
 public class CustomerDB {
 
