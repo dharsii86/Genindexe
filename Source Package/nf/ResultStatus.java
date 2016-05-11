@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 public enum ResultStatus {
   UNREADABLE,/**

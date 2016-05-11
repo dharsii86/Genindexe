@@ -1,6 +1,6 @@
-package Database;
+package database;
 
-import NF.Customer;
+import nf.Customer;
 
 /**
  *

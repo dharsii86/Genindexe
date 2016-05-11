@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 /**
  * Delivers a unique ID number for the samples.

@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 /**
  * List of correct values for order status

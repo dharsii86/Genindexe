@@ -1,6 +1,6 @@
-package Screen;
+package screen;
 
-import Screen.AutoCloseDialog;
+import screen.AutoCloseDialog;
 
 /**
  * Managerthe frame which display the creation of a customer validation.

@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 /**
  * Creates a new result for a Scrapie Test

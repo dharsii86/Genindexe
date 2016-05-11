@@ -1,6 +1,6 @@
-package Screen;
+package screen;
 
-import Database.CustomerDB;
+import database.CustomerDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import NF.Customer;
+import nf.Customer;
 
 /**
  * Manage the interface for the creation of a customer done by the secretary.

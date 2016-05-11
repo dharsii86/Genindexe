@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 class SexingResult extends Result {
   /**

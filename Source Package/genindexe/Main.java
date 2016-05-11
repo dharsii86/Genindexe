@@ -1,6 +1,6 @@
-package Genindexe;
+package genindexe;
 
-import Screen.MenuWindow;
+import screen.MenuWindow;
 
 /**
  * Launch the menu of the application.

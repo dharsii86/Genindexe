@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 /**
  * The result from an analysis for a sample

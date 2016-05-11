@@ -1,4 +1,4 @@
-package NF;
+package nf;
 
 public class ScrapieResult extends Result {
   /**
