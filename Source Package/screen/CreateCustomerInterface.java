@@ -79,12 +79,12 @@ public class CreateCustomerInterface extends JLabel {
                         globalScreen.setSouth("The customer: "+name.getText()+" / "+town.getText()+" has been created");
                         close();
                     } else if (!ok) {
-                        notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "This customer already exists.");
+                        //notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "This customer already exists.");
                         globalScreen.setSouth("The customer : "+name.getText()+" / "+town.getText()+" already exists.");
                     }
 
                 } else {
-                    notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "A field is empty.");
+                    //notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "A field is empty.");
                     globalScreen.setSouth("A field is empty.");
                 }
                 
