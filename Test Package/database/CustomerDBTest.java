@@ -92,8 +92,8 @@ public class CustomerDBTest {
         try {
             while (res.next()) {
 
-                if (res.getString("Cust_companyName").equalsIgnoreCase(newCustomer1.getName())
-                        && res.getString("Cust_town").equalsIgnoreCase(newCustomer1.getTown())) {
+                if (res.getString("Customer_Name").equalsIgnoreCase(newCustomer1.getName())
+                        && res.getString("Customer_Town").equalsIgnoreCase(newCustomer1.getTown())) {
                     cpt++;
                 }
             }
