@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Genindex;
+package screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -22,13 +21,13 @@ import javax.swing.SwingConstants;
  *
  * @author Angscrum
  */
-public class CreateOrder extends JFrame{
+public class CreateOrderInterface extends JPanel{
     /**
  * Interface for the addition of a customer done by the secretary
  *
  * @author Angscrum
  */
-    private JFrame myFrame;
+    private JFrame globalScreen;
     
     private JPanel haut,centre,bas,header;
     
@@ -46,10 +45,9 @@ public class CreateOrder extends JFrame{
     String[] nameClient = {"Client"};
     
 
-    public CreateOrder() {
-        
+    public CreateOrderInterface(JFrame jf) {
+        globalScreen = jf;
         /*Initialisation*/
-        myFrame = new JFrame("New order");
         header = new JPanel();
         haut = new JPanel();
         centre = new JPanel();
@@ -86,40 +84,37 @@ public class CreateOrder extends JFrame{
         header.add(haut);
         
         /*Gestion de la page*/
-        myFrame.setLayout(new BorderLayout());
-        myFrame.add(header,BorderLayout.NORTH);
-        myFrame.add(centre,BorderLayout.CENTER);
-        myFrame.add(bas,BorderLayout.SOUTH);
-        myFrame.getContentPane().setBackground(Color.GRAY);
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setPreferredSize(new Dimension(300, 220));
-        myFrame.setResizable(false);
-        myFrame.setVisible(true);
-        myFrame.pack();
+        this.setLayout(new BorderLayout());
+        this.add(header,BorderLayout.NORTH);
+        this.add(centre,BorderLayout.CENTER);
+        this.add(bas,BorderLayout.SOUTH);
+        this.setBackground(Color.GRAY);
+        this.setPreferredSize(new Dimension(300, 220));
+        this.setVisible(true);
     }
     
     public void setAbleEspece(String[] S){
             nameSpecies = S;
-            myFrame.setVisible(false);
-            myFrame.setVisible(true);
+            this.setVisible(false);
+            this.setVisible(true);
     }
     
     public void setAbleAnalysis( String[] S){
             nameAnalysis = S;
-            myFrame.setVisible(false);
-            myFrame.setVisible(true);
+            this.setVisible(false);
+            this.setVisible(true);
     }
     
     public void setAbleDemandeur( String[] S){
             nameClient = S;
-            myFrame.setVisible(false);
-            myFrame.setVisible(true);
+            this.setVisible(false);
+            this.setVisible(true);
     }
     
     public void setAbleSpecies( String[] S){
             nameSpecies = S;
-            myFrame.setVisible(false);
-            myFrame.setVisible(true);
+            this.setVisible(false);
+            this.setVisible(true);
     }
 
     }
