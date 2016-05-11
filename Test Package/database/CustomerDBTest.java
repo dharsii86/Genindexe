@@ -1,7 +1,5 @@
 package database;
 
-import database.ConnectionDB;
-import database.CustomerDB;
 import nf.Customer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
