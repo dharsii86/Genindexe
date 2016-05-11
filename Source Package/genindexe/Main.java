@@ -9,7 +9,7 @@ import screen.MenuWindow;
  */
 public class Main {
 
-    /**JC
+    /**Johnny
      * @param args the command line arguments
      */
     public static void main(String[] args) {
