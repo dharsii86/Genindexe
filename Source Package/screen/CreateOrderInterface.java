@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,24 +24,24 @@ import javax.swing.SwingConstants;
  * @author Angscrum
  */
 public class CreateOrderInterface extends JPanel{
+    
     /**
- * Interface for the addition of a customer done by the secretary
- *
- * @author Angscrum
- */
+    * Interface for the addition of a customer done by the secretary
+    *
+    * @author Angscrum
+    */
     private JFrame globalScreen;
     
-    private JPanel haut,centre,bas,header;
     
-    private JTextField name;
+    private JTextField nbSpl;
    
-    private JLabel labelName,titre;
+    private JLabel labelNbSamples,title;
     
-    private JComboBox analyse,animal,espece,demandeur;
+    private JComboBox analyse,category,espece,custName,custTown;
     
     private JButton validate,cancel;
     
-    String[] nameAnimal = {"Animal"};
+    String[] nameCategory = {"Animal", "Animal2"};
     String[] nameAnalysis = {"Analysis"};
     String[] nameSpecies = {"Species"};
     String[] nameClient = {"Client"};
@@ -48,47 +50,107 @@ public class CreateOrderInterface extends JPanel{
     public CreateOrderInterface(JFrame jf) {
         globalScreen = jf;
         /*Initialisation*/
-        header = new JPanel();
-        haut = new JPanel();
-        centre = new JPanel();
-        bas = new JPanel();
-        titre = new JLabel("Order Creation",SwingConstants.CENTER);
-        labelName = new JLabel("Number of Samples");
-        labelName.setSize(10, 10);
+        title = new JLabel("Order Creation",SwingConstants.CENTER);
+        this.setBackground(Color.white);
+        title.setFont(title.getFont().deriveFont(24.0f));
+        labelNbSamples = new JLabel("Number of Samples");
+        labelNbSamples.setPreferredSize(new Dimension(300,10));
+        
         analyse = new JComboBox(nameAnalysis);
-        animal = new JComboBox(nameAnimal);
+        category = new JComboBox(nameCategory);
         espece = new JComboBox(nameSpecies);
-        demandeur = new JComboBox(nameClient);
-        demandeur.setEditable(true);
+        custName = new JComboBox(nameClient);
+        custTown = new JComboBox(nameClient);
+        
+        custName.setEditable(true);
+        custTown.setEditable(true);
+        
+        
+        
         validate = new JButton("Validate");
         cancel = new JButton("Cancel");
-        name = new JTextField();
-        name.setColumns(5);
+        nbSpl = new JTextField();
+        nbSpl.setColumns(5);
         
         /*Modification Panels*/
-        header.setLayout(new GridLayout(2,1));
-        haut.setLayout(new FlowLayout());
-        centre.setLayout(new FlowLayout());
-        bas.setLayout(new GridLayout(2,1));
+        this.setLayout(new GridBagLayout());
+       
+        int gbX = 1;
+        int gbY = 0;
         
+        //Création des contraintes pour le grid bag Layout
+        GridBagConstraints gbTitle = new GridBagConstraints();
+        GridBagConstraints gbLabelNbSpl = new GridBagConstraints();
+        GridBagConstraints gbNbSpl = new GridBagConstraints();
+        GridBagConstraints gbCat = new GridBagConstraints();
+        GridBagConstraints gbSpe = new GridBagConstraints();
+        GridBagConstraints gbAna = new GridBagConstraints();
+        GridBagConstraints gbCusTown = new GridBagConstraints();
+        GridBagConstraints gbCusName = new GridBagConstraints();
+        GridBagConstraints gbValid = new GridBagConstraints();
+        GridBagConstraints gbCancel = new GridBagConstraints();
+        
+        //-------
+        gbTitle.gridx = gbX + 1;
+        gbTitle.gridy = gbY + 0;
+        gbTitle.gridwidth = 2;
+        gbTitle.anchor = GridBagConstraints.CENTER;
+        
+        JPanel panSStitle = new JPanel();
+        panSStitle.setPreferredSize(new Dimension(100,150));
+        GridBagConstraints gbpan1 = new GridBagConstraints();
+        gbpan1.gridx = gbX + 2;
+        gbpan1.gridy = gbY + 1;
+        
+        //-------//ici ajouter un panel vide pour avoir une meilleur taille
+        gbLabelNbSpl.gridx = gbX + 0;
+        gbLabelNbSpl.gridy = gbY + 2;
+        //-------
+        gbNbSpl.gridx = gbX + 1;
+        gbNbSpl.gridy = gbY + 2;
+        //-------
+        gbCat.gridx = gbX + -1;
+        gbCat.gridy = gbY + 3;
+        //-------
+        gbSpe.gridx = gbX + 0;
+        gbSpe.gridy = gbY + 3;
+        //-------
+        gbAna.gridx = gbX + 1;
+        gbAna.gridy = gbY + 3;
+        //-------
+        gbCusTown.gridx = gbX + 3;
+        gbCusTown.gridy = gbY + 3;
+        //-------
+        gbCusName.gridx = gbX + 4;
+        gbCusName.gridy = gbY + 3;
+        //-------
+        gbValid.gridx = gbX + 3;
+        gbValid.gridy = gbY + 5;
+        //-------
+        gbCancel.gridx = gbX + 2;
+        gbCancel.gridy = gbY + 5;
+        
+       
         /*Ajout dans les Panels*/
-        haut.add(labelName);
-        haut.add(name);
-        centre.add(animal);
-        centre.add(espece);
-        centre.add(analyse);
-        centre.add(demandeur);
-        bas.add(validate);
-        bas.add(cancel);
-        header.add(titre);
-        header.add(haut);
+        this.add(title,gbTitle);
+        //this.add(labelNbSamples,gbLabelNbSpl);
+        //this.add(nbSpl,gbNbSpl);
+        this.add(category,gbCat);
+        this.add(espece,gbSpe);
+        this.add(analyse,gbAna);
+        this.add(custTown,gbCusTown);
+        this.add(custName,gbCusName);
+        this.add(panSStitle,gbpan1);
+        //this.add(title,gbValid);
+        //this.add(title,gbCancel);
+        
+        
+        
+        
         
         /*Gestion de la page*/
-        this.setLayout(new BorderLayout());
-        this.add(header,BorderLayout.NORTH);
-        this.add(centre,BorderLayout.CENTER);
-        this.add(bas,BorderLayout.SOUTH);
         this.setBackground(Color.GRAY);
+        
         this.setPreferredSize(new Dimension(300, 220));
         this.setVisible(true);
     }
