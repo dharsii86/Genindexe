@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -37,7 +38,6 @@ public class MenuWindow extends JFrame {
     private JMenuItem homePage;
     
     private ImageIcon logoGenindexe;
-    private ImageIcon logoTeam;
     private ImageIcon logo1;
     private ImageIcon logo2;
 
@@ -52,6 +52,7 @@ public class MenuWindow extends JFrame {
         this.setMinimumSize(new Dimension(300, 200));
         this.setMaximumSize(new Dimension(1600, 900));
         this.setResizable(true);
+        
         this.requestFocus();
         setLayout(new BorderLayout());
         middle = new JLabel("",JLabel.CENTER);
@@ -69,7 +70,9 @@ public class MenuWindow extends JFrame {
         logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(472, 295, Image.SCALE_DEFAULT));
         middle.setIcon(logo1);
         
-
+        Image logoTeam = Toolkit.getDefaultToolkit().getImage(MenuWindow.class.getResource("../images/logo Scrum.png"));
+        this.setIconImage(logoTeam);
+                
         // Create the menu bar.
         menuBar = new JMenuBar();
         
