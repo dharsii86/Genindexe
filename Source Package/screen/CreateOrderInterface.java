@@ -6,6 +6,7 @@
 package screen;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -34,6 +35,8 @@ public class CreateOrderInterface extends JPanel{
    
     private JLabel labelNbSamples,title;
     
+    private JPanel posSpl;
+    
     private JComboBox analyse,category,espece,custName,custTown;
     
     private JButton validate,cancel;
@@ -52,7 +55,7 @@ public class CreateOrderInterface extends JPanel{
         this.setBackground(Color.white);
         title.setFont(title.getFont().deriveFont(24.0f));
         labelNbSamples = new JLabel("Number of Samples");
-        labelNbSamples.setPreferredSize(new Dimension(300,10));
+        //labelNbSamples.setPreferredSize(new Dimension(60,10));
         
         analyse = new JComboBox(nameAnalysis);
         category = new JComboBox(nameCategory);
@@ -89,24 +92,42 @@ public class CreateOrderInterface extends JPanel{
         GridBagConstraints gbCancel = new GridBagConstraints();
         
         //-------
-        gbTitle.gridx = gbX + 1;
+        gbTitle.gridx = gbX + -1;
         gbTitle.gridy = gbY + 0;
-        gbTitle.gridwidth = 3;
-        gbTitle.anchor = GridBagConstraints.CENTER;
+        gbTitle.gridwidth = 6;
         
         JPanel panSStitle = new JPanel();
-        panSStitle.setPreferredSize(new Dimension(100,80));
+        panSStitle.setPreferredSize(new Dimension(60,100));
         panSStitle.setBackground(Color.white);
         GridBagConstraints gbpan1 = new GridBagConstraints();
         gbpan1.gridx = gbX + 2;
-        gbpan1.gridy = gbY + 1;
+        gbpan1.gridy = gbY + 3;
+        
+        
+        
+        JPanel panSSBox = new JPanel();
+        panSSBox.setPreferredSize(new Dimension(0,80));
+        panSSBox.setBackground(Color.red);
+        GridBagConstraints gbpan2 = new GridBagConstraints();
+        gbpan2.gridx = gbX + 1;
+        gbpan2.gridy = gbY + 5;
+        gbpan2.gridwidth = 1;
+        
+        
+        
+        
         
         //-------//ici ajouter un panel vide pour avoir une meilleur taille
-        gbLabelNbSpl.gridx = gbX + 0;
-        gbLabelNbSpl.gridy = gbY + 6;
+        posSpl = new JPanel();
+        posSpl.setLayout(new FlowLayout());
+        
         //-------
-        gbNbSpl.gridx = gbX + 1;
-        gbNbSpl.gridy = gbY + 6;
+        gbNbSpl.gridx = gbX + -1;
+        gbNbSpl.gridy = gbY + 5;
+        gbNbSpl.gridwidth = 6;
+        
+        posSpl.add(labelNbSamples);
+        posSpl.add(nbSpl);
         //-------
         gbCat.gridx = gbX + -1;
         gbCat.gridy = gbY + 3;
@@ -132,14 +153,15 @@ public class CreateOrderInterface extends JPanel{
        
         /*Ajout dans les Panels*/
         this.add(title,gbTitle);
-        this.add(labelNbSamples,gbLabelNbSpl);
-        this.add(nbSpl,gbNbSpl);
+        //this.add(labelNbSamples,gbLabelNbSpl);
+        this.add(posSpl,gbNbSpl);
         this.add(category,gbCat);
         this.add(espece,gbSpe);
         this.add(analyse,gbAna);
         this.add(custTown,gbCusTown);
         this.add(custName,gbCusName);
         this.add(panSStitle,gbpan1);
+        this.add(panSSBox,gbpan2);
         //this.add(title,gbValid);
         //this.add(title,gbCancel);
         
