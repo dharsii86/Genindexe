@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 /**
  * Manage the interface of the menu.
@@ -20,6 +21,8 @@ public class MenuWindow extends JFrame {
 
     // Declarations 
     private JLabel middle;
+    private JLabel south;
+    
     private JMenuBar menuBar;
     private JMenu menuCust;
     private JMenu menuOrd;
@@ -40,8 +43,11 @@ public class MenuWindow extends JFrame {
         this.requestFocus();
         setLayout(new BorderLayout());
         middle = new JLabel();
+        south = new JLabel();
+        south.setHorizontalAlignment(SwingConstants.CENTER); 
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
+        this.add(south, BorderLayout.SOUTH);
 
         // Create the menu bar.
         menuBar = new JMenuBar();
@@ -92,6 +98,11 @@ public class MenuWindow extends JFrame {
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refresh();
+    }
+    
+    public void setSouth (String action)
+    {
+        this.south.setText(action);
     }
 
 }
