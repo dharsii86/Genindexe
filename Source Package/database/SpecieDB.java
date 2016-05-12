@@ -21,15 +21,14 @@ public class SpecieDB {
      * @return true if the specie is added and false if not.
      */
     public static boolean addSpecie(Specie spe) {
-        return true;
-    //    if (SpecieDB.checkSpecieDuplicates(cust)) {
+        if (SpecieDB.checkSpecieDuplicates(spe)) {
 
-    //        ConnectionDB.requestInsert("insert into `Customer` (`Customer_Name`, `Customer_Town`) values ('" + cust.getName() + "','" + cust.getTown() + "')");
+            ConnectionDB.requestInsert("insert into `Specie` (`Specie_Name`) values ('" + spe.getName() + ")");
             //System.out.println("The customer has been added to the database");
-    //        return true;
-    //    }
+            return true;
+        }
         //System.out.println("This customer already exist in the database");
-    //    return false;
+        return false;
     }
 
     /**
@@ -39,17 +38,21 @@ public class SpecieDB {
      * @return true if there is duplicate and false if not.
      */
     public static boolean checkSpecieDuplicates(Specie spe) {
-        return true;
-    }
+        
+        if (spe.getName() != null) {
 
-    /**
-     * Check if the specie's format is correct.
-     *
-     * @param spe, the specie to check.
-     * @return true if the format is correct and false if not.
-     */
-    public static boolean checkSpecieFormat(Specie spe) {
-        return true;
-    }
+            String n = spe.getName().toUpperCase();
 
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from Customer where Customer_Name = " + n + "'" ));
+
+            switch (resultat) {
+                case 0:
+                    return true;
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
