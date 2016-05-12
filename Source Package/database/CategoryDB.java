@@ -18,10 +18,16 @@ public class CategoryDB {
      * Add a category in the database.
      *
      * @param cat, the category to add.
-     * @return true if the customer is added and false if not.
+     * @return true if the category is added and false if not.
      */
-    public boolean addCategory(SpecieCategory cat) {
-        return true;
+    public static boolean addCategory(SpecieCategory cat) {
+        
+        if (CategoryDB.checkCategoryDuplicates(cat)) {
+
+            ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "'");
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -30,8 +36,24 @@ public class CategoryDB {
      * @param cat, the category to add.
      * @return true if there is duplicate and false if not.
      */
-    public boolean checkCategoryDuplicates(SpecieCategory cat) {
-        return true;
+    public static boolean checkCategoryDuplicates(SpecieCategory cat) {
+
+        if (cat.getName() != null) {
+
+            String n = cat.getName().toUpperCase();
+
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Category` where `Category_Name` = '" + n + "'"));
+
+            switch (resultat) {
+                case 0:
+                    return true;
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+        }
+
     }
 
 }
