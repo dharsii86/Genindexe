@@ -15,10 +15,10 @@ public class CustomerDB {
     }
 
     /**
-     * Add an customer in the database.
+     * Add a customer in the database.
      *
      * @param cust, the customer to add.
-     * @return true if the customer is added aand false if not.
+     * @return true if the customer is added and false if not.
      */
     public boolean addCustomer(Customer cust) {
 
