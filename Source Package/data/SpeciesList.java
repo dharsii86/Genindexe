@@ -5,10 +5,23 @@
  */
 package data;
 
+ import database.OrderDB;
+ import java.util.HashMap;
+ import nf.Specie;
+
 /**
  *
  * @author DharSii
  */
 public class SpeciesList {
+  
+    private static HashMap<String,Specie> speciesList;
+
+    public static void add(Specie spe){
+        speciesList.put(spe.getName(),spe);
+    }
     
+    public static HashMap getSpecies(){
+        return speciesList;
+    }
 }

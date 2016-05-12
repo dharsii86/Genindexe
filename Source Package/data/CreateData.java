@@ -14,7 +14,7 @@ import nf.*;
  *
  * @author Quentin Bonenfant
  */
-public class OrderData {
+public class CreateData {
     
     private static HashMap<String,SpecieCategory> categoryList;
 
@@ -32,7 +32,7 @@ public class OrderData {
             
             String[] specList = database.OrderDB.getSpecies(cat);
             for(String spec : specList){
-                System.out.println(spec);
+                
                 category.addSpecie(new Specie(spec));
                 
             }

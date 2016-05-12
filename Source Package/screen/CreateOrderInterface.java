@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 // Test
-import data.OrderData;
+import data.CreateData;
 import java.util.*;
 
 /**
@@ -66,7 +66,7 @@ public class CreateOrderInterface extends JPanel{
         
         // En cours de test
         // category = new JComboBox(nameCategory);
-        Set<String> od = OrderData.getCategories().keySet();
+        Set<String> od = CreateData.getCategories().keySet();
         String[] test = od.toArray(new String[od.size()]);
         
         category = new JComboBox(test);

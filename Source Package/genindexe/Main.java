@@ -1,7 +1,7 @@
 package genindexe;
 
 import screen.MenuWindow;
-import data.OrderData;
+import data.CreateData;
 
 /**
  * Launch the menu of the application.
@@ -15,7 +15,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        OrderData.create();
+        CreateData.create();
         MenuWindow m = new MenuWindow();
         
         /*
