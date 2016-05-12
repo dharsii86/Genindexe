@@ -6,8 +6,9 @@
 package screen;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -25,8 +26,6 @@ public class CreateSpecieInterface extends JPanel{
     
     private String[] category = {"Category", "Category2"};
     
-    private JPanel chooseInfo , chooseCategory;
-    
     private JLabel title, nameSpe, labCategory;
     
     private JTextField speciesName;
@@ -38,7 +37,7 @@ public class CreateSpecieInterface extends JPanel{
     public CreateSpecieInterface(MenuWindow globalScreen) {
         super();
         this.globalScreen = globalScreen;
-        System.out.println("esa");
+        this.setLayout(new GridBagLayout());
         
         /*Initialisation*/
         //  title
@@ -49,13 +48,12 @@ public class CreateSpecieInterface extends JPanel{
         //  Champ input and name
         nameSpe = new JLabel("Name of the species");
         speciesName = new JTextField();
-        chooseInfo = new JPanel();
-        chooseInfo.setLayout(new FlowLayout());
-        chooseInfo.add(nameSpe);
-        chooseInfo.add(speciesName);
+        speciesName.setPreferredSize(new Dimension(100,20));
         
         //  box Category
+        labCategory = new JLabel("The category of the species");
         boxCategory = new JComboBox(category);
+        
         
         //  button validation
         validate = new JButton("Create");
@@ -63,24 +61,81 @@ public class CreateSpecieInterface extends JPanel{
         //////////////////////////////////
         // Grid Bag Constraints
         GridBagConstraints gbTitle = new GridBagConstraints();
-        GridBagConstraints gbInfoSpecie = new GridBagConstraints();
+        GridBagConstraints gblabSpe = new GridBagConstraints();
+        GridBagConstraints gbSpe = new GridBagConstraints();
+        GridBagConstraints gblabBox = new GridBagConstraints();
         GridBagConstraints gbBox = new GridBagConstraints();
         GridBagConstraints gbValidate = new GridBagConstraints();
         
         gbTitle.gridx = 0;
         gbTitle.gridy = 0;
+        gbTitle.gridwidth = 3;
         
-        gbInfoSpecie.gridx = 0;
-        gbInfoSpecie.gridy = 0;
+        gblabSpe.gridx = 0;
+        gblabSpe.gridy = 4;
+        gblabSpe.anchor = GridBagConstraints.LINE_END;
         
-        gbBox.gridx = 0;
-        gbBox.gridy = 0;
+        gbSpe.gridx = 2;
+        gbSpe.gridy = 4;
+        gbSpe.anchor = GridBagConstraints.LINE_START;
+        
+        gblabBox.gridx = 0;
+        gblabBox.gridy = 2;
+        gblabBox.anchor = GridBagConstraints.LINE_END;
+        
+        gbBox.gridx = 2;
+        gbBox.gridy = 2;
+        gbBox.anchor = GridBagConstraints.LINE_START;
         
         gbValidate.gridx = 0;
-        gbValidate.gridy = 0;
+        gbValidate.gridy = 6;
+        gbValidate.gridwidth = 3;
+        
+        this.add(title,gbTitle);
+        this.add(nameSpe,gblabSpe);
+        this.add(speciesName,gbSpe);
+        this.add(labCategory,gblabBox);
+        this.add(boxCategory,gbBox);
+        this.add(validate,gbValidate);
         
         
+        //panneau orga
+        GridBagConstraints gbpan1 = new GridBagConstraints();
         
+        gbpan1.gridx = 1;
+        gbpan1.gridy = 1;
+        JPanel pos1 = new JPanel();
+        pos1.setPreferredSize(new Dimension(50,10));
+        pos1.setBackground(Color.white);
+        
+        GridBagConstraints gbpan2 = new GridBagConstraints();
+        
+        gbpan2.gridx = 1;
+        gbpan2.gridy = 2;
+        JPanel pos2 = new JPanel();
+        pos2.setPreferredSize(new Dimension(30,10));
+        pos2.setBackground(Color.white);
+                
+        GridBagConstraints gbpan3 = new GridBagConstraints();
+        
+        gbpan3.gridx = 1;
+        gbpan3.gridy = 3;
+        JPanel pos3 = new JPanel();
+        pos3.setPreferredSize(new Dimension(30,10));
+        pos3.setBackground(Color.white);
+        
+        GridBagConstraints gbpan4 = new GridBagConstraints();
+        
+        gbpan4.gridx = 1;
+        gbpan4.gridy = 5;
+        JPanel pos4 = new JPanel();
+        pos4.setPreferredSize(new Dimension(50,10));
+        pos4.setBackground(Color.white);
+        
+        this.add(pos1,gbpan1);
+        this.add(pos2,gbpan2);
+        this.add(pos3,gbpan3);
+        this.add(pos4,gbpan4);
         
         
         
