@@ -17,11 +17,7 @@ import nf.*;
  */
 public class CreateData {
     
-    private static boolean possibilityToCreate = false;
-    
-    //private static HashMap<String,SpecieCategory> categoryList;
-
-    
+    private static boolean possibilityToCreate = true;
     
     public static void createAllInfo(){
         //create order
@@ -30,27 +26,33 @@ public class CreateData {
         2- Species
         3- Analysis
         */
-        CategoryList.launchCategoryList();
-        SpeciesList.launchSpeciesList();
-        
-        
-        String[] catList = OrderDB.getCategory();
-        System.out.println("category Creation");
-        
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
-            // the object category is created
-            String[] specList = OrderDB.getSpecies(cat);// get the species for that category
-            //add the species for this category
-            for(String spec : specList){
-                Specie sp = new Specie(spec);
-                SpeciesList.add(sp);
-                category.addSpecie(sp);
+        if(possibilityToCreate){
+            CategoryList.launchCategoryList();
+            SpeciesList.launchSpeciesList();
+
+            String[] catList = OrderDB.getCategory();
+            System.out.println("category Creation");
+
+            for (String cat: catList){
+                // creation of the new category
+                SpecieCategory category = new SpecieCategory(cat);
+                // the object category is created
+                String[] specList = OrderDB.getSpecies(cat);// get the species for that category
+                //add the species for this category
+                for(String spec : specList){
+                    Specie sp = new Specie(spec);
+                    SpeciesList.add(sp);
+                    category.addSpecie(sp);
+                }
+                //Add the object category
+                CategoryList.add(category);
             }
-            //Add the object category
-            CategoryList.add(category);
+            System.out.println("Creation of all the information");
+            possibilityToCreate = false;
+        }else{
+            System.out.println("All the data are already created");
         }
+        
         
     }
     

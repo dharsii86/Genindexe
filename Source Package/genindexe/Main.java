@@ -15,7 +15,10 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        CreateData.create();
+        CreateData.createAllInfo();
+        CreateData.createAllInfo();
+        CreateData.createAllInfo();
+        
         MenuWindow m = new MenuWindow();
         
         /*
