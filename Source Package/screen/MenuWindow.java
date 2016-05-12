@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
 /**
- * Manage the interface of the menu.  nononnonon
+ * Manage the interface of the menu. nononnonon
  *
  * @author SCRUM Group 2.
  */
@@ -25,21 +25,20 @@ public class MenuWindow extends JFrame {
     // Declarations 
     private JLabel middle;
     private JLabel south;
-    private JLabel genindexe;
-    
+
     private JMenuBar menuBar;
-    
+
     private JMenu menuCust;
     private JMenu menuOrd;
-    private JMenu home;
-    
+    private JMenu menuCat;
+
     private JMenuItem itemAddCust;
     private JMenuItem createOrder;
+    private JMenuItem createCat;
     private JMenuItem homePage;
-    
+
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
-    private ImageIcon logo2;
 
     /**
      * MenuWindow class constructor. Allow to create a window that show a menu.
@@ -52,36 +51,33 @@ public class MenuWindow extends JFrame {
         this.setMinimumSize(new Dimension(300, 200));
         this.setMaximumSize(new Dimension(1600, 900));
         this.setResizable(true);
-        
+
         this.requestFocus();
         setLayout(new BorderLayout());
-        middle = new JLabel("",JLabel.CENTER);
+        middle = new JLabel("", JLabel.CENTER);
         middle.setOpaque(true);
         middle.setBackground(Color.WHITE);
         south = new JLabel();
         south.setOpaque(true);
         south.setBackground(Color.WHITE);
-        south.setHorizontalAlignment(SwingConstants.CENTER); 
+        south.setHorizontalAlignment(SwingConstants.CENTER);
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
         this.add(south, BorderLayout.SOUTH);
-        
-        
+
         //Ajout logos
-        
         logoGenindexe = new ImageIcon(this.getClass().getResource("../images/logoGenindexe.png"));
         logo1 = new ImageIcon(logoGenindexe.getImage().getScaledInstance(472, 295, Image.SCALE_DEFAULT));
         middle.setIcon(logo1);
-        
+
         Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logoScrum.png"));
         this.setIconImage(logoTeam);
-                
+
         // Create the menu bar.
         menuBar = new JMenuBar();
-        
+
         // Build the Home page Menu
-        home = new JMenu("Home");
-        homePage = new JMenuItem("Home Page"); 
+        homePage = new JMenuItem("Home Page");
         homePage.setToolTipText("Return to the Homepage.");
         homePage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -90,9 +86,8 @@ public class MenuWindow extends JFrame {
             }
         });
         menuBar.add(homePage);
-        
 
-        // Build the Customer's menu.
+        //Build the Customer's menu.
         menuCust = new JMenu("Customer");
         menuBar.add(menuCust);
         itemAddCust = new JMenuItem("Create");
@@ -115,6 +110,19 @@ public class MenuWindow extends JFrame {
             }
         });
         menuOrd.add(createOrder);
+
+        // Build the Category's menu.
+        menuCat = new JMenu("Category");
+        menuBar.add(menuCat);
+        createCat = new JMenuItem("Create");
+        createCat.setToolTipText("Create a new Category.");
+        createCat.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("test menu");
+            }
+        });
+        menuCat.add(createCat);
+
         this.setJMenuBar(menuBar);
         this.setVisible(true);
     }
@@ -144,8 +152,7 @@ public class MenuWindow extends JFrame {
         middle.add(aux, BorderLayout.CENTER);
         refresh();
     }
-    
-    
+
     private void launchCreateOrder() {
         try {
             middle.remove(0);
@@ -156,9 +163,8 @@ public class MenuWindow extends JFrame {
         middle.add(aux, BorderLayout.CENTER);
         refresh();
     }
-    
-    public void setSouth (String action)
-    {
+
+    public void setSouth(String action) {
         this.south.setText(action);
     }
 
