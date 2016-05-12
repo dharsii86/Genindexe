@@ -27,10 +27,10 @@ public class IntegrationTest
      *      the sexing tests for birds
      *      - the customer "Mrs Rosemary Plumket", in Poitiers, with an order of two canaries (not yet)
      *      - the customer "La Palmyre Zoo" in Royan, with orders for sexing parrots and budgerigars (not yet)
-     *      - the customer "M. Paul Cameron", in Parthenay, with an order of 11 sheep scrapie tests
-     *      - the customer "M. Tom Brown", in Montmorillon, with orders of 24, 12, 8 and 36 sheep 
+     *      - the customer "M Paul Cameron", in Parthenay, with an order of 11 sheep scrapie tests
+     *      - the customer "M Tom Brown", in Montmorillon, with orders of 24, 12, 8 and 36 sheep 
      *      scrapie tests
-     *      Samples are in different status
+     *      Samples are in different status.
      */
     public IntegrationTest()
     {

@@ -23,7 +23,7 @@ public abstract class OrderDB {
  * @return ArrayList of string containing the available customers
  */
  public static String[] getCustomerTown(){
-     String req = "SELECT Customer_Town from Customer group by Customer_Town";
+     String req = "SELECT Customer_Town from customer group by Customer_Town";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -40,7 +40,7 @@ public abstract class OrderDB {
  * @return An arraylist of customer living in this town.
  */
   public static String[] getCustomerName(String town){
-     String req = "SELECT Customer_Name from Customer WHERE Customer_Town ='"+ town +"'";
+     String req = "SELECT Customer_Name from customer WHERE Customer_Town ='"+ town +"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -55,7 +55,7 @@ public abstract class OrderDB {
  * @return ArrayList of string containing the existing categories
  */
  public static String[] getCategory(){
-     String req = "SELECT Category_Name from Category";
+     String req = "SELECT Category_Name from category";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -72,7 +72,7 @@ public abstract class OrderDB {
  * @return An arraylist of string containing the possible species.
  */
  public static String[] getSpecies(String category){
-     String req = "SELECT Specie_Name from Specie WHERE Category_Name = '"+ category+"'";
+     String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -89,7 +89,7 @@ public abstract class OrderDB {
      * @return An arraylist of string containing the possible analysis.
      */
      public static String[] getAnalysis(String species){
-        String req = "SELECT Analysis_Name from Relevant WHERE Specie_Name = '"+ species+"'";
+        String req = "SELECT Analysis_Name from relevant WHERE Specie_Name = '"+ species+"'";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);    
     

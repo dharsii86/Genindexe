@@ -24,7 +24,7 @@ public class CategoryDB {
     public static boolean addCategory(SpecieCategory cat) {
         
         if (CategoryDB.checkCategoryDuplicates(cat)) {
-            ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "')");
+            ConnectionDB.requestInsert("insert into `category` (`Category_Name`) values ('" + cat.getName() + "')");
             return true;
         }
         return false;
@@ -42,7 +42,7 @@ public class CategoryDB {
 
             String n = cat.getName().toUpperCase();
 
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Category` where `Category_Name` = '" + n + "'"));
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `category` where `Category_Name` = '" + n + "'"));
 
             switch (resultat) {
                 case 0:
@@ -53,7 +53,6 @@ public class CategoryDB {
         } else {
             return false;
         }
-
     }
     
     public ArrayList getListCategory()

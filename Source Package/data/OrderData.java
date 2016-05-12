@@ -17,18 +17,14 @@ import nf.*;
 public class OrderData {
     
     private static HashMap<String,SpecieCategory> categoryList;
-    
-    public OrderData(){
-        
-        categoryList= new HashMap<String,SpecieCategory>();
-    }
 
     /**
      * Creation of the Category hashmap from the database
      * 
      */
-    public void create(){
+    public static void create(){
         
+        categoryList= new HashMap();
         String[] catList = database.OrderDB.getCategory();
         for (String cat: catList){
             // creation of the new category
@@ -36,7 +32,7 @@ public class OrderData {
             
             String[] specList = database.OrderDB.getSpecies(cat);
             for(String spec : specList){
-                
+                System.out.println(spec);
                 category.addSpecie(new Specie(spec));
                 
             }
@@ -44,7 +40,7 @@ public class OrderData {
         }
     }
     
-    public HashMap getCategories(){
+    public static HashMap getCategories(){
         return(categoryList);
     }
     
@@ -53,8 +49,8 @@ public class OrderData {
 	SpecieCategory sCat = categoryList.get(cat);
         Set<Specie> setSpe = sCat.getSpecies();
         List<Specie> list = new ArrayList<>(setSpe);
-        for(int i=0; i<list.size();i++){
-            res.add(list.get(i).getName());
+        for (Specie list1 : list) {
+            res.add(list1.getName());
         }
         String[] result = new String[ res.size() ];
         return res.toArray( result );

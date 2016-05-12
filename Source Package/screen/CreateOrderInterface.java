@@ -17,6 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+// Test
+import data.OrderData;
+import java.util.*;
+
 /**
  *
  * @author Angscrum
@@ -57,8 +61,16 @@ public class CreateOrderInterface extends JPanel{
         labelNbSamples = new JLabel("Number of Samples");
         //labelNbSamples.setPreferredSize(new Dimension(60,10));
         
+
         analyse = new JComboBox(nameAnalysis);
-        category = new JComboBox(nameCategory);
+        
+        // En cours de test
+        // category = new JComboBox(nameCategory);
+        Set<String> od = OrderData.getCategories().keySet();
+        String[] test = od.toArray(new String[od.size()]);
+        
+        category = new JComboBox(test);
+        
         espece = new JComboBox(nameSpecies);
         custName = new JComboBox(tabCustName);
         custTown = new JComboBox(tabCustTown);
@@ -66,8 +78,7 @@ public class CreateOrderInterface extends JPanel{
         /*custName.setEditable(true);
         custTown.setEditable(true);*/
         
-        
-        
+
         validate = new JButton("Validate");
         cancel = new JButton("Cancel");
         nbSpl = new JTextField();

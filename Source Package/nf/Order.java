@@ -15,7 +15,7 @@ public class Order {
    * Status of the order
    */
   private OrderStatus status = OrderStatus.inProgress;
-
+  
   /**
    * Constructor for the Order
    */
