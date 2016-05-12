@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package screen;
+import data.CategoryList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,7 +19,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 // Test
-import data.OrderData;
+import data.CreateData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
@@ -64,13 +67,19 @@ public class CreateOrderInterface extends JPanel{
 
         analyse = new JComboBox(nameAnalysis);
         
-        // En cours de test
-        // category = new JComboBox(nameCategory);
-        Set<String> od = OrderData.getCategories().keySet();
+        Set<String> od = CategoryList.getSpeciesCategory().keySet();
         String[] test = od.toArray(new String[od.size()]);
         
         category = new JComboBox(test);
         
+        category.addActionListener(new ActionListener(){
+           
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 System.out.println("Change in selection");
+                }
+            });
+
         espece = new JComboBox(nameSpecies);
         custName = new JComboBox(tabCustName);
         custTown = new JComboBox(tabCustTown);
