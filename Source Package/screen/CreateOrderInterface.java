@@ -23,6 +23,7 @@ import data.CreateData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -48,11 +49,11 @@ public class CreateOrderInterface extends JPanel{
     
     private JButton validate,cancel;
     
-    String[] nameCategory = {"Category", "Category2"};
-    String[] nameAnalysis = {};
-    String[] nameSpecies = {};
+    String[] nameCategory = {""};
+    String[] nameAnalysis = {""};
+    String[] nameSpecies = {""};
     String[] tabCustTown = {"Client town","bbbb","aaaaa"};
-    String[] tabCustName = {};
+    String[] tabCustName = {""};
     
 
     public CreateOrderInterface(JFrame jf) {
@@ -67,22 +68,36 @@ public class CreateOrderInterface extends JPanel{
 
         analyse = new JComboBox(nameAnalysis);
         
-        Set<String> od = CategoryList.getCategory().keySet();
-        String[] test = od.toArray(new String[od.size()]);
-        
-        category = new JComboBox(test);
-        
-        category.addActionListener(new ActionListener(){
-           
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                 System.out.println("Change in selection");
-                }
-            });
+        // Creation of the category combo box
+        Set<String> cat = CategoryList.getCategory().keySet();
+        nameCategory = cat.toArray(new String[cat.size()]);
+        category = new JComboBox(nameCategory);
 
-        espece = new JComboBox(nameSpecies);
+        espece = new JComboBox();
         custName = new JComboBox(tabCustName);
         custTown = new JComboBox(tabCustTown);
+        
+        /*
+            Adding the action listeners for the combo box
+        */
+       category.addActionListener(new ActionListener(){  
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            System.out.println("Change in selection");
+            
+            String selected = (String) category.getSelectedItem();
+            
+            nameSpecies = CategoryList.getListSpecieFromCat(selected);
+            
+            DefaultComboBoxModel catModel = new DefaultComboBoxModel(nameSpecies);
+            espece.setModel( catModel );
+
+                 }
+             });
+        
+        
+        
+        
         
         /*custName.setEditable(true);
         custTown.setEditable(true);*/

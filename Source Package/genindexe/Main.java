@@ -16,7 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        //CreateData.createAllInfo();
+        CreateData.createAllInfo();
         connexionInterface cm = new connexionInterface();
         //MenuWindow m = new MenuWindow();
         

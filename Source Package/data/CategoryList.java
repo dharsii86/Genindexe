@@ -45,7 +45,7 @@ public class CategoryList {
         return categoryList;
     }
     
-    public String[] getListSpecieFromCat(String cat){
+    public static String[] getListSpecieFromCat(String cat){
 	ArrayList<String> res = new ArrayList<>();
 	SpecieCategory sCat = categoryList.get(cat);
         Set<Specie> setSpe = sCat.getSpecies();
