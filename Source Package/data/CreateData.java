@@ -41,11 +41,11 @@ public class CreateData {
                 //add the species for this category
                 for(String spec : specList){
                     Specie sp = new Specie(spec);
-                    SpeciesList.put(sp);
+                    SpeciesList.add(sp);
                     category.addSpecie(sp);
                 }
                 //Add the object category
-                CategoryList.put(category);
+                CategoryList.add(category);
             }
             System.out.println("Creation of all the information");
             possibilityToCreate = false;

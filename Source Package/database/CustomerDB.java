@@ -57,4 +57,13 @@ public class CustomerDB {
             return false;
         }
     }
+    
+    
+    public static String[] getListTown(){
+        SELECT `Customer_Town` FROM `customer` WHERE 1 group by `Customer_Town`
+        
+        
+        
+    }
+    
 }
