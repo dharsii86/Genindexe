@@ -20,9 +20,16 @@ public class SpecieDB {
      * @param spe, the specie to add.
      * @return true if the specie is added and false if not.
      */
-    public static boolean addSpecie(Specie spe) {
-        return true;
-    }
+    //public static boolean addSpecie(Specie spe) {
+    //    if (SpecieDB.checkSpecieDuplicates(cust)) {
+
+    //        ConnectionDB.requestInsert("insert into `Customer` (`Customer_Name`, `Customer_Town`) values ('" + cust.getName() + "','" + cust.getTown() + "')");
+            //System.out.println("The customer has been added to the database");
+    //        return true;
+    //    }
+        //System.out.println("This customer already exist in the database");
+    //    return false;
+    //}
 
     /**
      * Check if the specie has a duplicate in the database.
