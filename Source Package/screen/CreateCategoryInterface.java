@@ -10,9 +10,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -95,11 +97,28 @@ public class CreateCategoryInterface extends JLabel {
         name.setToolTipText("Enter the name of the category.");
         
         // Initialisation des Text area
-        older = new JTextArea("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
+        older = new JTextArea();
+        CategoryDB catDB = new CategoryDB();
+        ArrayList test;
+        test = catDB.getListCategory();
+        for(int i=0; i < test.size(); i++)
+        {   
+            String texte = older.getText().concat(test.get(i).toString())+'\n' + '\r';;
+            texte = texte.replace('[',' ');
+            texte = texte.replace(']',' ');
+
+            older.setText(texte);
+        }
         older.setLineWrap(true);
-        older.setPreferredSize(new Dimension(200, 70));
+        older.setEditable(false);
+       // older.setEditable(false);
+       JScrollPane text = new JScrollPane(older);
+       text.setPreferredSize(new Dimension(200, 200));
+       
+        
         older.setToolTipText("Name of the categories already existing.");
         older.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK, (int) 2 ));
+
 
         // Panels modification
         centre.setLayout(new GridBagLayout());
@@ -147,7 +166,7 @@ public class CreateCategoryInterface extends JLabel {
         centre.setOpaque(true);
         centre.setBackground(Color.WHITE);
         centre.add(pan1, gbpan1);
-        centre.add(older, gbolder);
+        centre.add(text, gbolder);
         centre.add(nameLabel, gbNameLab);
         centre.add(name, gbName);
         centre.add(pan2, gbpan2);

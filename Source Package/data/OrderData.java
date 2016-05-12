@@ -5,7 +5,10 @@
  */
 package data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import nf.*;
 /**
  *
@@ -20,19 +23,15 @@ public class OrderData {
         categoryList= new HashMap<String,SpecieCategory>();
     }
 
-    public void addCategory(String name){
-        
-    }    
-    
     /**
      * Creation of the Category hashmap from the database
      * 
-     *
      */
     public void create(){
         
         String[] catList = database.OrderDB.getCategory();
         for (String cat: catList){
+            // creation of the new category
             SpecieCategory category = new SpecieCategory(cat);
             
             String[] specList = database.OrderDB.getSpecies(cat);
@@ -43,7 +42,22 @@ public class OrderData {
             }
          categoryList.put(category.getName(),category);
         }
-        
+    }
+    
+    public HashMap getCategories(){
+        return(categoryList);
+    }
+    
+    public String[] getListSpecieFromCat(String cat){
+	ArrayList<String> res = new ArrayList<>();
+	SpecieCategory sCat = categoryList.get(cat);
+        Set<Specie> setSpe = sCat.getSpecies();
+        List<Specie> list = new ArrayList<>(setSpe);
+        for(int i=0; i<list.size();i++){
+            res.add(list.get(i).getName());
+        }
+        String[] result = new String[ res.size() ];
+        return res.toArray( result );
     }
 }
 

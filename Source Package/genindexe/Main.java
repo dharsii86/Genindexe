@@ -15,6 +15,13 @@ public class Main {
     public static void main(String[] args) {
         
         MenuWindow m = new MenuWindow();
+        
+        /*
+        String aux = "aaaAaaeE";
+        aux = aux.toLowerCase();
+        aux = aux.substring(0, 1).toUpperCase() + aux.substring(1);
+        System.out.println(aux);
+        */
     }
 
 }
