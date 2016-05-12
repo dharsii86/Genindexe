@@ -40,7 +40,7 @@ public abstract class OrderDB {
  * @return An arraylist of customer living in this town.
  */
   public static String[] getCustomerName(String town){
-     String req = "SELECT Customer_Name from Customer WHERE Customer_Town ="+ town;
+     String req = "SELECT Customer_Name from Customer WHERE Customer_Town ='"+ town +"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -72,7 +72,7 @@ public abstract class OrderDB {
  * @return An arraylist of string containing the possible species.
  */
  public static String[] getSpecies(String category){
-     String req = "SELECT Specie_Name from Specie WHERE Category_Name ="+ category;
+     String req = "SELECT Specie_Name from Specie WHERE Category_Name = '"+ category+"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -89,7 +89,7 @@ public abstract class OrderDB {
      * @return An arraylist of string containing the possible analysis.
      */
      public static String[] getAnalysis(String species){
-        String req = "SELECT Analysis_Name from Relevant WHERE Species_Name ="+ species;
+        String req = "SELECT Analysis_Name from Relevant WHERE Specie_Name = '"+ species+"'";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);    
     
