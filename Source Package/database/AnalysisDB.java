@@ -15,34 +15,29 @@ import nf.Analysis;
 public class AnalysisDB {
     
     /**
-     * Add a category in the database.
+     * Add an Analysis in the database.
      *
-     * @param cat, the category to add.
-     * @return true if the category is added and false if not.
+     * @param ana, the analysis to add.
+     * @return true if the analysis is added and false if not.
      */
-    public static boolean addCategory(SpecieCategory cat) {
-        
-        if (CategoryDB.checkCategoryDuplicates(cat)) {
-            ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "')");
+    public static boolean addAnalysis(Analysis ana) {
+        if (checkAnalysisDuplicates(ana)) {
+            ConnectionDB.requestInsert("insert into `Analysis` (`Analysis_Name`) values ('" + ana.getName() + "')");
             return true;
         }
         return false;
     }
 
     /**
-     * Check if the category has a duplicate in the database.
+     * Check if the analysis has a duplicate in the database.
      *
-     * @param cat, the category to add.
+     * @param ana, the analysis to add.
      * @return true if there is duplicate and false if not.
      */
-    public static boolean checkCategoryDuplicates(SpecieCategory cat) {
-
-        if (cat.getName() != null) {
-
-            String n = cat.getName().toUpperCase();
-
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Category` where `Category_Name` = '" + n + "'"));
-
+    public static boolean checkAnalysisDuplicates(Analysis ana) {
+        if (ana.getName() != null) {
+            String n = ana.getName().toUpperCase();
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Analysis` where `Analysis_Name` = '" + n + "'"));
             switch (resultat) {
                 case 0:
                     return true;
@@ -52,13 +47,42 @@ public class AnalysisDB {
         } else {
             return false;
         }
-
     }
     
-    public ArrayList getListCategory()
-    {
-        ArrayList results;
-        results = ConnectionDB.requestStatic("select * from category");
-        return results;
-    }
+    public static String[] getAnalysis(String species){
+        String req = "SELECT Analysis_Name from Relevant WHERE Specie_Name = '"+ species+"'";
+        ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+        arrayResult = ConnectionDB.requestStatic(req);    
+    
+     String[] result = formatResult(arrayResult);
+     
+    return(result);
+    } 
+    
+    public static String[] getAnalysis(){
+        String req = "SELECT Analysis_Name from Analysis";
+        ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+        arrayResult = ConnectionDB.requestStatic(req);    
+    
+     String[] result = formatResult(arrayResult);
+     
+    return(result);
+    } 
+    
+    
+    public static String[] formatResult(ArrayList<ArrayList> arrayResult){
+
+         // Temporary arraylist, make it easier to extract results from request
+         ArrayList<String> tmp = new ArrayList();
+         
+         for( ArrayList<String> al: arrayResult ){
+             //Here we get only one row, which is located at[0]
+             tmp.add(al.get(0)); 
+         }
+        // Initialisation of the String array and conversion of the results
+        String[] result = new String[tmp.size()];
+        result = tmp.toArray(result);
+        
+        return(result);
+  }
 }
