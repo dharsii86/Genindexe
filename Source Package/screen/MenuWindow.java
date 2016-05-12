@@ -119,7 +119,7 @@ public class MenuWindow extends JFrame {
         createCat.setToolTipText("Create a new Category.");
         createCat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("test menu");
+                launchCreateCategory();
             }
         });
         menuCat.add(createCat);
@@ -161,6 +161,17 @@ public class MenuWindow extends JFrame {
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
         CreateCustomerInterface aux = new CreateCustomerInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refresh();
+    }
+    
+      private void launchCreateCategory() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        CreateCategoryInterface aux = new CreateCategoryInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refresh();
