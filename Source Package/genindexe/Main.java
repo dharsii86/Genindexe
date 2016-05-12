@@ -2,6 +2,7 @@ package genindexe;
 
 import screen.MenuWindow;
 import data.OrderData;
+import screen.connexionInterface;
 
 /**
  * Launch the menu of the application.
@@ -15,9 +16,9 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        OrderData.create();
+        //OrderData.create();
         MenuWindow m = new MenuWindow();
-        
+        //connexionInterface i = new connexionInterface();
         /*
         String aux = "aaaAaaeE";
         aux = aux.toLowerCase();
