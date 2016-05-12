@@ -7,6 +7,7 @@ package screen;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -24,9 +25,9 @@ public class CreateSpecieInterface extends JPanel{
     
     private String[] category = {"Category", "Category2"};
     
-    private JPanel chooseInfo ;
+    private JPanel chooseInfo , chooseCategory;
     
-    private JLabel title, nameSpe;
+    private JLabel title, nameSpe, labCategory;
     
     private JTextField speciesName;
     
@@ -37,7 +38,7 @@ public class CreateSpecieInterface extends JPanel{
     public CreateSpecieInterface(MenuWindow globalScreen) {
         super();
         this.globalScreen = globalScreen;
-        
+        System.out.println("esa");
         
         /*Initialisation*/
         //  title
@@ -57,8 +58,31 @@ public class CreateSpecieInterface extends JPanel{
         boxCategory = new JComboBox(category);
         
         //  button validation
+        validate = new JButton("Create");
         
-        System.out.print("Reueri");
+        //////////////////////////////////
+        // Grid Bag Constraints
+        GridBagConstraints gbTitle = new GridBagConstraints();
+        GridBagConstraints gbInfoSpecie = new GridBagConstraints();
+        GridBagConstraints gbBox = new GridBagConstraints();
+        GridBagConstraints gbValidate = new GridBagConstraints();
+        
+        gbTitle.gridx = 0;
+        gbTitle.gridy = 0;
+        
+        gbInfoSpecie.gridx = 0;
+        gbInfoSpecie.gridy = 0;
+        
+        gbBox.gridx = 0;
+        gbBox.gridy = 0;
+        
+        gbValidate.gridx = 0;
+        gbValidate.gridy = 0;
+        
+        
+        
+        
+        
         
         
     }

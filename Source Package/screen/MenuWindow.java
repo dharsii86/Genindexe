@@ -31,11 +31,13 @@ public class MenuWindow extends JFrame {
     private JMenu menuCust;
     private JMenu menuOrd;
     private JMenu menuCat;
+    private JMenu menuCreation;
 
     private JMenuItem itemAddCust;
     private JMenuItem createOrder;
     private JMenuItem createCat;
     private JMenuItem homePage;
+    private JMenuItem createSpecie;
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
@@ -122,6 +124,18 @@ public class MenuWindow extends JFrame {
             }
         });
         menuCat.add(createCat);
+        
+        // Build the Creation menu.
+        menuCreation = new JMenu("Creation");
+        menuBar.add(menuCreation);
+        createSpecie = new JMenuItem("Specie");
+        createSpecie.setToolTipText("Create a new Specie.");
+        createSpecie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchCreateSpecie();
+            }
+        });
+        menuCreation.add(createSpecie);
 
         this.setJMenuBar(menuBar);
         this.setVisible(true);
@@ -159,6 +173,17 @@ public class MenuWindow extends JFrame {
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
         CreateOrderInterface aux = new CreateOrderInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refresh();
+    }
+    
+    private void launchCreateSpecie() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        CreateSpecieInterface aux = new CreateSpecieInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refresh();
