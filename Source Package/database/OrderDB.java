@@ -15,6 +15,11 @@ import java.util.ArrayList;
  */
 public abstract class OrderDB {
 
+    public static void insertOrderDB(String analyseName, int customerId){
+        
+        ConnectionDB.requestInsert("insert into `order`  values ('','In progress','"+analyseName+"','"+customerId+"')");
+        
+    }
     
 /**
  * Get the list of customers living places in the database,
