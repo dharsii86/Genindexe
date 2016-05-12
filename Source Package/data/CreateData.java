@@ -54,48 +54,10 @@ public class CreateData {
         
     }
     
+   
     
     
     
-    
-    
-    /**
-     * Creation of the Category hashmap from the database
-     * 
-     */
-    public static void create(){
-        
-        categoryList= new HashMap();
-        String[] catList = database.OrderDB.getCategory();
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
-            
-            String[] specList = database.OrderDB.getSpecies(cat);
-            for(String spec : specList){
-                
-                category.addSpecie(new Specie(spec));
-                
-            }
-         categoryList.put(category.getName(),category);
-        }
-    }
-    
-    public static HashMap getCategories(){
-        return(categoryList);
-    }
-    
-    public String[] getListSpecieFromCat(String cat){
-	ArrayList<String> res = new ArrayList<>();
-	SpecieCategory sCat = categoryList.get(cat);
-        Set<Specie> setSpe = sCat.getSpecies();
-        List<Specie> list = new ArrayList<>(setSpe);
-        for (Specie list1 : list) {
-            res.add(list1.getName());
-        }
-        String[] result = new String[ res.size() ];
-        return res.toArray( result );
-    }
 }
 
 

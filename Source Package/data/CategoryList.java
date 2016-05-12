@@ -5,8 +5,10 @@
  */
 package data;
 
-import database.OrderDB;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import nf.Specie;
 import nf.SpecieCategory;
 
@@ -29,6 +31,18 @@ public class CategoryList {
     
     public static HashMap getCategory(){
         return categoryList;
+    }
+    
+    public String[] getListSpecieFromCat(String cat){
+	ArrayList<String> res = new ArrayList<>();
+	SpecieCategory sCat = categoryList.get(cat);
+        Set<Specie> setSpe = sCat.getSpecies();
+        List<Specie> list = new ArrayList<>(setSpe);
+        for (Specie list1 : list) {
+            res.add(list1.getName());
+        }
+        String[] result = new String[ res.size() ];
+        return res.toArray( result );
     }
     
 }
