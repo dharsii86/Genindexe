@@ -17,8 +17,8 @@ public class Main {
     public static void main(String[] args) {
         
         //OrderData.create();
-        //MenuWindow m = new MenuWindow();
-        connexionInterface i = new connexionInterface();
+        MenuWindow m = new MenuWindow();
+        //connexionInterface i = new connexionInterface();
         /*
         String aux = "aaaAaaeE";
         aux = aux.toLowerCase();
