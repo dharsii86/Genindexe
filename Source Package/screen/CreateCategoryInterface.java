@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -95,11 +96,15 @@ public class CreateCategoryInterface extends JLabel {
         name.setToolTipText("Enter the name of the category.");
         
         // Initialisation des Text area
-        older = new JTextArea("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
+        older = new JTextArea();
+        older.setText("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
         older.setLineWrap(true);
+        older.setEditable(false);
+        older.setWrapStyleWord(true);
         older.setPreferredSize(new Dimension(200, 70));
         older.setToolTipText("Name of the categories already existing.");
         older.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK, (int) 2 ));
+
 
         // Panels modification
         centre.setLayout(new GridBagLayout());
