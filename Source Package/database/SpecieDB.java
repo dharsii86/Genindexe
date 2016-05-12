@@ -43,7 +43,7 @@ public class SpecieDB {
 
             String n = spe.getName().toUpperCase();
 
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from Customer where Customer_Name = " + n + "'" ));
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from Customer where Customer_Name = " + n + "''" ));
 
             switch (resultat) {
                 case 0:
