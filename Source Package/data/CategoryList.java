@@ -7,6 +7,7 @@ package data;
 
 import database.OrderDB;
 import java.util.HashMap;
+import nf.Specie;
 import nf.SpecieCategory;
 
 /**
@@ -22,20 +23,22 @@ public class CategoryList {
     
     // Allow the creation of the 
     public static void create(){
+        CategoryList.categoryList = new HashMap<String, SpecieCategory>();
         String[] catList = OrderDB.getCategory();
+        System.out.println("category Creation");
+        
         for (String cat: catList){
             // creation of the new category
             SpecieCategory category = new SpecieCategory(cat);
             
             String[] specList = OrderDB.getSpecies(cat);
             for(String spec : specList){
-                
                 category.addSpecie(new Specie(spec));
-                
             }
-         categoryList.put(category.getName(),category);
+            categoryList.put(category.getName(),category);
+         
         }
-        
+        System.out.println(categoryList);
     }
     
     
