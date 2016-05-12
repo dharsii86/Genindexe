@@ -51,10 +51,8 @@ public class CustomerDBTest {
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from customer"));
         //System.out.println(resAvant);
 
-        // Creation of a CustomerDB instance
-        CustomerDB instance = new CustomerDB();
         // Insertion of the customer
-        instance.addCustomer(newCustomer);
+        CustomerDB.addCustomer(newCustomer);
 
         // Number of customer after insertion
         int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from customer"));
@@ -77,11 +75,9 @@ public class CustomerDBTest {
         Customer newCustomer1 = new Customer("Parrots Academy", "London");
         Customer newCustomer2 = new Customer("PARROTS ACADEMY", "London");
 
-        // Creation of a CustomerDB instance
-        CustomerDB instance = new CustomerDB();
         // Insertion of the customers
-        instance.addCustomer(newCustomer1);
-        instance.addCustomer(newCustomer2);
+        CustomerDB.addCustomer(newCustomer1);
+        CustomerDB.addCustomer(newCustomer2);
 
         // Research of duplicates
         ConnectionDB cDB = new ConnectionDB();

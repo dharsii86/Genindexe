@@ -34,6 +34,7 @@ public class CreateCustomerInterface extends JLabel {
     private JLabel nameLabel;
     private JLabel townLabel;
     private JLabel titleLabel;
+    private JLabel pan;
 
     // Buttons
     private JButton validateButton;
@@ -128,10 +129,18 @@ public class CreateCustomerInterface extends JLabel {
         gbUnderTitle.gridx = 0;
         gbUnderTitle.gridy = 1;
         gbUnderTitle.gridwidth = 2;
-        JPanel underTitle = new JPanel();
+        JLabel underTitle = new JLabel();
         underTitle.setOpaque(true);
         underTitle.setBackground(Color.WHITE);
-        underTitle.setPreferredSize(new Dimension(100, 100));
+        underTitle.setPreferredSize(new Dimension(100, 30));
+        
+        GridBagConstraints gbpan2 = new GridBagConstraints();
+        gbpan2.gridx = 0;
+        gbpan2.gridy = 4;
+        pan = new JLabel();
+        pan.setOpaque(true);
+        pan.setBackground(Color.WHITE);
+        pan.setPreferredSize(new Dimension(100, 50));
 
         // Insertions
         centre.setOpaque(true);
@@ -141,6 +150,7 @@ public class CreateCustomerInterface extends JLabel {
         centre.add(name, gbName);
         centre.add(townLabel, gbTownLab);
         centre.add(town, gbTown);
+        centre.add(pan, gbpan2);
         centre.add(validateButton, gbVal);
         centre.add(titleLabel, gbTitle);
         
