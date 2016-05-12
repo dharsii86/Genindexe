@@ -62,7 +62,7 @@ public class MenuWindow extends JFrame {
         south = new JLabel();
         south.setOpaque(true);
         south.setBackground(Color.WHITE);
-        south.setHorizontalAlignment(SwingConstants.CENTER);
+        south.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
         this.add(south, BorderLayout.SOUTH);
@@ -83,7 +83,6 @@ public class MenuWindow extends JFrame {
         homePage.setToolTipText("Return to the Homepage.");
         homePage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                south.setText("");
                 delMiddle();
             }
         });
