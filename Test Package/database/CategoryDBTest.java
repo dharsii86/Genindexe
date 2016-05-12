@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Manage the test of the CustomerDB class.
+ * Manage the test of the CategoryDB class.
  *
  * @author SCRUM Group 2.
  */
@@ -42,26 +42,22 @@ public class CategoryDBTest {
      */
     @Test
     public void testAddCategory() {
-        System.out.println("addCustomer");
+        System.out.println("addCategory");
 
         // Creation of a SpecieCategory instance
         SpecieCategory newCat = new SpecieCategory("Bidule");
 
         // Number of category before insertion
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from category"));
-        //System.out.println(resAvant);
 
-        // Creation of a CustomerDB instance
-        CategoryDB instance = new CategoryDB();
-        // Insertion of the customer
-        instance.addCategory(newCat);
+        // Insertion of the category
+        CategoryDB.addCategory(newCat);
 
-        // Number of customer after insertion
+        // Number of category after insertion
         int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from category"));
-        //System.out.println(resApres);
 
         if (resAfter == resBefore) {
-            fail("Customer not added.");
+            fail("Category not added.");
         }
     }
 
@@ -74,14 +70,12 @@ public class CategoryDBTest {
         System.out.println("addCategoryDuplicates");
 
         // Creation of two customers with the same name and the same town
-        SpecieCategory newCat1 = new SpecieCategory("Bird");
-        SpecieCategory newCat2 = new SpecieCategory("BIRD");
+        SpecieCategory newCat1 = new SpecieCategory("Truc");
+        SpecieCategory newCat2 = new SpecieCategory("TRUC");
 
-        // Creation of a CustomerDB instance
-        CategoryDB instance = new CategoryDB();
-        // Insertion of the customers
-        instance.addCategory(newCat1);
-        instance.addCategory(newCat2);
+        // Insertion of the category
+        CategoryDB.addCategory(newCat1);
+        CategoryDB.addCategory(newCat2);
 
         // Research of duplicates
         ConnectionDB cDB = new ConnectionDB();
