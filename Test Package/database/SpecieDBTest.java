@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import nf.Specie;
+import nf.SpecieCategory;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.After;
@@ -17,16 +14,13 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author JCGx
- * test planed:
-- check that the species is added to the Data Base. ok
-- check that the species exist only once in the data base. ok
-- check that the name field is fill.ok
-- check that the species contain only alphabetics.
-- check that the chose category exists.
+ * @author JCGx test planed: - check that the species is added to the Data Base.
+ * ok - check that the species exist only once in the data base. ok - check that
+ * the name field is fill.ok - check that the species contain only alphabetics.
+ * - check that the chose category exists.
  */
 public class SpecieDBTest {
-    
+
     public static void CustomerDBTest() {
     }
 
@@ -45,67 +39,70 @@ public class SpecieDBTest {
     @After
     public void tearDown() {
     }
-    
-    
+
     public SpecieDBTest() {
     }
 
     @Test
     /**
-*Test1. : check that the species is added to the Data Base
-**/
+     * Check that the species is added to the database
+     */
     public void testAddSpecie() {
-        System.out.println("addSpecie");
-        
-        // Creation of a Customer instance
-        Specie newSpecie = new Specie("Parrot");
 
-        // Number of specie before insertion
+        System.out.println("addSpecie");
+
+        // Creation of a category instance
+        SpecieCategory newCat = new SpecieCategory("Bird");
+
+        // Creation of a specie instance
+        Specie newSpe = new Specie("Parrot");
+
+        // Number of species before insertion
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from specie"));
         //System.out.println(resAvant);
 
-        // Insertion of the customer
-        SpecieDB.addSpecie(newSpecie);
+        // Insertion of the specie and category
+        CategoryDB.addCategory(newCat);
+        SpecieDB.addSpecie(newSpe, newCat);
 
-        // Number of Specie after insertion
-        int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from specy"));
+        // Number of species after insertion
+        int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from specie"));
         //System.out.println(resApres);
 
         if (resAfter == resBefore) {
             fail("Specie not added.");
         }
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-        
-        
     }
+
+    @Test
     /**
-*Tes2. :check that the species exist only once in the data base
-**/
+     * Check that the specie exist only once in the database
+     */
     public void testAddSpecieDuplicates() {
+
         System.out.println("addSpecieDuplicates");
 
-        // Creation of two customers with the same name and the same town
-        Specie newSpecie1 = new Specie("Parrot");
-        Specie newSpecie2 = new Specie("parrot");
+        // Creation of a category instance
+        SpecieCategory newCat = new SpecieCategory("Feline");
+        CategoryDB.addCategory(newCat);
 
-        // Creation of a SpecieDB instance
-        SpecieDB instance = new SpecieDB();
+        // Creation of two species with the same name
+        Specie newSpe1 = new Specie("Tiger");
+        Specie newSpe2 = new Specie("TIGER");
+
         // Insertion of the customers
-        SpecieDB.addSpecie(newSpecie1);
-        SpecieDB.addSpecie(newSpecie2);
+        SpecieDB.addSpecie(newSpe1, newCat);
+        SpecieDB.addSpecie(newSpe2, newCat);
 
         // Research of duplicates
         ConnectionDB cDB = new ConnectionDB();
         ResultSet res = cDB.request("select * from specie");
 
         int cpt = 0;
-
         try {
             while (res.next()) {
 
-                if (res.getString("Specie_Name").equalsIgnoreCase(newSpecie1.getName())) 
-                {
+                if (res.getString("Specie_Name").equalsIgnoreCase(newSpe1.getName())) {
                     cpt++;
                 }
             }
@@ -117,33 +114,5 @@ public class SpecieDBTest {
             fail("Duplicates allowed.");
         }
     }
-    /**
-*Test3. :check that the name field is fill
-**/
-    public void testFilledField() {
-        System.out.println("filledField");
-        // Creation of a SpecieDB instance
-        SpecieDB instance = new SpecieDB();
-        int resultat;
-        Specie test = new Specie("");
-        resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from specie where Specie_Name = ''"));
-        if(resultat > 0){
-            fail("Creation of a Specie with no name!");
-        }
-    }
-    /**
-*Test4. : check that the species contain only alphabetics.
-**/
-    public void testAlphabeticEntry() {
-        System.out.println("filledField");
-        // Creation of a SpecieDB instance
-        SpecieDB instance = new SpecieDB();
-        
-        int resultat;
-        Specie test = new Specie("");
-        resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from specie where Specie_Name = ''"));
-        if(resultat > 0){
-            fail("Creation of a Specie with wrong name!");
-        }       
-    }
+
 }
