@@ -5,7 +5,6 @@
  */
 package data;
 
- import database.OrderDB;
  import java.util.HashMap;
  import nf.Specie;
 
@@ -17,7 +16,7 @@ public class SpeciesList {
   
     private static HashMap<String,Specie> speciesList;
 
-    public static void launchCategoryList(){
+    public static void launchSpeciesList(){
         SpeciesList.speciesList = new HashMap<String, Specie>();
     }
     
