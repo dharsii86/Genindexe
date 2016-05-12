@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -97,7 +98,17 @@ public class CreateCategoryInterface extends JLabel {
         
         // Initialisation des Text area
         older = new JTextArea();
-        older.setText("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
+        CategoryDB catDB = new CategoryDB();
+        ArrayList test;
+        test = catDB.getListCategory();
+        for(int i=0; i < test.size(); i++)
+        {   
+            String texte = older.getText().concat(test.get(i).toString())+'\n' + '\r';;
+            texte = texte.replace('[',' ');
+            texte = texte.replace(']',' ');
+
+            older.setText(texte);
+        }
         older.setLineWrap(true);
         older.setEditable(false);
        // older.setEditable(false);

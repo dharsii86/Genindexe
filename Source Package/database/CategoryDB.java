@@ -1,5 +1,6 @@
 package database;
 
+import java.util.ArrayList;
 import nf.SpecieCategory;
 
 /**
@@ -53,6 +54,13 @@ public class CategoryDB {
             return false;
         }
 
+    }
+    
+    public ArrayList getListCategory()
+    {
+        ArrayList results;
+        results = ConnectionDB.requestStatic("select * from category");
+        return results;
     }
 
 }
