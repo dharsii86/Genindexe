@@ -5,6 +5,7 @@
  */
 package screen;
 
+import database.connexionUser;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -12,6 +13,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,6 +62,23 @@ public class connexionInterface extends JFrame {
         mdp = new JTextField();
         mdp.setPreferredSize(new Dimension(200, 24));
         Validate = new JButton("Validate");
+        Validate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+
+                boolean ok;
+                connexionUser con = new connexionUser();
+                ok = con.checkMDP(login.getText(), mdp.getText());
+
+               if(ok){
+                   MenuWindow m = new MenuWindow();
+                   myFrame.dispose();
+               }else{
+                   
+                   result.setText("<html><font color = 'Red' >Wrong Login or password</font></html>");
+               }
+                
+            }
+        });
         pan1 = new JPanel();
         pan2 = new JPanel();
         pan3 = new JPanel();
@@ -93,6 +113,7 @@ public class connexionInterface extends JFrame {
         
         // Gestion de la JFrame
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.setLocationRelativeTo(null);
         myFrame.requestFocus();
         Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logoScrum.png"));
         myFrame.setIconImage(logoTeam);
