@@ -53,7 +53,7 @@ public class CreateCategoryInterface extends JLabel {
         centre = new JPanel();
 
         // Initialisation of the labels
-        titleLabel = new JLabel("ADD A CATEGORY", SwingConstants.CENTER);
+        titleLabel = new JLabel("CATEGORY ADDITION", SwingConstants.CENTER);
         titleLabel.setFont(titleLabel.getFont().deriveFont(24.0f));
         nameLabel = new JLabel("Name of the category");
         nameLabel.setSize(50, 20);
