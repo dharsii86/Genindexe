@@ -14,12 +14,30 @@ public class SpecieInput {
 
     /**
      * Control the format of a specie name.
-     * 
-     * @param speName, the name of the specie.
+     *
+     * @param specieName, the name of the specie.
      * @return the name formatted of the specie.
      */
-    public static String specieInputContol(String speName) {
+    public static String specieInputContol(String specieName) {
+
+        String speName = specieName.toLowerCase();
+
+        char[] arraySpeName = speName.toCharArray();
+
+        String result = "";
+
+        for (int i = 0; i < arraySpeName.length; i++) {
+
+            if (((int) arraySpeName[i] <= 122
+                    && (int) arraySpeName[i] >= 97)
+                    || (int) arraySpeName[i] == 32) {
+                result += arraySpeName[i];
+
+            }
+        }
         
-        return "";
+        
+
+        return result;
     }
 }
