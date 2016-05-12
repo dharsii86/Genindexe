@@ -24,7 +24,9 @@ public class CategoryDB {
         
         if (CategoryDB.checkCategoryDuplicates(cat)) {
 
-            ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "'");
+             System.out.println("Check ok");
+
+            ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "')");
             return true;
         }
         return false;

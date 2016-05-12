@@ -49,12 +49,14 @@ public class CategoryDBTest {
 
         // Number of category before insertion
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from category"));
+        //System.out.println(resBefore);
 
         // Insertion of the category
         CategoryDB.addCategory(newCat);
 
         // Number of category after insertion
         int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from category"));
+        //System.out.println(resAfter);
 
         if (resAfter == resBefore) {
             fail("Category not added.");
