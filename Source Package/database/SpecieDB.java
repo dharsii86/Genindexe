@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package database;
+import nf.Specie;
 
 /**
  *
  * @author JCGx
  */
 public class SpecieDB {
-    
+    public void addSpecie(Specie S){}
 }
