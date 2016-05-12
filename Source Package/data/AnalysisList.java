@@ -8,32 +8,20 @@ package data;
 import database.AnalysisDB;
 import java.util.HashMap;
 import nf.Analysis;
+import nf.Specie;
 
 /**
  *
- * @author DharSii
+ * @author DharSii, Quentin Bonenfant
  */
 public class AnalysisList {
-    private static HashMap<String,Analysis> categoryList;
+    private static HashMap<String,Analysis> anaList;
 
+    public static void add(Analysis analysis){
+        anaList.put(analysis.getName(),analysis);
+    }
     
-    
-    // Allow the creation of all the analysis
-    public static void create(){
-        String[] anaList = AnalysisDB.getAnalysis();
-        
-        for (String ana: anaList){
-            // creation of the new analysis
-            Analysis analys = new Analysis(ana);
-            
-            String[] specList = getSpecies(ana);
-            for(String spec : specList){
-                
-                category.addSpecie(new Specie(spec));
-                
-            }
-         categoryList.put(category.getName(),category);
-        }
-        
+    public static HashMap getAnalysis(){
+        return anaList;
     }
 }
