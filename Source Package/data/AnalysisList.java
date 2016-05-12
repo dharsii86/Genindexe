@@ -5,8 +5,9 @@
  */
 package data;
 
+import database.AnalysisDB;
 import java.util.HashMap;
-import nf.*;
+import nf.Analysis;
 
 /**
  *
@@ -19,12 +20,13 @@ public class AnalysisList {
     
     // Allow the creation of all the analysis
     public static void create(){
-        String[] catList = OrderDB.getCategory();
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
+        String[] anaList = AnalysisDB.getAnalysis();
+        
+        for (String ana: anaList){
+            // creation of the new analysis
+            Analysis analys = new Analysis(ana);
             
-            String[] specList = OrderDB.getSpecies(cat);
+            String[] specList = getSpecies(ana);
             for(String spec : specList){
                 
                 category.addSpecie(new Specie(spec));
