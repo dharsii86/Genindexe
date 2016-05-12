@@ -100,8 +100,11 @@ public class CreateCategoryInterface extends JLabel {
         older.setText("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
         older.setLineWrap(true);
         older.setEditable(false);
-        older.setWrapStyleWord(true);
-        older.setPreferredSize(new Dimension(200, 70));
+       // older.setEditable(false);
+       JScrollPane text = new JScrollPane(older);
+       text.setPreferredSize(new Dimension(200, 200));
+       
+        
         older.setToolTipText("Name of the categories already existing.");
         older.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK, (int) 2 ));
 
@@ -152,7 +155,7 @@ public class CreateCategoryInterface extends JLabel {
         centre.setOpaque(true);
         centre.setBackground(Color.WHITE);
         centre.add(pan1, gbpan1);
-        centre.add(older, gbolder);
+        centre.add(text, gbolder);
         centre.add(nameLabel, gbNameLab);
         centre.add(name, gbName);
         centre.add(pan2, gbpan2);
