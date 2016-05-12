@@ -5,6 +5,7 @@
  */
 package data;
 
+import database.OrderDB;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +17,48 @@ import nf.*;
  */
 public class CreateData {
     
-    private static HashMap<String,SpecieCategory> categoryList;
+    private static boolean possibilityToCreate = false;
+    
+    //private static HashMap<String,SpecieCategory> categoryList;
 
+    
+    
+    public static void createAllInfo(){
+        //create order
+        /*
+        1- Category
+        2- Species
+        3- Analysis
+        */
+        CategoryList.launchCategoryList();
+        SpeciesList.launchSpeciesList();
+        
+        
+        String[] catList = OrderDB.getCategory();
+        System.out.println("category Creation");
+        
+        for (String cat: catList){
+            // creation of the new category
+            SpecieCategory category = new SpecieCategory(cat);
+            // the object category is created
+            String[] specList = OrderDB.getSpecies(cat);// get the species for that category
+            //add the species for this category
+            for(String spec : specList){
+                Specie sp = new Specie(spec);
+                SpeciesList.add(sp);
+                category.addSpecie(sp);
+            }
+            //Add the object category
+            CategoryList.add(category);
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     /**
      * Creation of the Category hashmap from the database
      * 
