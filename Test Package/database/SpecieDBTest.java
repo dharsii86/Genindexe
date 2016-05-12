@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  */
 public class SpecieDBTest {
     
-    public CustomerDBTest() {
+    public static void CustomerDBTest() {
     }
 
     @BeforeClass
