@@ -35,8 +35,10 @@ public class SpecieInput {
 
             }
         }
+       
+        result = result.trim();
         
-        
+        result = result.substring(0, 1).toUpperCase() + result.substring(1);
 
         return result;
     }

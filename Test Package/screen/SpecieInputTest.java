@@ -39,11 +39,11 @@ public class SpecieInputTest {
     public void testSpecieInputContol() {
         System.out.println("specieInputContol");
 
-        String speName = "xy8lel9la fast5idiosa";
+        String speName = "   xy8lel9la fast5idiosa  ";
         String expResult = "Xylella fastidiosa";
 
         String result = SpecieInput.specieInputContol(speName);
-        System.out.println(result);
+        //System.out.println(result);
 
         if (!expResult.equals(result)) {
             fail("The format is wrong");
