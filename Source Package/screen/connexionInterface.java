@@ -83,6 +83,7 @@ public class connexionInterface extends JFrame {
         pan4.setAlignmentX(Component.CENTER_ALIGNMENT);
         pan5.add(result);
         
+        
         //Ajouts Frame
         myFrame.setLayout(new GridLayout(5,1));
         myFrame.add(pan1);
