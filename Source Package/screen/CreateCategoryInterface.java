@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import nf.Customer;
@@ -28,12 +29,15 @@ public class CreateCategoryInterface extends JLabel {
 
     // Text fields
     private JTextField name;
-    private JTextField town;
+    
+    // Text Area
+    private JTextArea older;
 
     // Labels
     private JLabel nameLabel;
-    private JLabel townLabel;
     private JLabel titleLabel;
+    private JLabel pan1;
+    private JLabel pan2;
 
     // Buttons
     private JButton validateButton;
@@ -49,51 +53,25 @@ public class CreateCategoryInterface extends JLabel {
         centre = new JPanel();
 
         // Initialisation of the labels
-        titleLabel = new JLabel("CUSTOMER CREATION", SwingConstants.CENTER);
+        titleLabel = new JLabel("ADD A CATEGORY", SwingConstants.CENTER);
         titleLabel.setFont(titleLabel.getFont().deriveFont(24.0f));
-        nameLabel = new JLabel("Name");
+        nameLabel = new JLabel("Name of the category");
         nameLabel.setSize(50, 20);
-        townLabel = new JLabel("Place");
-        townLabel.setSize(50, 20);
 
         // Initialisation of the buttons
         validateButton = new JButton("Validate");
-        validateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-
-                boolean ok;
-                Customer cust;
-
-                if (!(name.getText().equals("") || town.getText().equals(""))) {
-
-                    cust = new Customer(name.getText(), town.getText());
-
-                    CustomerDB custDB = new CustomerDB();
-                    ok = custDB.addCustomer(cust);
-
-                    if (ok) {
-                        globalScreen.setSouth("The customer: "+name.getText()+" / "+town.getText()+" has been created");
-                        close();
-                    } else if (!ok) {
-                        //notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "This customer already exists.");
-                        globalScreen.setSouth("The customer : "+name.getText()+" / "+town.getText()+" already exists.");
-                    }
-
-                } else {
-                    //notOkFrame = new ValidationNotOK(name.getText(), town.getText(), "A field is empty.");
-                    globalScreen.setSouth("A field is empty.");
-                }
-                
-            }
-        });
         
         // Initialisation of the text fields
         name = new JTextField();
         name.setPreferredSize(new Dimension(200, 24));
-        name.setToolTipText("Enter the name of the company.");
-        town = new JTextField();
-        town.setPreferredSize(new Dimension(200, 24));
-        town.setToolTipText("Enter the town where the city is based.");
+        name.setToolTipText("Enter the name of the category.");
+        
+        // Initialisation des Text area
+        older = new JTextArea("Pour le moment il y a rien mais il y aura la liste des catégories déjà existantes");
+        older.setLineWrap(true);
+        older.setPreferredSize(new Dimension(200, 70));
+        older.setToolTipText("Name of the categories already existing.");
+        older.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK, (int) 2 ));
 
         // Panels modification
         centre.setLayout(new GridBagLayout());
@@ -107,15 +85,6 @@ public class CreateCategoryInterface extends JLabel {
         gbName.gridx = 1;
         gbName.gridy = 2;
 
-        GridBagConstraints gbTownLab = new GridBagConstraints();
-        gbTownLab.gridx = 0;
-        gbTownLab.gridy = 3;
-        gbTownLab.insets = new Insets(0, 0, 0, 10);
-
-        GridBagConstraints gbTown = new GridBagConstraints();
-        gbTown.gridx = 1;
-        gbTown.gridy = 3;
-
         GridBagConstraints gbVal = new GridBagConstraints();
         gbVal.gridx = 0;
         gbVal.gridy = 4;
@@ -126,23 +95,34 @@ public class CreateCategoryInterface extends JLabel {
         gbTitle.gridy = 0;
         gbTitle.gridwidth = 2;
 
-        GridBagConstraints gbUnderTitle = new GridBagConstraints();
-        gbUnderTitle.gridx = 0;
-        gbUnderTitle.gridy = 1;
-        gbUnderTitle.gridwidth = 2;
-        JPanel underTitle = new JPanel();
-        underTitle.setOpaque(true);
-        underTitle.setBackground(Color.WHITE);
-        underTitle.setPreferredSize(new Dimension(100, 100));
+        GridBagConstraints gbolder = new GridBagConstraints();
+        gbolder.gridx = 1;
+        gbolder.gridy = 1;
+        
+        GridBagConstraints gbpan1 = new GridBagConstraints();
+        gbpan1.gridx = 0;
+        gbpan1.gridy = 1;
+        pan1 = new JLabel();
+        pan1.setOpaque(true);
+        pan1.setBackground(Color.WHITE);
+        pan1.setPreferredSize(new Dimension(100, 100));
+        
+        GridBagConstraints gbpan2 = new GridBagConstraints();
+        gbpan2.gridx = 0;
+        gbpan2.gridy = 4;
+        pan2 = new JLabel();
+        pan2.setOpaque(true);
+        pan2.setBackground(Color.WHITE);
+        pan2.setPreferredSize(new Dimension(100, 50));
 
         // Insertions
         centre.setOpaque(true);
         centre.setBackground(Color.WHITE);
-        centre.add(underTitle, gbUnderTitle);
+        centre.add(pan1, gbpan1);
+        centre.add(older, gbolder);
         centre.add(nameLabel, gbNameLab);
         centre.add(name, gbName);
-        centre.add(townLabel, gbTownLab);
-        centre.add(town, gbTown);
+        centre.add(pan2, gbpan2);
         centre.add(validateButton, gbVal);
         centre.add(titleLabel, gbTitle);
         
@@ -160,14 +140,6 @@ public class CreateCategoryInterface extends JLabel {
 
     public void setCustomerName(String name) {
         this.name.setText(name);
-    }
-
-    public String getCustomerPlace() {
-        return town.getName();
-    }
-
-    public void setCustomerPlace(String town) {
-        this.town.setName(town);
     }
 
     private void close() {
