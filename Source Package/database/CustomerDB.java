@@ -20,9 +20,9 @@ public class CustomerDB {
      * @param cust, the customer to add.
      * @return true if the customer is added aand false if not.
      */
-    public boolean addCustomer(Customer cust) {
+    public static boolean addCustomer(Customer cust) {
 
-        if (this.checkCustomerDuplicates(cust)) {
+        if (CustomerDB.checkCustomerDuplicates(cust)) {
 
             ConnectionDB.requestInsert("insert into `Customer` (`Customer_Name`, `Customer_Town`) values ('" + cust.getName() + "','" + cust.getTown() + "')");
             //System.out.println("The customer has been added to the database");
@@ -38,7 +38,7 @@ public class CustomerDB {
      * @param cust, the customer to add.
      * @return true if there is duplicate and false if not.
      */
-    public boolean checkCustomerDuplicates(Customer cust) {
+    public static boolean checkCustomerDuplicates(Customer cust) {
 
         if (cust.getName() != null && cust.getTown() != null) {
 
