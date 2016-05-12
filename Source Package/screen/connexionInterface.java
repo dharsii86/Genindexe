@@ -113,12 +113,12 @@ public class connexionInterface extends JFrame {
         
         // Gestion de la JFrame
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setLocationRelativeTo(null);
         myFrame.requestFocus();
         Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logoScrum.png"));
         myFrame.setIconImage(logoTeam);
         myFrame.pack();
         myFrame.setVisible(true);
+        myFrame.setLocationRelativeTo(null);
     }
     
 }
