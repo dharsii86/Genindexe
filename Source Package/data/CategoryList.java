@@ -5,8 +5,11 @@
  */
 package data;
 
-import database.OrderDB;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import nf.Specie;
 import nf.SpecieCategory;
 
 /**
@@ -17,30 +20,32 @@ public class CategoryList {
     
     private static HashMap<String,SpecieCategory> categoryList;
 
-    public CategoryList() {
+    
+    public static void launchCategoryList(){
+        CategoryList.categoryList = new HashMap<String, SpecieCategory>();
     }
     
-    // Allow the creation of the 
-    public static void create(){
-        String[] catList = OrderDB.getCategory();
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
-            
-            String[] specList = OrderDB.getSpecies(cat);
-            for(String spec : specList){
-                
-                category.addSpecie(new Specie(spec));
-                
-            }
-         categoryList.put(category.getName(),category);
-        }
-        
+    /**
+     * Insert a new species category to the application and into the database
+     * @param cat 
+     */
+    public static void add(SpecieCategory cat){
+        categoryList.put(cat.getName(),cat);
     }
     
+    /**
+     * Insert a new species category only on the application
+     * @param cat 
+     */
+    public static void put(SpecieCategory cat){
+        categoryList.put(cat.getName(),cat);
+    }
     
-<<<<<<< HEAD
-    public static String[] getListSpecieFromCat(String cat){
+    public static HashMap getCategory(){
+        return categoryList;
+    }
+    
+    public String[] getListSpecieFromCat(String cat){
 	ArrayList<String> res = new ArrayList<>();
 	SpecieCategory sCat = categoryList.get(cat);
         Set<Specie> setSpe = sCat.getSpecies();
@@ -51,7 +56,6 @@ public class CategoryList {
         String[] result = new String[ res.size() ];
         return res.toArray( result );
     }
-=======
->>>>>>> 6798d3c3b4c5a1456ec70890fa1e4252d3126181
     
 }
+
