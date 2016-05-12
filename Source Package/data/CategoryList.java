@@ -27,7 +27,7 @@ public class CategoryList {
         categoryList.put(cat.getName(),cat);
     }
     
-    public static HashMap getSpeciesCategory(){
+    public static HashMap getCategory(){
         return categoryList;
     }
     
