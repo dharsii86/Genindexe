@@ -17,6 +17,10 @@ public class SpeciesList {
   
     private static HashMap<String,Specie> speciesList;
 
+    public static void launchCategoryList(){
+        SpeciesList.speciesList = new HashMap<String, Specie>();
+    }
+    
     public static void add(Specie spe){
         speciesList.put(spe.getName(),spe);
     }
