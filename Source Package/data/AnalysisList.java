@@ -20,7 +20,7 @@ public class AnalysisList {
     
     // Allow the creation of all the analysis
     public static void create(){
-      /*  String[] anaList = AnalysisDB.getAnalysis();
+        String[] anaList = AnalysisDB.getAnalysis();
         
         for (String ana: anaList){
             // creation of the new analysis
@@ -34,6 +34,6 @@ public class AnalysisList {
             }
          categoryList.put(category.getName(),category);
         }
-        */
+        
     }
 }
