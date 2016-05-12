@@ -80,8 +80,8 @@ public class SpeciesDBTest {
         try {
             while (res.next()) {
 
-                if (res.getString("Specie_Name").equalsIgnoreCase(newSpecie1.getName())
-                        && res.getString("Specie_Town").equalsIgnoreCase(newSpecie1.getTown())) {
+                if (res.getString("Specie_Name").equalsIgnoreCase(newSpecie1.getName())) 
+                {
                     cpt++;
                 }
             }
