@@ -7,7 +7,7 @@ package data;
 
 import database.OrderDB;
 import java.util.HashMap;
-import nf.*;
+import nf.SpecieCategory;
 
 /**
  *
@@ -37,6 +37,7 @@ public class CategoryList {
         }
         
     }
+    
     
     
 }
