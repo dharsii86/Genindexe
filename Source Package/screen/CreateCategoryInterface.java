@@ -1,5 +1,6 @@
 package screen;
 
+import database.CategoryDB;
 import database.CustomerDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import nf.Customer;
+import nf.SpecieCategory;
 
 /**
  * Manage the interface for the creation of a customer done by the secretary.
@@ -60,6 +62,32 @@ public class CreateCategoryInterface extends JLabel {
 
         // Initialisation of the buttons
         validateButton = new JButton("Validate");
+        validateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+
+                boolean ok;
+                SpecieCategory cat;
+
+                if (!(name.getText().equals(""))) {
+
+                    cat = new SpecieCategory(name.getText());
+
+                    CategoryDB catDB = new CategoryDB();
+                    ok = catDB.addCategory(cat);
+
+                    if (ok) {
+                        globalScreen.setSouth("The category: "+name.getText()+" has been created");
+                        close();
+                    } else if (!ok) {
+                        globalScreen.setSouth("The category : "+name.getText()+" already exists.");
+                    }
+
+                } else {
+                    globalScreen.setSouth("The field is empty.");
+                }
+                
+            }
+        });
         
         // Initialisation of the text fields
         name = new JTextField();

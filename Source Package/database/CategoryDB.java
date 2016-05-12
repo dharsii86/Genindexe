@@ -23,9 +23,6 @@ public class CategoryDB {
     public static boolean addCategory(SpecieCategory cat) {
         
         if (CategoryDB.checkCategoryDuplicates(cat)) {
-
-             System.out.println("Check ok");
-
             ConnectionDB.requestInsert("insert into `Category` (`Category_Name`) values ('" + cat.getName() + "')");
             return true;
         }
