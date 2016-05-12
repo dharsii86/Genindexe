@@ -18,29 +18,17 @@ public class CategoryList {
     
     private static HashMap<String,SpecieCategory> categoryList;
 
-    public CategoryList() {
-    }
     
-    // Allow the creation of the 
-    public static void create(){
+    public static void launchCategoryList(){
         CategoryList.categoryList = new HashMap<String, SpecieCategory>();
-        String[] catList = OrderDB.getCategory();
-        System.out.println("category Creation");
-        
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
-            
-            String[] specList = OrderDB.getSpecies(cat);
-            for(String spec : specList){
-                category.addSpecie(new Specie(spec));
-            }
-            categoryList.put(category.getName(),category);
-         
-        }
-        System.out.println(categoryList);
     }
     
+    public static void add(SpecieCategory cat){
+        categoryList.put(cat.getName(),cat);
+    }
     
+    public static HashMap getSpeciesCategory(){
+        return categoryList;
+    }
     
 }
