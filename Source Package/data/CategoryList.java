@@ -25,7 +25,19 @@ public class CategoryList {
         CategoryList.categoryList = new HashMap<String, SpecieCategory>();
     }
     
+    /**
+     * Insert a new species category to the application and into the database
+     * @param cat 
+     */
     public static void add(SpecieCategory cat){
+        categoryList.put(cat.getName(),cat);
+    }
+    
+    /**
+     * Insert a new species category only on the application
+     * @param cat 
+     */
+    public static void put(SpecieCategory cat){
         categoryList.put(cat.getName(),cat);
     }
     
