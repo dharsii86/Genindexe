@@ -5,7 +5,10 @@
  */
 package data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import nf.*;
 /**
  *
@@ -44,6 +47,18 @@ public class OrderData {
          categoryList.put(category.getName(),category);
         }
         
+    }
+    
+    public String[] getListSpecieFromCat(String cat){
+	ArrayList<String> res = new ArrayList<>();
+	SpecieCategory sCat = categoryList.get(cat);
+        Set<Specie> setSpe = sCat.getSpecies();
+        List<Specie> list = new ArrayList<>(setSpe);
+        for(int i=0; i<list.size();i++){
+            res.add(list.get(i).getName());
+        }
+        String[] result = new String[ res.size() ];
+        return res.toArray( result );
     }
 }
 
