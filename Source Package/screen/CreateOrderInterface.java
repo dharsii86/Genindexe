@@ -67,7 +67,7 @@ public class CreateOrderInterface extends JPanel{
 
         analyse = new JComboBox(nameAnalysis);
         
-        Set<String> od = CategoryList.getSpeciesCategory().keySet();
+        Set<String> od = CategoryList.getCategory().keySet();
         String[] test = od.toArray(new String[od.size()]);
         
         category = new JComboBox(test);
