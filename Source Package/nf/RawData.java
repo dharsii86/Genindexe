@@ -1,6 +1,6 @@
 package nf;
 
-class RawData {
+public class RawData {
   /**
    * Peak position
    */

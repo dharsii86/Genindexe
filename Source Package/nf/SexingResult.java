@@ -1,6 +1,6 @@
 package nf;
 
-class SexingResult extends Result {
+public class SexingResult extends Result {
   /**
    * Experimental value for male position
    */
