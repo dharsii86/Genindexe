@@ -25,7 +25,7 @@ public class OrderData {
     }    
     
     /**
-     * Creation of the Category hashmap
+     * Creation of the Category hashmap from the database
      * 
      *
      */
@@ -41,6 +41,7 @@ public class OrderData {
                 category.addSpecie(new Specie(spec));
                 
             }
+         categoryList.put(category.getName(),category);
         }
         
     }

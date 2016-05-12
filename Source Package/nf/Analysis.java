@@ -2,7 +2,7 @@ package nf;
 
 import java.util.*;
 
-abstract class Analysis {
+public abstract class Analysis {
   /**
    * The specie on which the analysis is defined
    */
