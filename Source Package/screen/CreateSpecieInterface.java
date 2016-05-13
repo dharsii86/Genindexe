@@ -74,13 +74,18 @@ public class CreateSpecieInterface extends JPanel{
                 SpecieCategory cat = CategoryList.getCategory(selected);
                 //maintenant on récupère l'espèce et on la créé
                 String sSpe = speciesName.getText();
-                Specie spe = new Specie(sSpe);
-                if(SpeciesList.add(spe,cat)){
-                    cat.addSpecie(spe);
+                if(!sSpe.equals("")){
+                    Specie spe = new Specie(sSpe);
+                    if(SpeciesList.add(spe,cat)){
+                        cat.addSpecie(spe);
+                        globalScreen.setSouth("The specie : "+spe.getName()+" in the category "+cat.getName()+" has been created.");
+                        close();
+                    }else{
+                        globalScreen.setSouth("The specie : "+spe.getName()+" in the category "+cat.getName()+" Already exist.");
+                    }
                 }else{
-                    
+                    globalScreen.setSouth("Enter the name of the species.");
                 }
-                
                 
             }
         });
@@ -170,6 +175,13 @@ public class CreateSpecieInterface extends JPanel{
         
     }
     
+    private void close() {
+        try {
+            globalScreen.delMiddle();
+        } catch (NullPointerException ex) {
+            System.out.println("Ligne 145");
+        }
+    }
     
     
     
