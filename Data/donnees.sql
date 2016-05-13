@@ -11,11 +11,11 @@ INSERT INTO `category` (`Category_Name`) VALUES
 ('Reptiles');
 
 
-INSERT INTO `customer` (`Customer_Id`, `Customer_Name`, `Customer_Town`) VALUES
-(2, 'GPhy', 'Poitiers'),
-(3, 'SNCF', 'France'),
-(4, 'SNCF', 'Poitiers'),
-(5, 'SNCF', 'Poitiers');
+INSERT INTO `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`,`Customer_Password`) VALUES
+('GPhyPoitiers', 'GPhy', 'Poitiers','qb045Cu'),
+('SNCFFrance', 'SNCF', 'France','nv050Cu'),
+('SNCFPoitiers', 'SNCF', 'Poitiers','jg067Cu'),
+('SNCFLaRochelle', 'SNCF', 'LaRochelle','wa053Cu');
 
 
 INSERT INTO `relevant` (`Specie_Name`, `Analysis_Name`) VALUES
@@ -43,6 +43,8 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('clrousseau','claire.rousseau@lab.com','Claire','Rousseau','cr051Se','Secretary'),
 ('thdequipe','thomas.dequipe@lab.com','Thomas','Dequipe','td040Te','Technician'),
 ('josaulnier','johnny.saulnier@lab.com','Johnny','Saulnier','js065Va','Validator'),
-('qubonenfant','quentin.bonenfant@gmail.com','Quentin','Bonenfant','qb045Cu','Customer');
+('GPhyPoitiers','quentin.bonenfant@mail.com','Quentin','Bonenfant','qb045Cu','Customer'),
+('SNCFPoitiers','Jean-Christophe.greaux@mail.com','Jean-Christophe','Greaux','jg067Cu','Customer'),
+('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
 
 
