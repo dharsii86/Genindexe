@@ -22,6 +22,7 @@ public class OrderData {
      * Creation of the Category hashmap from the database
      * 
      */
+    /*
     public static void create(){
         
         categoryList= new HashMap();
@@ -38,7 +39,7 @@ public class OrderData {
             }
          categoryList.put(category.getName(),category);
         }
-    }
+    }*/
     
     public static HashMap getCategories(){
         return(categoryList);

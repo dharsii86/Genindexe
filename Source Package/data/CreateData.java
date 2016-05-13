@@ -5,11 +5,8 @@
  */
 package data;
 
-import database.OrderDB;
+import database.ConnectionDB;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 import nf.*;
 /**
  *
@@ -30,14 +27,14 @@ public class CreateData {
             CategoryList.launchCategoryList();
             SpeciesList.launchSpeciesList();
 
-            String[] catList = OrderDB.getCategory();
+            String[] catList = getCategory();
             System.out.println("category Creation");
 
             for (String cat: catList){
                 // creation of the new category
                 SpecieCategory category = new SpecieCategory(cat);
                 // the object category is created
-                String[] specList = OrderDB.getSpecies(cat);// get the species for that category
+                String[] specList = getSpecies(cat);// get the species for that category
                 //add the species for this category
                 for(String spec : specList){
                     Specie sp = new Specie(spec);
@@ -56,7 +53,41 @@ public class CreateData {
         
     }
     
+   public static String[] getCategory(){
+     String req = "SELECT Category_Name from category";
+     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+     arrayResult = ConnectionDB.requestStatic(req);    
+    
+     String[] result = formatResult(arrayResult);
+     
+    return(result);
+    }
    
+   public static String[] getSpecies(String category){
+     String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
+     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+     arrayResult = ConnectionDB.requestStatic(req);    
+    
+     String[] result = formatResult(arrayResult);
+     
+    return(result);
+ }
+   
+   public static String[] formatResult(ArrayList<ArrayList> arrayResult){
+
+         // Temporary arraylist, make it easier to extract results from request
+         ArrayList<String> tmp = new ArrayList();
+         
+         for( ArrayList<String> al: arrayResult ){
+             //Here we get only one row, which is located at[0]
+             tmp.add(al.get(0)); 
+         }
+        // Initialisation of the String array and conversion of the results
+        String[] result = new String[tmp.size()];
+        result = tmp.toArray(result);
+        
+        return(result);
+  }
     
     
     
