@@ -28,6 +28,7 @@ public abstract class OrderDB {
  * 
  * @return ArrayList of string containing the existing categories
  */
+    
  public static String[] getCategory(){
      String req = "SELECT Category_Name from category";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
@@ -45,6 +46,7 @@ public abstract class OrderDB {
  * @param  category The category of species to find
  * @return An arraylist of string containing the possible species.
  */
+ /*
  public static String[] getSpecies(String category){
      String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
@@ -53,7 +55,7 @@ public abstract class OrderDB {
      String[] result = formatResult(arrayResult);
      
     return(result);
- }
+ }*/
 
     /**
      * Get the list of possible analysis that match 
@@ -62,6 +64,7 @@ public abstract class OrderDB {
      * @param  species  The species we want to analyse
      * @return An arraylist of string containing the possible analysis.
      */
+ /*
      public static String[] getAnalysis(String species){
         String req = "SELECT Analysis_Name from relevant WHERE Specie_Name = '"+ species+"'";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
@@ -70,7 +73,7 @@ public abstract class OrderDB {
      String[] result = formatResult(arrayResult);
      
     return(result);
-    } 
+    } */
 
     /**
      * Creation of the order in the database.
