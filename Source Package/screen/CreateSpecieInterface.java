@@ -29,9 +29,9 @@ import nf.SpecieCategory;
  */
 public class CreateSpecieInterface extends JPanel{
     
-    private MenuWindow globalScreen;
+    private final MenuWindow globalScreen;
     
-    private String[] category = {"Category", "Category2"};
+    private String[] category;
     
     private JLabel title, nameSpe, labCategory;
     
@@ -39,7 +39,7 @@ public class CreateSpecieInterface extends JPanel{
     
     private JComboBox boxCategory;
    
-    private JButton validate;
+    private final JButton validate;
 
     public CreateSpecieInterface(MenuWindow globalScreen) {
         super();
