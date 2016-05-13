@@ -75,7 +75,8 @@ public class UserDB {
             String log = login.toUpperCase();
             String pass = password.toUpperCase();
 
-            if (checkUserDuplicates(login)) {
+            if (!checkUserDuplicates(login)) {
+
                 return ConnectionDB.requestOneResult("select `Status_Name` from `User` where `User_Login` = '" + log + "' "
                         + "and `User_Password` = '" + pass + "'");
             }

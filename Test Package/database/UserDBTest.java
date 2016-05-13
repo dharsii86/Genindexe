@@ -51,7 +51,7 @@ public class UserDBTest {
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from User"));
         System.out.println(resBefore);
 
-        // Insertion of the user
+        // Insertion of a user
         UserDB.addUser("jm", "123", "jm@gmail.com", "Jean-Michel", "Bidule", "Secretaire");
 
         // Number of users after insertion
@@ -72,7 +72,7 @@ public class UserDBTest {
 
         System.out.println("addUserDuplicates");
 
-        // Insertion of the users
+        // Insertion of users
         UserDB.addUser("ac", "123", "ac@gmail.com", "Artie", "Cho", "Secretaire");
         UserDB.addUser("AC", "123", "ac@gmail.com", "Artie", "Cho", "Secretaire");
 
@@ -97,14 +97,23 @@ public class UserDBTest {
             fail("Duplicates allowed.");
         }
     }
-    
+
     /**
-     * Test of checkUserConnection method, of class UserDB. Test if the method retrieve the status correctly.
+     * Test of checkUserConnection method, of class UserDB. Test if the method
+     * retrieve the status correctly.
      */
     @Test
     public void testCheckUserConnection() {
-        
-                System.out.println("checkUserConnection");
 
+        System.out.println("checkUserConnection");
+
+        // Insertion of a user
+        UserDB.addUser("al", "123", "al@gmail.com", "Arthur", "Leroy", "Secretaire");
+
+        String status = UserDB.checkUserConnection("al", "123");
+
+        if (!status.equalsIgnoreCase("secretaire")) {
+            fail("Satus not retrieved.");
+        }
     }
 }
