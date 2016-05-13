@@ -18,9 +18,10 @@ public class ConnectionDB {
     Connection conn = null; // set in the constructor, create the connection with the database
     Statement stmt = null;
     ResultSet result = null;
-    static final String DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost/genindexe";
+    static String DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost/genindexe";
     static final String DRIVERCONNECTION_USER = "root";
     static final String DRIVERCONNECTION_PWD = "root";
+    private static String OS = System.getProperty("os.name").toLowerCase();
     /**
      * ConnexionDB class constructor. Create a connexion to the database.
      */
@@ -36,6 +37,14 @@ public class ConnectionDB {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        }
+    }
+    
+    public static void changePort(){
+        
+        if(OS.indexOf("mac") >= 0){
+            DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost:8889/genindexe";
+            System.out.println("C'est sur un MAC");
         }
     }
 

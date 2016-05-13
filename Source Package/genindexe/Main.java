@@ -2,6 +2,7 @@ package genindexe;
 
 import screen.MenuWindow;
 import data.CreateData;
+import database.ConnectionDB;
 import screen.connexionInterface;
 
 /**
@@ -15,6 +16,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ConnectionDB.changePort();//Ne pas toucher a ca
         
         CreateData.createAllInfo();
         connexionInterface cm = new connexionInterface();

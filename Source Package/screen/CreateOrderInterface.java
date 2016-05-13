@@ -177,7 +177,7 @@ public class CreateOrderInterface extends JPanel{
         
         JPanel panSStitle = new JPanel();
         panSStitle.setPreferredSize(new Dimension(60,100));
-        panSStitle.setBackground(Color.white);
+        panSStitle.setBackground(Color.red);
         GridBagConstraints gbpan1 = new GridBagConstraints();
         gbpan1.gridx = gbX + 2;
         gbpan1.gridy = gbY + 3;
@@ -208,11 +208,11 @@ public class CreateOrderInterface extends JPanel{
         gbCat.gridx = gbX + -1;
         gbCat.gridy = gbY + 3;
         //-------
-        gbSpe.gridx = gbX + 0;
-        gbSpe.gridy = gbY + 3;
+        gbSpe.gridx = gbX + -1;
+        gbSpe.gridy = gbY + 4;
         //-------
-        gbAna.gridx = gbX + 1;
-        gbAna.gridy = gbY + 3;
+        gbAna.gridx = gbX + -1;
+        gbAna.gridy = gbY + 5;
         //-------
         gbCusTown.gridx = gbX + 3;
         gbCusTown.gridy = gbY + 3;
@@ -229,8 +229,7 @@ public class CreateOrderInterface extends JPanel{
        
         /*Ajout dans les Panels*/
         this.add(title,gbTitle);
-        //this.add(labelNbSamples,gbLabelNbSpl);
-        this.add(posSpl,gbNbSpl);
+        //this.add(posSpl,gbNbSpl);
         this.add(category,gbCat);
         this.add(espece,gbSpe);
         this.add(analyse,gbAna);
