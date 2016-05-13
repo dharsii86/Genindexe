@@ -33,6 +33,16 @@ INSERT INTO `specie` (`Specie_Name`, `Category_Name`) VALUES
 ('Coronella austriaca Laurenti', 'reptilEs');
 SET FOREIGN_KEY_CHECKS=1;
 
+INSERT INTO `status` (`Status_Name`) VALUES
+('Secretary'),
+('Technician'),
+('Validator'),
+('Customer');
 
+INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_Password`,`Status_Name`) VALUES
+('clrousseau','claire.rousseau@lab.com','Claire','Rousseau','cr051Se','Secretary'),
+('thdequipe','thomas.dequipe@lab.com','Thomas','Dequipe','td040Te','Technician'),
+('josaulnier','johnny.saulnier@lab.com','Johnny','Saulnier','js065Va','Validator'),
+('qubonenfant','quentin.bonenfant@gmail.com','Quentin','Bonenfant','qb045Cu','Customer');
 
 
