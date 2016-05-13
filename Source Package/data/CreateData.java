@@ -79,6 +79,12 @@ public class CreateData {
         
     }
     
+    
+   /**
+    * Get the existing category from the database
+    * 
+    * @return The string array containing the existing categories.
+    */
    public static String[] getCategory(){
      String req = "SELECT Category_Name from category";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
@@ -89,18 +95,17 @@ public class CreateData {
     return(result);
     }
    
-   /**
- * Get the list of the species that match 
- * a defined category
- * 
- * @param  category The category of species to find
- * @return An arraylist of string containing the possible species.
- */
+    /**
+      * Get the list of the species that match 
+      * a defined category
+      * 
+      * @param  category The category of species to find
+      * @return An arraylist of string containing the possible species.
+      */
    public static String[] getSpecies(String category){
      String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
      arrayResult = ConnectionDB.requestStatic(req);    
-    
      String[] result = formatResult(arrayResult);
      
     return(result);

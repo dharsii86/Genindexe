@@ -28,26 +28,29 @@ public class CustomerList {
     
     /**
      * Insert a new customer to the application and into the database
-     * @param name Name of the customer
-     * @param town Town of the customer
+     * @param cust The customer object to add
+ 
      * @return Insertion result (success / fail )
      */
-    public static boolean add(String name, String town){
-        Customer cust = new Customer(name,town);
+    public static boolean add(Customer cust){
+        String name = cust.getName();
+        String town =  cust.getTown();
+        
         
         if(CustomerDB.addCustomer(cust)){
             // if the town exist
             if(customerList.get(town)!=null){
                 HashMap nameMap = customerList.get(town);
+                System.out.println("Town exist");
                 
-                // if the customer name do not already exist in the list
-                // (Already checked by 
+                // If the customer name do not already exist in the list
                 if(nameMap.get(name)==null){
                     nameMap.put(name,cust);
                 }
             }
             // If this is a new town
             else{
+                System.out.println("Town do not exist");
                 HashMap<String,Customer> nameMap = new HashMap<>();
                 nameMap.put(name,cust);
                 customerList.put(town, nameMap);

@@ -1,5 +1,6 @@
 package screen;
 
+import data.CustomerList;
 import database.CustomerDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -68,9 +69,10 @@ public class CreateCustomerInterface extends JLabel {
                 if (!(name.getText().equals("") || town.getText().equals(""))) {
 
                     cust = new Customer(name.getText(), town.getText());
-
-                    CustomerDB custDB = new CustomerDB();
-                    ok = custDB.addCustomer(cust);
+                    ok= CustomerList.add(cust);
+                  
+                  //  CustomerDB custDB = new CustomerDB();
+                  //ok = custDB.addCustomer(cust);
 
                     if (ok) {
                         globalScreen.setSouth("The customer: "+name.getText()+" / "+town.getText()+" has been created");
