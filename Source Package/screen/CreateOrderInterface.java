@@ -193,9 +193,6 @@ public class CreateOrderInterface extends JPanel{
         gbpan2.gridwidth = 1;
         
         
-        
-        
-        
         //-------//ici ajouter un panel vide pour avoir une meilleur taille
         posSpl = new JPanel();
         posSpl.setLayout(new FlowLayout());
@@ -244,9 +241,7 @@ public class CreateOrderInterface extends JPanel{
         //this.add(title,gbValid);
         //this.add(title,gbCancel);
         
-        
-        
-        
+         
         
         /*Gestion de la page*/
         this.setBackground(Color.GRAY);
