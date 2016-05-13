@@ -27,7 +27,7 @@ public class UserDB {
 
         if (UserDB.checkUserDuplicates(login)) {
 
-            ConnectionDB.requestInsert("insert into `User` (`User_Login`, `User_Password`, `User_Name`, `User_LastName`, `Status_Name`) "
+            ConnectionDB.requestInsert("insert into `User` (`User_Login`, `User_Password`, `User_Mail`, `User_Name`, `User_LastName`, `Status_Name`) "
                     + "values ('" + login + "', '" + password + "', '" + mail + "', '" + name + "', '" + lastName + "', '" + status + "')");
             System.out.println("The customer has been added to the database");
             return true;

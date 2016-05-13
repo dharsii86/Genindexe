@@ -49,14 +49,14 @@ public class UserDBTest {
 
         // Number of users before insertion
         int resBefore = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from User"));
-        //System.out.println(resAvant);
+        System.out.println(resBefore);
 
         // Insertion of the user
         UserDB.addUser("jm", "123", "jm@gmail.com", "Jean-Michel", "Bidule", "Secretaire");
 
         // Number of users after insertion
         int resAfter = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from User"));
-        //System.out.println(resApres);
+        System.out.println(resAfter);
 
         if (resAfter == resBefore) {
             fail("User not added.");
