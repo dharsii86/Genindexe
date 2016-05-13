@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import data.CreateData;
 import database.AnalysisDB;
 import database.CustomerDB;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -155,7 +156,7 @@ public class CreateOrderInterface extends JPanel{
         /*Modification Panels*/
         this.setLayout(new GridBagLayout());
        
-        int gbX = 1;
+        int gbX = 2;
         int gbY = 0;
         
         //Création des contraintes pour le grid bag Layout
@@ -177,16 +178,33 @@ public class CreateOrderInterface extends JPanel{
         
         JPanel panSStitle = new JPanel();
         panSStitle.setPreferredSize(new Dimension(60,100));
-        panSStitle.setBackground(Color.red);
+        panSStitle.setBackground(Color.white);
         GridBagConstraints gbpan1 = new GridBagConstraints();
         gbpan1.gridx = gbX + 2;
         gbpan1.gridy = gbY + 3;
+        gbpan1.weightx = 1;
+        
+        JPanel panleft = new JPanel();
+        panleft.setPreferredSize(new Dimension(60,100));
+        panleft.setBackground(Color.white);
+        GridBagConstraints gbpanleft = new GridBagConstraints();
+        gbpanleft.gridx = gbX + -2;
+        gbpanleft.gridy = gbY ;
+        gbpanleft.weightx = 1;
+        
+        JPanel panright = new JPanel();
+        panright.setPreferredSize(new Dimension(60,100));
+        panright.setBackground(Color.white);
+        GridBagConstraints gbpanright = new GridBagConstraints();
+        gbpanright.gridx = gbX + 6;
+        gbpanright.gridy = gbY;
+        gbpanright.weightx = 1;
         
         
         
         JPanel panSSBox = new JPanel();
         panSSBox.setPreferredSize(new Dimension(0,80));
-        panSSBox.setBackground(Color.red);
+        panSSBox.setBackground(Color.white);
         GridBagConstraints gbpan2 = new GridBagConstraints();
         gbpan2.gridx = gbX + 1;
         gbpan2.gridy = gbY + 5;
@@ -207,24 +225,48 @@ public class CreateOrderInterface extends JPanel{
         //-------
         gbCat.gridx = gbX + -1;
         gbCat.gridy = gbY + 3;
+        gbCat.anchor = GridBagConstraints.LINE_START;
+        GridBagConstraints gbCatLab = (GridBagConstraints)gbCat.clone();
+        gbCatLab.anchor = GridBagConstraints.LINE_END;
+        gbCatLab.gridx = gbCat.gridx -1;
+        gbCatLab.insets = new Insets(0, 0, 0, 10);
         //-------
         gbSpe.gridx = gbX + -1;
         gbSpe.gridy = gbY + 4;
+        gbSpe.anchor = GridBagConstraints.LINE_START;
+        GridBagConstraints gbSpeLab = (GridBagConstraints)gbSpe.clone();
+        gbSpeLab.anchor = GridBagConstraints.LINE_END;
+        gbSpeLab.gridx = gbSpe.gridx -1;
+        gbSpeLab.insets = new Insets(0, 0, 0, 10);
         //-------
         gbAna.gridx = gbX + -1;
         gbAna.gridy = gbY + 5;
+        gbAna.anchor = GridBagConstraints.LINE_START;
+        GridBagConstraints gbAnaLab = (GridBagConstraints)gbAna.clone();
+        gbAnaLab.anchor = GridBagConstraints.LINE_END;
+        gbAnaLab.gridx = gbAna.gridx -1;
+        gbAnaLab.insets = new Insets(0, 0, 0, 10);
         //-------
         gbCusTown.gridx = gbX + 3;
         gbCusTown.gridy = gbY + 3;
+        gbCusTown.anchor = GridBagConstraints.LINE_START;
+        GridBagConstraints gbCusTownLab = (GridBagConstraints)gbCusTown.clone();
+        gbCusTownLab.anchor = GridBagConstraints.LINE_END;
+        gbCusTownLab.gridx = gbCusTown.gridx -1;
+        gbCusTownLab.insets = new Insets(0, 0, 0, 10);
         //-------
-        gbCusName.gridx = gbX + 4;
-        gbCusName.gridy = gbY + 3;
+        gbCusName.gridx = gbCusTown.gridx;
+        gbCusName.gridy = gbCusTown.gridy+1;
+        gbCusName.anchor = GridBagConstraints.LINE_START;
+        GridBagConstraints gbCusNameLab = (GridBagConstraints)gbCusName.clone();
+        gbCusNameLab.anchor = GridBagConstraints.LINE_END;
+        gbCusNameLab.gridx = gbCusName.gridx -1;
+        gbCusNameLab.insets = new Insets(0, 0, 0, 10);
         //-------
-        gbValid.gridx = gbX + 3;
-        gbValid.gridy = gbY + 5;
+        gbValid.gridx = gbX +2;
+        gbValid.gridy = gbY + 7;
+        gbValid.anchor = GridBagConstraints.CENTER;
         //-------
-        gbCancel.gridx = gbX + 2;
-        gbCancel.gridy = gbY + 5;
         
        
         /*Ajout dans les Panels*/
@@ -233,11 +275,20 @@ public class CreateOrderInterface extends JPanel{
         this.add(category,gbCat);
         this.add(espece,gbSpe);
         this.add(analyse,gbAna);
+        this.add(new JLabel("Species category : "),gbCatLab);
+        this.add(new JLabel("Species : "),gbSpeLab);
+        this.add(new JLabel("Type of analysis : "),gbAnaLab);
+        
         this.add(custTown,gbCusTown);
         this.add(custName,gbCusName);
+        this.add(new JLabel("Town of the company : "),gbCusTownLab);
+        this.add(new JLabel("Company name : "),gbCusNameLab);
+        
         this.add(panSStitle,gbpan1);
         this.add(panSSBox,gbpan2);
-        //this.add(title,gbValid);
+        this.add(panright,gbpanright);
+        this.add(panleft,gbpanleft);
+        this.add(validate,gbValid);
         //this.add(title,gbCancel);
         
          
