@@ -110,10 +110,10 @@ public class CustomerDBTest {
         //Delete in the database information which can hinder the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
         //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','What')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin What','Machin','What','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin Town','Machin','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Truc Town','Truc','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Bidule Nope','Bidule','Nope','0000')");
         //Try the tested method and collect results
         String[] listCustomerTown = CustomerDB.getCustomerTown();
         //Delete in the database inforamtion used for the test
@@ -132,9 +132,9 @@ public class CustomerDBTest {
         //Delete in the database information which can hinder the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
         //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin Town','Machin','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Truc Town','Truc','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Bidule Nope','Bidule','Nope','0000')");
         //Try the tested method and collect results
         String[] listCustomer = CustomerDB.getCustomerName("Town");
         //Delete in the database inforamtion used for the test

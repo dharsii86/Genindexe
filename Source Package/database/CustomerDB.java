@@ -26,7 +26,9 @@ public class CustomerDB {
 
         if (CustomerDB.checkCustomerDuplicates(cust)) {
 
-            ConnectionDB.requestInsert("insert into `customer` (`customer_name`, `customer_town`) values ('" + cust.getName() + "','" + cust.getTown() + "')");
+            String log = cust.getName() + " " + cust.getTown();
+            String pass = "0000";
+            ConnectionDB.requestInsert("insert into `Customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;
         }
@@ -59,39 +61,62 @@ public class CustomerDB {
             return false;
         }
     }
-    
+
     /**
-    * Get the list of customers living places in the database,
-    * in order to list them on the interface.
-    *
-    * @return ArrayList of string containing the available customers
-    */
-    public static String[] getCustomerTown(){
+     * Get the list of customers living places in the database, in order to list
+     * them on the interface.
+     *
+     * @return ArrayList of string containing the available customers
+     */
+    public static String[] getCustomerTown() {
         String req = "SELECT customer_town from customer group by customer_town";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-        arrayResult = ConnectionDB.requestStatic(req);    
+        arrayResult = ConnectionDB.requestStatic(req);
 
         String[] result = formatResult(arrayResult);
 
-       return(result);
+        return (result);
     }
 
-   /**
-    * Get the list of the customer that live in
-    * a defined town
-    * 
-    * @param  town  The town  (as a string)  where the customers lives 
-    * @return An arraylist of customer living in this town.
-    */
-     public static String[] getCustomerName(String town){
-        String req = "SELECT customer_name from customer WHERE customer_town ='"+ town +"'";
+    /**
+     * Get the list of the customer that live in a defined town
+     *
+     * @param town The town (as a string) where the customers lives
+     * @return An arraylist of customer living in this town.
+     */
+    public static String[] getCustomerName(String town) {
+        String req = "SELECT customer_name from customer WHERE customer_town ='" + town + "'";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-        arrayResult = ConnectionDB.requestStatic(req);    
+        arrayResult = ConnectionDB.requestStatic(req);
 
         String[] result = formatResult(arrayResult);
 
-       return(result);
+        return (result);
     }
-    
-    
+
+    /**
+     * Check if the user can connect.
+     *
+     * @param login, the login of the user to check.
+     * @param password, the password of the user to check.
+     * @return the status if the user can connect and "none" if not.
+     */
+    public static String checkUserConnection(String login, String password) {
+
+        if (login != null && password != null) {
+
+            String log = login.toUpperCase();
+            String pass = password.toUpperCase();
+
+            int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `User` where `User_Login` = '" + login + "'"));
+            
+            if (result == 1) {
+
+                return ConnectionDB.requestOneResult("select `Status_Name` from `User` where `User_Login` = '" + log + "' "
+                        + "and `User_Password` = '" + pass + "'");
+            }
+        }
+        return "none";
+    }
+
 }
