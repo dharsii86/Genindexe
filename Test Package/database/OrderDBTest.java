@@ -52,7 +52,7 @@ public class OrderDBTest {
         ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
         ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
         //Try the tested method and collect results
-        String[] listCustomerTown = OrderDB.getCustomerTown();
+        String[] listCustomerTown = CustomerDB.getCustomerTown();
         //Delete in the database inforamtion used for the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
         //Test the results
@@ -73,7 +73,7 @@ public class OrderDBTest {
         ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
         ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
         //Try the tested method and collect results
-        String[] listCustomer = OrderDB.getCustomerName("Town");
+        String[] listCustomer = CustomerDB.getCustomerName("Town");
         //Delete in the database inforamtion used for the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
         //Test the results
