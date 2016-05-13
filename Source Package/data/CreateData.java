@@ -63,6 +63,13 @@ public class CreateData {
     return(result);
     }
    
+   /**
+ * Get the list of the species that match 
+ * a defined category
+ * 
+ * @param  category The category of species to find
+ * @return An arraylist of string containing the possible species.
+ */
    public static String[] getSpecies(String category){
      String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
      ArrayList<ArrayList> arrayResult; // creating the result ArrayList
@@ -73,6 +80,15 @@ public class CreateData {
     return(result);
  }
    
+   /**   
+     *  Function to format the results from request containg a string column.  
+     *  The results from requestStatic are ArrayList of ArrayList (two dimensional).
+     *  That's why we need to extract the values using a for loop
+     *  and tmp variable.
+     * 
+     * @param arrayResult The arraylist to convert in String[]
+     * @return The string array containing the result
+     */ 
    public static String[] formatResult(ArrayList<ArrayList> arrayResult){
 
          // Temporary arraylist, make it easier to extract results from request
