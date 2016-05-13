@@ -30,10 +30,13 @@ public class CategoryList {
      * Insert a new species category to the application and into the database
      * @param cat 
      */
-    public static void add(SpecieCategory cat){
-        CategoryDB.addCategory(cat);
-        
-        categoryList.put(cat.getName(),cat);
+    public static boolean add(SpecieCategory cat){
+        if(CategoryDB.addCategory(cat)){
+            categoryList.put(cat.getName(),cat);
+            return true;
+        }else{
+            return false;
+        }
     }
     
     /**
