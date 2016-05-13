@@ -72,22 +72,16 @@ public class CreateOrderInterface extends JPanel{
         Set<String> cat = CategoryList.getCategory().keySet();
         nameCategory = cat.toArray(new String[cat.size()]);
         category = new JComboBox(nameCategory);
-        category.setSelectedIndex(0);
-        
         
         // Creation of species combo box
         String selected = (String) category.getSelectedItem();
         nameSpecies = CategoryList.getListSpecieFromCat(selected);
         espece = new JComboBox(nameSpecies);
-        espece.setSelectedIndex(0);
-        
         
         // Creation of analysis combobox
         selected= (String) espece.getSelectedItem();
         nameAnalysis= AnalysisDB.getAnalysis(selected);
-        analyse = new JComboBox(nameAnalysis);
-        
-        
+        analyse = new JComboBox(nameAnalysis);  
         
         // Creation of the customer town combo box
         tabCustTown = CustomerDB.getCustomerTown();
@@ -108,27 +102,20 @@ public class CreateOrderInterface extends JPanel{
         category.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
-              
-            String selected = (String) category.getSelectedItem();
-            nameSpecies = CategoryList.getListSpecieFromCat(selected);
-            
-            DefaultComboBoxModel catModel = new DefaultComboBoxModel(nameSpecies);
-            espece.setModel( catModel );
-            
-            // If a specie exist for this cat, display the list of possible analysis
-            if(nameSpecies.length > 0){
-                espece.setSelectedIndex(0);
-                selected= (String) espece.getSelectedItem();
-                nameAnalysis= AnalysisDB.getAnalysis(selected);
-            }            
-            else{
-                nameAnalysis = new String[0];
-            } 
-            
-            DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
-            analyse.setModel( anaModel ); 
-           
+                String selected = (String) category.getSelectedItem();
+                nameSpecies = CategoryList.getListSpecieFromCat(selected);
+                DefaultComboBoxModel catModel = new DefaultComboBoxModel(nameSpecies);
+                espece.setModel( catModel );
 
+                // If a specie exist for this cat, display the list of possible analysis
+                if(nameSpecies.length > 0){
+                    selected= (String) espece.getSelectedItem();
+                    nameAnalysis= AnalysisDB.getAnalysis(selected);
+                }            
+                else{ nameAnalysis = new String[0]; } 
+
+                DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
+                analyse.setModel( anaModel ); 
             }
         });
        
@@ -137,15 +124,14 @@ public class CreateOrderInterface extends JPanel{
         espece.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
-            System.out.println("Specie selected");
-            String selected= (String) espece.getSelectedItem();
-            nameAnalysis= AnalysisDB.getAnalysis(selected);
-            
-            DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
-            analyse.setModel( anaModel );
+                System.out.println("Specie selected");
+                String selected= (String) espece.getSelectedItem();
+                nameAnalysis= AnalysisDB.getAnalysis(selected);
 
-                 }
-             });
+                DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
+                analyse.setModel( anaModel );
+            }
+        });
        
        
        // Listener for Town selection    
@@ -159,8 +145,8 @@ public class CreateOrderInterface extends JPanel{
             DefaultComboBoxModel custModel = new DefaultComboBoxModel(tabCustName);
             custName.setModel( custModel );
 
-                 }
-             });
+             }
+        });
  
         validate = new JButton("Validate");
         cancel = new JButton("Cancel");
