@@ -41,7 +41,7 @@ public class CreateSpecieInterface extends JPanel{
    
     private final JButton validate;
 
-    public CreateSpecieInterface(MenuWindow globalScreen) {
+    public CreateSpecieInterface(final MenuWindow globalScreen) {
         super();
         this.globalScreen = globalScreen;
         this.setLayout(new GridBagLayout());
