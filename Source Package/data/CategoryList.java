@@ -5,6 +5,7 @@
  */
 package data;
 
+import database.CategoryDB;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ public class CategoryList {
      * @param cat 
      */
     public static void add(SpecieCategory cat){
+        CategoryDB.addCategory( cat);
         categoryList.put(cat.getName(),cat);
     }
     
