@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 // Test
 import data.CreateData;
+import database.CustomerDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -66,29 +67,41 @@ public class CreateOrderInterface extends JPanel{
         //labelNbSamples.setPreferredSize(new Dimension(60,10));
         
 
-        analyse = new JComboBox(nameAnalysis);
-        
         // Creation of the category combo box
         Set<String> cat = CategoryList.getCategory().keySet();
         nameCategory = cat.toArray(new String[cat.size()]);
         category = new JComboBox(nameCategory);
         category.setSelectedIndex(0);
         
+        // Creation of species combo box
         String selected = (String) category.getSelectedItem();
         nameSpecies = CategoryList.getListSpecieFromCat(selected);
-        
         espece = new JComboBox(nameSpecies);
         
-        custName = new JComboBox(tabCustName);
+        // Creation of analysis combobox
+        
+        analyse = new JComboBox(nameAnalysis);
+        
+        
+        tabCustTown = CustomerDB.getCustomerTown();
         custTown = new JComboBox(tabCustTown);
+        custTown.setSelectedIndex(0);
+        
+        selected= (String) custTown.getSelectedItem();
+        
+        
+        tabCustName = CustomerDB.getCustomerName(selected);
+        custName = new JComboBox(tabCustName);
         
         /*
             Adding the action listeners for the combo box
         */
+        
+        // Listener for cateory selection
        category.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
-            System.out.println("Change in selection");
+            
             
             String selected = (String) category.getSelectedItem();
             
@@ -100,11 +113,22 @@ public class CreateOrderInterface extends JPanel{
                  }
              });
        
-       
+       // Listener for Town selection    
+       custTown.addActionListener(new ActionListener(){  
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+            
+            String selected = (String) custTown.getSelectedItem();
+            
+            tabCustName = CustomerDB.getCustomerName(selected);
+            
+            DefaultComboBoxModel custModel = new DefaultComboBoxModel(tabCustName);
+            custName.setModel( custModel );
 
-        /*custName.setEditable(true);
-        custTown.setEditable(true);*/
-        
+                 }
+             });
+       
 
         validate = new JButton("Validate");
         cancel = new JButton("Cancel");
