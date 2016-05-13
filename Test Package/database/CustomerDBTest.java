@@ -144,4 +144,5 @@ public class CustomerDBTest {
             fail("The function getCustomerTown() doesn't return the good results!");
         }
     }
+    
 }
