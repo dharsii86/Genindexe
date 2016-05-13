@@ -31,7 +31,8 @@ public class CategoryList {
      * @param cat 
      */
     public static void add(SpecieCategory cat){
-        CategoryDB.addCategory( cat);
+        CategoryDB.addCategory(cat);
+        
         categoryList.put(cat.getName(),cat);
     }
     
