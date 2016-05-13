@@ -36,20 +36,29 @@ public class CustomerList {
         Customer cust = new Customer(name,town);
         
         if(CustomerDB.addCustomer(cust)){
-            
-            HashMap<String,Customer> hashName;
-            hashName = new HashMap<>();
-            customerList.put(town,hashName);
+            // if the town exist
+            if(customerList.get(town)!=null){
+                HashMap nameMap = customerList.get(town);
+                
+                // if the customer name do not already exist in the list
+                // (Already checked by 
+                if(nameMap.get(name)==null){
+                    nameMap.put(name,cust);
+                }
+            }
+            // If this is a new town
+            else{
+                HashMap<String,Customer> nameMap = new HashMap<>();
+                nameMap.put(name,cust);
+                customerList.put(town, nameMap);
+            }
             
             //printInfoDebug();
             return true;
         }
         return false;  
     }
-    
-   
-    
-    
+
     public static void printInfoDebug(){
         System.out.println("category Information ");
         for(String k : customerList.keySet()){
@@ -57,28 +66,24 @@ public class CustomerList {
         }
     }
     
-    /*
+    /**
      * Insert a new species category only on the application
-     * @param cat 
-     
-    public static void put(SpecieCategory cat){
-        categoryList.put(cat.getName(),cat);
+     * @param  list The bidimensional hashmap containing customer objects.
+     */
+    public static void put(HashMap<String,HashMap> list ){  
+        customerList=list;
     }
     
-    public static HashMap getCategory(){
-        return categoryList;
+    public static String[] getCustomerTowns(){
+        Set customerSet= customerList.keySet();
+        String[] townArray= (String[]) customerSet.toArray(new String[customerSet.size()]);
+        return townArray;
     }
     
-    public static String[] getListSpecieFromCat(String cat){
-	ArrayList<String> res = new ArrayList<>();
-	SpecieCategory sCat = categoryList.get(cat);
-        Set<Specie> setSpe = sCat.getSpecies();
-        List<Specie> list = new ArrayList<>(setSpe);
-        for (Specie list1 : list) {
-            res.add(list1.getName());
-        }
-        String[] result = new String[ res.size() ];
-        return res.toArray( result );
+    public static String[] getCustomerNameByTown(String town){
+        HashMap nameMap = customerList.get(town);
+        Set nameSet = nameMap.keySet();
+        String[] nameArray = (String[]) nameSet.toArray(new String[nameSet.size()]);
+        return(nameArray);
     }
-    
 }

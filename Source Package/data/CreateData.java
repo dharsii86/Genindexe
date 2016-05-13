@@ -6,7 +6,9 @@
 package data;
 
 import database.ConnectionDB;
+import database.CustomerDB;
 import java.util.ArrayList;
+import java.util.HashMap;
 import nf.*;
 /**
  *
@@ -22,6 +24,7 @@ public class CreateData {
         1- Category
         2- Species
         3- Analysis
+        4- Customer
         */
         if(possibilityToCreate){
             CategoryList.launchCategoryList();
@@ -44,6 +47,29 @@ public class CreateData {
                 //Add the object category
                 CategoryList.put(category);
             }
+            
+            // 4- Creation of customer objects and lists
+            
+            // Initialisation
+            HashMap<String,HashMap> customerTownList = new HashMap<>();
+            HashMap<String,Customer> hashName;
+            String[] nameList;
+            String[] townList = CustomerDB.getCustomerTown();
+            Customer cust;
+            // filling
+            for(String town:townList){
+                
+                nameList= CustomerDB.getCustomerName(town);
+                hashName = new HashMap<>(); 
+                for(String name: nameList){
+                       cust= new Customer(name,town);
+                       hashName.put(name,cust);
+                }
+                customerTownList.put(town,hashName);
+            }
+            CustomerList.put(customerTownList);
+            
+            
             System.out.println("Creation of all the information");
             possibilityToCreate = false;
         }else{
