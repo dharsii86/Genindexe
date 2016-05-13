@@ -21,38 +21,7 @@ public abstract class OrderDB {
         
     }
     
-/**
- * Get the list of customers living places in the database,
- * in order to list them on the interface.
- *
- * @return ArrayList of string containing the available customers
- */
- public static String[] getCustomerTown(){
-     String req = "SELECT Customer_Town from customer group by Customer_Town";
-     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-     arrayResult = ConnectionDB.requestStatic(req);    
-    
-     String[] result = formatResult(arrayResult);
-     
-    return(result);
- }
- 
-/**
- * Get the list of the customer that live in
- * a defined town
- * 
- * @param  town  The town  (as a string)  where the customers lives 
- * @return An arraylist of customer living in this town.
- */
-  public static String[] getCustomerName(String town){
-     String req = "SELECT Customer_Name from customer WHERE Customer_Town ='"+ town +"'";
-     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-     arrayResult = ConnectionDB.requestStatic(req);    
-    
-     String[] result = formatResult(arrayResult);
-     
-    return(result);
- }
+
  
 /**
  * Get the list of the existing category in the database
