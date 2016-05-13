@@ -7,6 +7,7 @@ package database;
 
 import java.util.ArrayList;
 import nf.Analysis;
+import nf.Specie;
 
 /**
  *
@@ -26,6 +27,42 @@ public class AnalysisDB {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Add the relevant analysis for a specie
+     *
+     * @param ana, the analysis to add.
+     * @return true if the analysis is added and false if not.
+     */
+    public static boolean addRelevant(Specie spe, Analysis ana) {
+        if (checkRelevantDuplicates(spe,ana)) {
+            ConnectionDB.requestInsert("insert into `relevant` (`specie_name`,`analysis_name`) values ('" + spe.getName() + "','" + ana.getName() + "')");
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Check if this relevant couple
+     *
+     * @param spe, the specie to conect to the analysis
+     * @param ana, the analysis.
+     * @return false if there is duplicate and false if not.
+     */
+    public static boolean checkRelevantDuplicates(Specie spe, Analysis ana) {
+        if ((ana.getName() != null)&&(spe.getName() != null)) {
+            String n = ana.getName().toUpperCase();
+            String s = spe.getName().toUpperCase();
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `relevant` where `analysis_name` = '" + n + "' and `specie_name` = '" + s + "'"));
+            switch (resultat) {
+                case 0:// pas de doublons
+                    return true;
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
