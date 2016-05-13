@@ -101,7 +101,7 @@ public class CustomerDBTest {
             fail("Duplicates allowed.");
         }
     }
-    
+
     /**
      * Test of getCustomerTown method, of class OrderDB.
      */
@@ -110,20 +110,20 @@ public class CustomerDBTest {
         //Delete in the database information which can hinder the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
         //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin What','Machin','What','0000')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin Town','Machin','Town','0000')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Truc Town','Truc','Town','0000')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Bidule Nope','Bidule','Nope','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('MachinWhat','Machin','What','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('MachinTown','Machin','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('TrucTown','Truc','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('BiduleNope','Bidule','Nope','0000')");
         //Try the tested method and collect results
         String[] listCustomerTown = CustomerDB.getCustomerTown();
         //Delete in the database inforamtion used for the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
         //Test the results
-        if (listCustomerTown.length != 3){
+        if (listCustomerTown.length != 3) {
             fail("The function getCustomerTown() doesn't return the good results!");
         }
     }
-    
+
     /**
      * Test of getCustomerName method, of class OrderDB.
      */
@@ -132,17 +132,32 @@ public class CustomerDBTest {
         //Delete in the database information which can hinder the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
         //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Machin Town','Machin','Town','0000')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Truc Town','Truc','Town','0000')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('Bidule Nope','Bidule','Nope','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('MachinTown','Machin','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('TrucTown','Truc','Town','0000')");
+        ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values('BiduleNope','Bidule','Nope','0000')");
         //Try the tested method and collect results
         String[] listCustomer = CustomerDB.getCustomerName("Town");
         //Delete in the database inforamtion used for the test
         ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
         //Test the results
-        if (listCustomer.length != 2){
+        if (listCustomer.length != 2) {
             fail("The function getCustomerTown() doesn't return the good results!");
         }
     }
-    
+
+    /**
+     * Test of checkCustomerConnection method, of class OrderDB.
+     */
+    @Test
+    public void testCheckCustomerConnection() {
+
+        //ConnectionDB.requestInsert("insert into customer (Customer_Login,Customer_Name,Customer_Town,Customer_Password) values ('BouleCreuse','Boule','Creuse','0000')");
+        CustomerDB.addCustomer(new Customer("Boule", "Creuse"));
+
+        boolean c = CustomerDB.checkCustomerConnection("BouleCreuse", "0000");
+
+        if (c == false) {
+            fail("The connection works.");
+        }
+    }
 }

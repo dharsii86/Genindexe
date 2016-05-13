@@ -26,7 +26,7 @@ public class CustomerDB {
 
         if (CustomerDB.checkCustomerDuplicates(cust)) {
 
-            String log = cust.getName() + " " + cust.getTown();
+            String log = cust.getName() + cust.getTown();
             String pass = "0000";
             ConnectionDB.requestInsert("insert into `Customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
@@ -99,23 +99,23 @@ public class CustomerDB {
      *
      * @param login, the login of the user to check.
      * @param password, the password of the user to check.
-     * @return the status if the user can connect and "none" if not.
+     * @return true if the customer can connect and false if not.
      */
-    public static String checkUserConnection(String login, String password) {
+    public static boolean checkCustomerConnection(String login, String password) {
 
         if (login != null && password != null) {
 
             String log = login.toUpperCase();
             String pass = password.toUpperCase();
 
-            int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `User` where `User_Login` = '" + login + "'"));
+           int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Customer` where `Customer_Login` = '" + log + "' "
+                        + "and `Customer_Password` = '" + pass + "'"));
             
             if (result == 1) {
 
-                return ConnectionDB.requestOneResult("select `Status_Name` from `User` where `User_Login` = '" + log + "' "
-                        + "and `User_Password` = '" + pass + "'");
+                return true;
             }
         }
-        return "none";
+        return false;
     }
 }
