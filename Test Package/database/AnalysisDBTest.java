@@ -26,8 +26,8 @@ public class AnalysisDBTest {
     public void testAddAnalysis() {
         ConnectionDB.requestInsert("insert into category values('Truc')");
         ConnectionDB.requestInsert("insert into specie values('Lala','Truc')");
-        Analysis priseSang = new Analysis();
-        boolean resultat = AnalysisDB.addAnalysis(priseSang);
+        //Analysis priseSang = new Analysis();
+        //boolean resultat = AnalysisDB.addAnalysis(priseSang);
     }
 
     /**
