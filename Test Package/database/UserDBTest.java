@@ -97,4 +97,14 @@ public class UserDBTest {
             fail("Duplicates allowed.");
         }
     }
+    
+    /**
+     * Test of checkUserConnection method, of class UserDB. Test if the method retrieve the status correctly.
+     */
+    @Test
+    public void testCheckUserConnection() {
+        
+                System.out.println("checkUserConnection");
+
+    }
 }
