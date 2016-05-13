@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 // Test
 import data.CreateData;
+import database.AnalysisDB;
 import database.CustomerDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,54 +74,86 @@ public class CreateOrderInterface extends JPanel{
         category = new JComboBox(nameCategory);
         category.setSelectedIndex(0);
         
+        
         // Creation of species combo box
         String selected = (String) category.getSelectedItem();
         nameSpecies = CategoryList.getListSpecieFromCat(selected);
         espece = new JComboBox(nameSpecies);
+        espece.setSelectedIndex(0);
+        
         
         // Creation of analysis combobox
-        
+        selected= (String) espece.getSelectedItem();
+        nameAnalysis= AnalysisDB.getAnalysis(selected);
         analyse = new JComboBox(nameAnalysis);
         
         
+        
+        // Creation of the customer town combo box
         tabCustTown = CustomerDB.getCustomerTown();
         custTown = new JComboBox(tabCustTown);
         custTown.setSelectedIndex(0);
         
-        selected= (String) custTown.getSelectedItem();
-        
-        
+        // Creation of the customer name combo box
+        selected= (String) custTown.getSelectedItem();     
         tabCustName = CustomerDB.getCustomerName(selected);
         custName = new JComboBox(tabCustName);
         
+        
         /*
-            Adding the action listeners for the combo box
+            Adding the action listeners for the combo boxes
         */
         
-        // Listener for cateory selection
-       category.addActionListener(new ActionListener(){  
+        // Listener for category selection
+        category.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
-            
-            
+              
             String selected = (String) category.getSelectedItem();
-            
             nameSpecies = CategoryList.getListSpecieFromCat(selected);
             
             DefaultComboBoxModel catModel = new DefaultComboBoxModel(nameSpecies);
             espece.setModel( catModel );
+            
+            // If a specie exist for this cat, display the list of possible analysis
+            if(nameSpecies.length > 0){
+                espece.setSelectedIndex(0);
+                selected= (String) espece.getSelectedItem();
+                nameAnalysis= AnalysisDB.getAnalysis(selected);
+            }            
+            else{
+                nameAnalysis = new String[0];
+            } 
+            
+            DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
+            analyse.setModel( anaModel ); 
+           
+
+            }
+        });
+       
+       
+        // Listener for Analysis selection    
+        espece.addActionListener(new ActionListener(){  
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            System.out.println("Specie selected");
+            String selected= (String) espece.getSelectedItem();
+            nameAnalysis= AnalysisDB.getAnalysis(selected);
+            
+            DefaultComboBoxModel anaModel = new DefaultComboBoxModel(nameAnalysis);
+            analyse.setModel( anaModel );
 
                  }
              });
+       
        
        // Listener for Town selection    
        custTown.addActionListener(new ActionListener(){  
             @Override
             public void actionPerformed(ActionEvent e) {
-            
-            
+
             String selected = (String) custTown.getSelectedItem();
-            
             tabCustName = CustomerDB.getCustomerName(selected);
             
             DefaultComboBoxModel custModel = new DefaultComboBoxModel(tabCustName);
@@ -128,8 +161,7 @@ public class CreateOrderInterface extends JPanel{
 
                  }
              });
-       
-
+ 
         validate = new JButton("Validate");
         cancel = new JButton("Cancel");
         nbSpl = new JTextField();
