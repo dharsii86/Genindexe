@@ -72,8 +72,11 @@ public class CreateOrderInterface extends JPanel{
         Set<String> cat = CategoryList.getCategory().keySet();
         nameCategory = cat.toArray(new String[cat.size()]);
         category = new JComboBox(nameCategory);
-
+        category.insertItemAt("", 0);
+        
         espece = new JComboBox();
+        
+       
         custName = new JComboBox(tabCustName);
         custTown = new JComboBox(tabCustTown);
         
@@ -94,11 +97,7 @@ public class CreateOrderInterface extends JPanel{
 
                  }
              });
-        
-        
-        
-        
-        
+
         /*custName.setEditable(true);
         custTown.setEditable(true);*/
         
