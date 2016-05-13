@@ -40,11 +40,16 @@ public class CategoryList {
         }
     }
     
+    public static SpecieCategory getCategory(String categoryName){
+        return categoryList.get(categoryName);
+    }
+    
+    
     public static void printInfoDebug(){
         System.out.println("category Information ");
         for(String k : categoryList.keySet()){
-        System.out.println("category : "+k);
-    }
+            System.out.println("category : "+k);
+        }
     }
     
     /**

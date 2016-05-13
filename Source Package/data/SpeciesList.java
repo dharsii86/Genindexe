@@ -5,8 +5,10 @@
  */
 package data;
 
+import database.SpecieDB;
  import java.util.HashMap;
  import nf.Specie;
+import nf.SpecieCategory;
 
 /**
  *
@@ -23,10 +25,23 @@ public class SpeciesList {
      * Insert a new species on the application and on the database
      * @param spe 
      */
-    public static void add(Specie spe){
-        speciesList.put(spe.getName(),spe);
+    public static boolean add(Specie spe,SpecieCategory cat){
+        if(SpecieDB.addSpecie(spe, cat)){
+            speciesList.put(spe.getName(),spe);
+            printInfoDebug();
+            return true;
+        }else{
+            return false;
+        }
+            
     }
     
+    public static void printInfoDebug(){
+        System.out.println("Species Information ");
+        for(String k : speciesList.keySet()){
+            System.out.println("specie : "+k);
+        }
+    }
     
     /**
      * Insert a new species only on the application

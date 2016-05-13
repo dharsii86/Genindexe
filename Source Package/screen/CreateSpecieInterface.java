@@ -5,16 +5,23 @@
  */
 package screen;
 
+import data.CategoryList;
+import data.SpeciesList;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import nf.Specie;
+import nf.SpecieCategory;
 
 /**
  *
@@ -52,11 +59,32 @@ public class CreateSpecieInterface extends JPanel{
         
         //  box Category
         labCategory = new JLabel("The category of the species");
-        boxCategory = new JComboBox(category);
+        Set<String> cat = CategoryList.getCategory().keySet();
+        String[] nameCategory = cat.toArray(new String[cat.size()]);
+        boxCategory = new JComboBox(nameCategory);
         
         
         //  button validation
         validate = new JButton("Create");
+        
+        validate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selected = (String) boxCategory.getSelectedItem();
+                SpecieCategory cat = CategoryList.getCategory(selected);
+                //maintenant on récupère l'espèce et on la créé
+                String sSpe = speciesName.getText();
+                Specie spe = new Specie(sSpe);
+                if(SpeciesList.add(spe,cat)){
+                    cat.addSpecie(spe);
+                }else{
+                    
+                }
+                
+                
+            }
+        });
+        
         
         //////////////////////////////////
         // Grid Bag Constraints
