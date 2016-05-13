@@ -1,7 +1,7 @@
 package screen;
 
+import data.CategoryList;
 import database.CategoryDB;
-import database.CustomerDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import nf.Customer;
 import nf.SpecieCategory;
 
 /**
@@ -75,7 +74,8 @@ public class CreateCategoryInterface extends JLabel {
                     cat = new SpecieCategory(name.getText());
 
                     CategoryDB catDB = new CategoryDB();
-                    ok = catDB.addCategory(cat);
+                    ok = CategoryList.add(cat);
+                    //ok = catDB.addCategory(cat);
 
                     if (ok) {
                         globalScreen.setSouth("The category: "+name.getText()+" has been created");

@@ -33,10 +33,18 @@ public class CategoryList {
     public static boolean add(SpecieCategory cat){
         if(CategoryDB.addCategory(cat)){
             categoryList.put(cat.getName(),cat);
+            //printInfoDebug();
             return true;
         }else{
             return false;
         }
+    }
+    
+    public static void printInfoDebug(){
+        System.out.println("category Information ");
+        for(String k : categoryList.keySet()){
+        System.out.println("category : "+k);
+    }
     }
     
     /**
