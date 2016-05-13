@@ -70,17 +70,15 @@ public class CreateOrderInterface extends JPanel{
         
         // Creation of the category combo box
         Set<String> cat = CategoryList.getCategory().keySet();
-        System.out.println(cat.size());
         nameCategory = cat.toArray(new String[cat.size()]);
-        
         category = new JComboBox(nameCategory);
+        category.setSelectedIndex(0);
         
+        String selected = (String) category.getSelectedItem();
+        nameSpecies = CategoryList.getListSpecieFromCat(selected);
         
+        espece = new JComboBox(nameSpecies);
         
-        
-        espece = new JComboBox();
-        
-       
         custName = new JComboBox(tabCustName);
         custTown = new JComboBox(tabCustTown);
         
