@@ -28,7 +28,7 @@ public class SpeciesList {
     public static boolean add(Specie spe,SpecieCategory cat){
         if(SpecieDB.addSpecie(spe, cat)){
             speciesList.put(spe.getName(),spe);
-            printInfoDebug();
+            //printInfoDebug();
             return true;
         }else{
             return false;
