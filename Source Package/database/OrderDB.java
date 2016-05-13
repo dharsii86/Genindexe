@@ -20,25 +20,6 @@ public abstract class OrderDB {
         ConnectionDB.requestInsert("insert into `order`  values ('','In progress','"+analyseName+"','"+customerId+"')");
         
     }
-    
-
- 
-/**
- * Get the list of the existing category in the database
- * 
- * @return ArrayList of string containing the existing categories
- */
-    
- public static String[] getCategory(){
-     String req = "SELECT Category_Name from category";
-     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-     arrayResult = ConnectionDB.requestStatic(req);    
-    
-     String[] result = formatResult(arrayResult);
-     
-    return(result);
- }
-
 
     /**   
      *  Function to format the results from request containg a string column.  
