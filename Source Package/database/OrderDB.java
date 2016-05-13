@@ -39,48 +39,6 @@ public abstract class OrderDB {
     return(result);
  }
 
-/**
- * Get the list of the species that match 
- * a defined category
- * 
- * @param  category The category of species to find
- * @return An arraylist of string containing the possible species.
- */
- /*
- public static String[] getSpecies(String category){
-     String req = "SELECT Specie_Name from specie WHERE Category_Name = '"+ category+"'";
-     ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-     arrayResult = ConnectionDB.requestStatic(req);    
-    
-     String[] result = formatResult(arrayResult);
-     
-    return(result);
- }*/
-
-    /**
-     * Get the list of possible analysis that match 
-     * a defined species
-     * 
-     * @param  species  The species we want to analyse
-     * @return An arraylist of string containing the possible analysis.
-     */
- /*
-     public static String[] getAnalysis(String species){
-        String req = "SELECT Analysis_Name from relevant WHERE Specie_Name = '"+ species+"'";
-        ArrayList<ArrayList> arrayResult; // creating the result ArrayList
-        arrayResult = ConnectionDB.requestStatic(req);    
-    
-     String[] result = formatResult(arrayResult);
-     
-    return(result);
-    } */
-
-    /**
-     * Creation of the order in the database.
-     * This method send the new order to the database.
-     *
-     * @param theOrder The order object to send.
-     */ 
 
     /**   
      *  Function to format the results from request containg a string column.  
