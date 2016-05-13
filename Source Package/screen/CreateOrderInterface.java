@@ -133,7 +133,6 @@ public class CreateOrderInterface extends JPanel{
             }
         });
        
-       
        // Listener for Town selection    
        custTown.addActionListener(new ActionListener(){  
             @Override
