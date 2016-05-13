@@ -40,49 +40,6 @@ public class OrderDBTest {
     }
     
     /**
-     * Test of getCustomerTown method, of class OrderDB.
-     */
-    @Test
-    public void testGetCustomerTown() {
-        //Delete in the database information which can hinder the test
-        ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
-        //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','What')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
-        //Try the tested method and collect results
-        String[] listCustomerTown = CustomerDB.getCustomerTown();
-        //Delete in the database inforamtion used for the test
-        ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule' or Customer_Name = 'What'");
-        //Test the results
-        if (listCustomerTown.length != 3){
-            fail("The function getCustomerTown() doesn't return the good results!");
-        }
-    }
-
-    /**
-     * Test of getCustomerName method, of class OrderDB.
-     */
-    @Test
-    public void testGetCustomerName() {
-        //Delete in the database information which can hinder the test
-        ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
-        //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Machin','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Truc','Town')");
-        ConnectionDB.requestInsert("insert into customer (Customer_Name,Customer_Town) values('Bidule','Nope')");
-        //Try the tested method and collect results
-        String[] listCustomer = CustomerDB.getCustomerName("Town");
-        //Delete in the database inforamtion used for the test
-        ConnectionDB.requestInsert("delete from customer where Customer_Name = 'Machin' or Customer_Name = 'Truc' or Customer_Name = 'Bidule'");
-        //Test the results
-        if (listCustomer.length != 2){
-            fail("The function getCustomerTown() doesn't return the good results!");
-        }
-    }
-
-    /**
      * Test of getCategory method, of class OrderDB.
      */
     @Test
