@@ -29,6 +29,11 @@ public class CategoryDB {
         }
         return false;
     }
+    
+    
+    
+    
+    
 
     /**
      * Check if the category has a duplicate in the database.

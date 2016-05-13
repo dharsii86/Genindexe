@@ -21,7 +21,7 @@ public class UserDB {
      * @param name, the name of the user to add.
      * @param lastName, the last name of the user to add.
      * @param status, the status of the user to add.
-     * @return true if the customer is added and false if not.
+     * @return true if the user is added and false if not.
      */
     public static boolean addUser(String login, String password, String mail, String name, String lastName, String status) {
 
@@ -37,7 +37,7 @@ public class UserDB {
     }
 
     /**
-     * Check if the customer has a duplicate in the database.
+     * Check if the user has a duplicate in the database.
      *
      * @param login, the login of the user to check.
      * @return true if there is duplicate and false if not.
@@ -61,4 +61,25 @@ public class UserDB {
         }
     }
 
+    /**
+     * Check if the user can connect.
+     *
+     * @param login, the login of the user to check.
+     * @param password, the password of the user to check.
+     * @return the status if the user can connect and "none" if not.
+     */
+    public static String checkUserConnection(String login, String password) {
+
+        if (login != null && password != null) {
+
+            String log = login.toUpperCase();
+            String pass = password.toUpperCase();
+
+            if (checkUserDuplicates(login)) {
+                return ConnectionDB.requestOneResult("select `Status_Name` from `User` where `User_Login` = '" + log + "' "
+                        + "and `User_Password` = '" + pass + "'");
+            }
+        }
+        return "none";
+    }
 }
