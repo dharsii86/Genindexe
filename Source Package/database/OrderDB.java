@@ -21,6 +21,18 @@ public abstract class OrderDB {
         
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**   
      *  Function to format the results from request containg a string column.  
      *  The results from requestStatic are ArrayList of ArrayList (two dimensional).
@@ -30,7 +42,6 @@ public abstract class OrderDB {
      * @param arrayResult The arraylist to convert in String[]
      * @return The string array containing the result
      */ 
-
     public static String[] formatResult(ArrayList<ArrayList> arrayResult){
 
          // Temporary arraylist, make it easier to extract results from request

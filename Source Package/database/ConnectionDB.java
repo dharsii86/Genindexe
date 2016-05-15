@@ -55,10 +55,8 @@ public class ConnectionDB {
      * @return result, the ResultSet of the request.
      */
     public ResultSet request(String req) {
-        req = req.toLowerCase();
         try {
             result = stmt.executeQuery(req);
-
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
@@ -139,6 +137,50 @@ public class ConnectionDB {
         }
     }
 
+    /**
+     * Allow to perform a request of insertion on the database.
+     *
+     * @param req, the request to perform.
+     */
+    public static void requestUpdateCaseSensitive(String req) {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet result = null;
+
+        try {
+            conn = DriverManager.getConnection(DRIVERCONNECTION_ROAD, DRIVERCONNECTION_USER, DRIVERCONNECTION_PWD);
+            // connection successful
+            stmt = conn.createStatement();
+            stmt.executeUpdate(req);
+
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+    }
+    
     /**
      * Allow to perform a request on the database and get a single result.
      *
