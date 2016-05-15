@@ -43,7 +43,7 @@ public class InterfaceNico extends JLabel {
        
         // Insertions
         
-        this.add(component, constraints);
+        //this.add(component, constraints);
         
     }
 
