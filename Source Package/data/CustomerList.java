@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import database.CustomerDB;
+import java.security.KeyException;
 import nf.Customer;
 
 /**
@@ -21,6 +22,9 @@ import nf.Customer;
 public class CustomerList {
         
     private static HashMap<String,HashMap> customerList;
+    /*This HashMap contains at first a key that correspond to the Town and allow to access another HashMap
+     *The other have for the key the name of the customer and allow to access to the object customer
+     */
 
     public static void launchCustomerList(){
         CustomerList.customerList = new HashMap<>();
@@ -38,6 +42,7 @@ public class CustomerList {
         
         
         if(CustomerDB.addCustomer(cust)){
+            printInfoDebug();
             // if the town exist
             if(customerList.get(town)!=null){
                 HashMap nameMap = customerList.get(town);
@@ -56,16 +61,16 @@ public class CustomerList {
                 customerList.put(town, nameMap);
             }
             
-            //printInfoDebug();
+            printInfoDebug();
             return true;
         }
         return false;  
     }
 
     public static void printInfoDebug(){
-        System.out.println("category Information ");
+        System.out.println("customer Information ");
         for(String k : customerList.keySet()){
-            System.out.println("category : "+k);
+            System.out.println("customer : "+k);
         }
     }
     
@@ -88,5 +93,16 @@ public class CustomerList {
         Set nameSet = nameMap.keySet();
         String[] nameArray = (String[]) nameSet.toArray(new String[nameSet.size()]);
         return(nameArray);
+    }
+    
+    public static boolean exist(String name, String town){
+            return customerList.get(town).get(name) == null;
+    }
+    
+    public static Customer getCustomer(String name, String town){
+        if(CustomerList.exist(name, town)){
+            return (Customer) customerList.get(town).get(name);
+        }
+        return null;
     }
 }

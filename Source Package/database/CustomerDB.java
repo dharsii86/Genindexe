@@ -1,6 +1,8 @@
 package database;
 
 import static database.OrderDB.formatResult;
+import java.security.SecureRandom;
+import java.util.Random;
 import java.util.ArrayList;
 import nf.Customer;
 
@@ -9,15 +11,32 @@ import nf.Customer;
  * @author thomas
  */
 public class CustomerDB {
-
+    private static final Random RANDOM = new SecureRandom();
     /**
      * CustomerDB class constructor.
      */
     public CustomerDB() {
     }
+    
+    private static String createPassword(){
+        char[] symbol = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+        String res = "";
+        for (int i = 0; i < 10; i++){
+            int index = (int)(RANDOM.nextDouble()*symbol.length);
+            res = res+symbol[index];
+        }
+        return res;
+    }
+    
+    
+    
+    
+    
+    
+    
 
     /**
-     * Add an customer in the database.
+     * Add a customer in the database.
      *
      * @param cust, the customer to add.
      * @return true if the customer is added aand false if not.
@@ -27,7 +46,7 @@ public class CustomerDB {
         if (CustomerDB.checkCustomerDuplicates(cust)) {
 
             String log = cust.getName() + cust.getTown();
-            String pass = "0000";
+            String pass = CustomerDB.createPassword();
             ConnectionDB.requestInsert("insert into `Customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;

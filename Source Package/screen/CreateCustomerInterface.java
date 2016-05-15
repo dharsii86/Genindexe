@@ -67,9 +67,9 @@ public class CreateCustomerInterface extends JLabel {
                 Customer cust;
 
                 if (!(name.getText().equals("") || town.getText().equals(""))) {
-
-                    cust = new Customer(name.getText(), town.getText());
-                    ok= CustomerList.add(cust);
+                    
+                    ok = CustomerList.add(new Customer(name.getText(), town.getText()));
+                    
                   
                   //  CustomerDB custDB = new CustomerDB();
                   //ok = custDB.addCustomer(cust);

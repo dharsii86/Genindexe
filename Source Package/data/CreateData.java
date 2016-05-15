@@ -27,8 +27,10 @@ public class CreateData {
         4- Customer
         */
         if(possibilityToCreate){
+            System.out.println("Creation of all the information");
             CategoryList.launchCategoryList();
             SpeciesList.launchSpeciesList();
+            CustomerList.launchCustomerList();
 
             String[] catList = getCategory();
             System.out.println("category Creation");
@@ -49,7 +51,6 @@ public class CreateData {
             }
             
             // 4- Creation of customer objects and lists
-            
             // Initialisation
             HashMap<String,HashMap> customerTownList = new HashMap<>();
             HashMap<String,Customer> hashName;
@@ -58,7 +59,6 @@ public class CreateData {
             Customer cust;
             // filling
             for(String town:townList){
-                
                 nameList= CustomerDB.getCustomerName(town);
                 hashName = new HashMap<>(); 
                 for(String name: nameList){
@@ -70,7 +70,7 @@ public class CreateData {
             CustomerList.put(customerTownList);
             
             
-            System.out.println("Creation of all the information");
+            System.out.println("All the information have been created");
             possibilityToCreate = false;
         }else{
             System.out.println("All the data are already created");
