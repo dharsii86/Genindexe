@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * @author willa
  */
 public class ExploreOrderTest {
-    
+
     public ExploreOrderTest() {
     }
 
@@ -27,14 +27,14 @@ public class ExploreOrderTest {
         System.out.println("getOrderList");
         String Customer_Login = "GphyPoitiers";
         ExploreOrder instance = new ExploreOrder();
-        ConnectionDB.requestInsert("insert into order values ('',Standby','Sexing','GphyPoitiers')");
-        ConnectionDB.requestInsert("insert into order values ('',Standby','Scrapie','SNCFFrance')");
-        ConnectionDB.requestInsert("insert into order values ('',Standby','Sexing','SNCFFrance')");
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Sexing','GPhyPoitiers')");
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Scrapie','SNCFFrance')");
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Sexing','SNCFFrance')");
         ArrayList expResult = ConnectionDB.requestStatic("select Order_Id from `order` where (Customer_Login = '"+Customer_Login+"');");
         ArrayList result = instance.getOrderList(Customer_Login);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The customer is not correctly found.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -43,13 +43,13 @@ public class ExploreOrderTest {
     @Test
     public void testGetAnalysisName() {
         System.out.println("getAnalysisName");
-        String OrderID = "1";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        String expResult = ConnectionDB.requestOneResult("select `Analysis_Name` from `order` where (`Order_Id`='"+OrderID+"')");
+        String expResult = ConnectionDB.requestOneResult("select `Analysis_Name` from `order` where (`Order_Id`="+OrderID+")");
         String result = instance.getAnalysisName(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The Function is false.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -58,13 +58,14 @@ public class ExploreOrderTest {
     @Test
     public void testGetOrderStatus() {
         System.out.println("getOrderStatus");
-        String OrderID = "1";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        String expResult = ConnectionDB.requestOneResult("select `Order_Status` from `order` where (`Order_Id`='"+OrderID+"')");
+        String expResult = ConnectionDB.requestOneResult("select `Order_Status` from `order` where (`Order_Id`="+OrderID+")");
         String result = instance.getOrderStatus(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The Function is false.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
+
     }
 
     /**
@@ -73,13 +74,12 @@ public class ExploreOrderTest {
     @Test
     public void testGetTotalAnalysis() {
         System.out.println("getTotalAnalysis");
-        String OrderID = "1";
         ExploreOrder instance = new ExploreOrder();
-        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE (`Order_Status`='Done';"));
-        int result = instance.getTotalAnalysis(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The Function is false.");
+        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE `Order_Status`='Done'"));
+        int result = instance.getTotalAnalysis();
+        if(expResult != result){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -88,13 +88,13 @@ public class ExploreOrderTest {
     @Test
     public void testGetAnalysisDone() {
         System.out.println("getAnalysisDone");
-        String OrderID = "";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE (`Order_Status`='Done' AND `Order_Id`='"+OrderID+"');"));
+        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE (`Order_Status`='Done' AND `Order_Id`="+OrderID+");"));
         int result = instance.getAnalysisDone(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The Function is false.");
+        if(expResult != result){
+            fail("The Function is false.");
+        }
     }
-    
+
 }
