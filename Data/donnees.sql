@@ -39,6 +39,16 @@ INSERT INTO `status` (`Status_Name`) VALUES
 ('Validator'),
 ('Customer');
 
+INSERT INTO `samplestate`(`idState`, `State_name`) VALUES 
+(1,'First analysis pending'),
+(2,'First analysis done'),
+(3,'Second analysis pending'),
+(4,'Second analysis done'),
+(5,'Third analysis pending'),
+(6,'Third analysis done'),
+(7,'Done');
+
+
 INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_Password`,`Status_Name`) VALUES
 ('clrousseau','claire.rousseau@lab.com','Claire','Rousseau','cr051Se','Secretary'),
 ('thdequipe','thomas.dequipe@lab.com','Thomas','Dequipe','td040Te','Technician'),

@@ -12,14 +12,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 // Test
-import data.CreateData;
 import data.CustomerList;
 import database.AnalysisDB;
 import database.ConnectionDB;
@@ -27,7 +25,6 @@ import database.CustomerDB;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
 import nf.Customer;
