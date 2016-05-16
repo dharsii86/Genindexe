@@ -12,21 +12,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 // Test
-import data.CreateData;
+import data.CustomerList;
 import database.AnalysisDB;
+import database.ConnectionDB;
 import database.CustomerDB;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
+import nf.Customer;
 
 /**
  *
@@ -39,7 +40,7 @@ public class CreateOrderInterface extends JPanel{
     *
     * @author Angscrum
     */
-    private JFrame globalScreen;
+    private MenuWindow globalScreen;
     
     
     private JTextField nbSpl;
@@ -55,11 +56,11 @@ public class CreateOrderInterface extends JPanel{
     String[] nameCategory = {""};
     String[] nameAnalysis = {""};
     String[] nameSpecies = {""};
-    String[] tabCustTown = {"Client town","bbbb","aaaaa"};
+    String[] tabCustTown = {""};
     String[] tabCustName = {""};
     
 
-    public CreateOrderInterface(JFrame jf) {
+    public CreateOrderInterface(MenuWindow jf) {
         globalScreen = jf;
         /*Initialisation*/
         title = new JLabel("Order Creation",SwingConstants.CENTER);
@@ -149,6 +150,43 @@ public class CreateOrderInterface extends JPanel{
         });
  
         validate = new JButton("Validate");
+        validate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nb = nbSpl.getText();
+                
+                String name = (String) custName.getSelectedItem();
+                String town = (String) custTown.getSelectedItem();
+                String ana = (String) analyse.getSelectedItem();
+                String spec = (String) espece.getSelectedItem();
+                System.out.println("name : "+name);
+                System.out.println("town : "+town);
+                System.out.println("ana : "+ana);
+                System.out.println("spec : "+spec);
+                
+                if(!nb.equals("")){
+                    int nbS = Integer.parseInt(nb);
+                    if(name.equals("")){
+                        globalScreen.setSouth("You need to choose a customer");
+                    }else if(ana.equals("")){
+                        globalScreen.setSouth("You need to choose an analysis");
+                    }else{
+                        // d'abord Créer l'order
+                        Customer cust = CustomerList.getCustomer(name,(String)  custTown.getSelectedItem());
+                        ArrayList res = (ArrayList)ConnectionDB.requestStatic("show table status like 'order'").get(0);
+                        int IDorder = Integer.parseInt((String) res.get(10));
+                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('Standby','"+ana+"','"+name+town+"');");
+                        //création des samples
+                        for(int i = 1; i <= nbS; i++){
+                            ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`, `state`) VALUES ('"+spec+"','"+IDorder+"','1');");
+                        } 
+                    }
+                }else{
+                    globalScreen.setSouth("You need to enter the number of samples");
+                }
+                
+            }
+        });
         cancel = new JButton("Cancel");
         nbSpl = new JTextField();
         nbSpl.setColumns(5);
@@ -214,6 +252,7 @@ public class CreateOrderInterface extends JPanel{
         //-------//ici ajouter un panel vide pour avoir une meilleur taille
         posSpl = new JPanel();
         posSpl.setLayout(new FlowLayout());
+        posSpl.setBackground(Color.white);
         
         //-------
         gbNbSpl.gridx = gbX + -1;
@@ -271,7 +310,7 @@ public class CreateOrderInterface extends JPanel{
        
         /*Ajout dans les Panels*/
         this.add(title,gbTitle);
-        //this.add(posSpl,gbNbSpl);
+        this.add(posSpl,gbNbSpl);
         this.add(category,gbCat);
         this.add(espece,gbSpe);
         this.add(analyse,gbAna);

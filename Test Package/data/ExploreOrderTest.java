@@ -5,6 +5,7 @@
  */
 package data;
 
+import database.ConnectionDB;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
  * @author willa
  */
 public class ExploreOrderTest {
-    
+
     public ExploreOrderTest() {
     }
 
@@ -24,13 +25,16 @@ public class ExploreOrderTest {
     @Test
     public void testGetOrderList() {
         System.out.println("getOrderList");
-        String Customer_Login = "";
+        String Customer_Login = "GphyPoitiers";
         ExploreOrder instance = new ExploreOrder();
-        ArrayList expResult = null;
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Sexing','GPhyPoitiers')");
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Scrapie','SNCFFrance')");
+        ConnectionDB.requestInsert("insert into `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Standby','Sexing','SNCFFrance')");
+        ArrayList expResult = ConnectionDB.requestStatic("select Order_Id from `order` where (Customer_Login = '"+Customer_Login+"');");
         ArrayList result = instance.getOrderList(Customer_Login);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -39,13 +43,13 @@ public class ExploreOrderTest {
     @Test
     public void testGetAnalysisName() {
         System.out.println("getAnalysisName");
-        String OrderID = "";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        String expResult = "";
+        String expResult = ConnectionDB.requestOneResult("select `Analysis_Name` from `order` where (`Order_Id`="+OrderID+")");
         String result = instance.getAnalysisName(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -54,13 +58,14 @@ public class ExploreOrderTest {
     @Test
     public void testGetOrderStatus() {
         System.out.println("getOrderStatus");
-        String OrderID = "";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        String expResult = "";
+        String expResult = ConnectionDB.requestOneResult("select `Order_Status` from `order` where (`Order_Id`="+OrderID+")");
         String result = instance.getOrderStatus(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(expResult == null || result == null || !expResult.equals(result)){
+            fail("The Function is false.");
+        }
+
     }
 
     /**
@@ -69,13 +74,12 @@ public class ExploreOrderTest {
     @Test
     public void testGetTotalAnalysis() {
         System.out.println("getTotalAnalysis");
-        String OrderID = "";
         ExploreOrder instance = new ExploreOrder();
-        int expResult = 0;
-        int result = instance.getTotalAnalysis(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE `Order_Status`='Done'"));
+        int result = instance.getTotalAnalysis();
+        if(expResult != result){
+            fail("The Function is false.");
+        }
     }
 
     /**
@@ -84,13 +88,13 @@ public class ExploreOrderTest {
     @Test
     public void testGetAnalysisDone() {
         System.out.println("getAnalysisDone");
-        String OrderID = "";
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        int expResult = 0;
+        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE (`Order_Status`='Done' AND `Order_Id`="+OrderID+");"));
         int result = instance.getAnalysisDone(OrderID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(expResult != result){
+            fail("The Function is false.");
+        }
     }
-    
+
 }

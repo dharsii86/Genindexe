@@ -41,6 +41,8 @@ public class MenuWindow extends JFrame {
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
+    private JMenuItem createMicroPlate;
+    private final JMenuItem researchOrder;
 
     /**
      * MenuWindow class constructor. Allow to create a window that show a menu.
@@ -77,6 +79,7 @@ public class MenuWindow extends JFrame {
 
         // Create the menu bar.
         menuBar = new JMenuBar();
+        
 
         // Build the Home page Menu
         homePage = new JMenuItem("Home Page");
@@ -89,44 +92,39 @@ public class MenuWindow extends JFrame {
         menuBar.add(homePage);
 
         //Build the Customer's menu.
-        menuCust = new JMenu("Customer");
-        menuBar.add(menuCust);
-        itemAddCust = new JMenuItem("Create");
+        menuCreation = new JMenu("Creation");
+        
+        itemAddCust = new JMenuItem("Customer");
         itemAddCust.setToolTipText("Create a new Customer.");
         itemAddCust.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 launchCreateCustomer();
             }
         });
-        menuCust.add(itemAddCust);
+        menuCreation.add(itemAddCust);
 
         // Build the Order's menu.
-        menuOrd = new JMenu("Order");
-        menuBar.add(menuOrd);
-        createOrder = new JMenuItem("Create");
+        createOrder = new JMenuItem("Order");
         createOrder.setToolTipText("Create a new Order.");
         createOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 launchCreateOrder();
             }
         });
-        menuOrd.add(createOrder);
+        menuCreation.add(createOrder);
 
         // Build the Category's menu.
-        menuCat = new JMenu("Category");
-        menuBar.add(menuCat);
-        createCat = new JMenuItem("Create");
+        createCat = new JMenuItem("Category");
         createCat.setToolTipText("Create a new Category.");
         createCat.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 launchCreateCategory();
             }
         });
-        menuCat.add(createCat);
+        menuCreation.add(createCat);
         
         // Build the Creation menu.
-        menuCreation = new JMenu("Creation");
-        menuBar.add(menuCreation);
+        
         createSpecie = new JMenuItem("Specie");
         createSpecie.setToolTipText("Create a new Specie.");
         createSpecie.addActionListener(new ActionListener() {
@@ -135,11 +133,39 @@ public class MenuWindow extends JFrame {
             }
         });
         menuCreation.add(createSpecie);
+        
+        
+        createMicroPlate = new JMenuItem("MicroPlate");
+        createMicroPlate.setToolTipText("Create a new microplate.");
+        createMicroPlate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchCreateMicroPlate();
+            }
+        });
+        menuCreation.add(createMicroPlate);
+        
+        
+        researchOrder = new JMenuItem("Research Order");
+        researchOrder.setToolTipText("Research an order.");
+        researchOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchCreateMicroPlate();
+            }
+        });
+        menuCreation.add(researchOrder);
+        
 
+        
+        menuBar.add(menuCreation);
         this.setJMenuBar(menuBar);
         this.setVisible(true);
     }
 
+    private void refreshMid() {
+        middle.setVisible(false);
+        middle.setVisible(true);
+    }
+    
     private void refresh() {
         this.setVisible(false);
         this.setVisible(true);
@@ -151,7 +177,7 @@ public class MenuWindow extends JFrame {
             middle.remove(0);
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
-        refresh();
+        refreshMid();
 
     }
 
@@ -163,7 +189,7 @@ public class MenuWindow extends JFrame {
         CreateCustomerInterface aux = new CreateCustomerInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
-        refresh();
+        refreshMid();
     }
     
       private void launchCreateCategory() {
@@ -174,7 +200,7 @@ public class MenuWindow extends JFrame {
         CreateCategoryInterface aux = new CreateCategoryInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
-        refresh();
+        refreshMid();
     }
 
     private void launchCreateOrder() {
@@ -185,7 +211,7 @@ public class MenuWindow extends JFrame {
         CreateOrderInterface aux = new CreateOrderInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
-        refresh();
+        refreshMid();
     }
     
     private void launchCreateSpecie() {
@@ -196,7 +222,29 @@ public class MenuWindow extends JFrame {
         CreateSpecieInterface aux = new CreateSpecieInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
-        refresh();
+        refreshMid();
+    }
+    
+    private void launchCreateMicroPlate() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        CreateMicroplateInterface aux = new CreateMicroplateInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refreshMid();
+    }
+    
+    private void launchResearchOrder() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        InterfaceNico aux = new InterfaceNico(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refreshMid();
     }
 
     public void setSouth(String action) {

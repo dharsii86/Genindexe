@@ -18,8 +18,12 @@ public class CustomerDB {
     public CustomerDB() {
     }
     
+    /**
+     * Return a password that contains alpha numerics character
+     * @return a password
+     */
     private static String createPassword(){
-        char[] symbol = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+        char[] symbol = "abcdefghijklmnopqrstuvwxyzAZERTYUIOPQSDFGHJKLMWXCVBN0123456789".toCharArray();
         String res = "";
         for (int i = 0; i < 10; i++){
             int index = (int)(RANDOM.nextDouble()*symbol.length);
@@ -27,12 +31,6 @@ public class CustomerDB {
         }
         return res;
     }
-    
-    
-    
-    
-    
-    
     
 
     /**
@@ -129,9 +127,7 @@ public class CustomerDB {
 
            int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Customer` where `Customer_Login` = '" + log + "' "
                         + "and `Customer_Password` = '" + pass + "'"));
-            
             if (result == 1) {
-
                 return true;
             }
         }
