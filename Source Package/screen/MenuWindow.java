@@ -38,6 +38,7 @@ public class MenuWindow extends JFrame {
     private JMenuItem createCat;
     private JMenuItem homePage;
     private JMenuItem createSpecie;
+    private JMenuItem createScrapieTest;
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
@@ -154,6 +155,15 @@ public class MenuWindow extends JFrame {
         });
         menuCreation.add(researchOrder);
         
+        createScrapieTest = new JMenuItem("Scrapie Test");
+        createScrapieTest.setToolTipText("Create a Scrapie Test.");
+        createScrapieTest.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchScrapieTest();
+            }
+        });
+        menuCreation.add(createScrapieTest);
+        
 
         
         menuBar.add(menuCreation);
@@ -242,6 +252,17 @@ public class MenuWindow extends JFrame {
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
         InterfaceNico aux = new InterfaceNico(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refreshMid();
+    }
+    
+    private void launchScrapieTest() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        ScrapieTestInterface aux = new ScrapieTestInterface(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
