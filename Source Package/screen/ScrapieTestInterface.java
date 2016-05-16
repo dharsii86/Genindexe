@@ -55,6 +55,7 @@ public class ScrapieTestInterface extends JPanel {
         //  box Category
         nameSpe = new JLabel("Name of the species");
         boxCategory = new JComboBox();
+        boxCategory.setPreferredSize(new Dimension(200, 24));
         
         // Labels
         labPosition = new JLabel("Position : ");
