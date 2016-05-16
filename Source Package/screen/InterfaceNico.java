@@ -5,6 +5,7 @@
  */
 package screen;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,30 +25,31 @@ public class InterfaceNico extends JLabel {
 
     //JLabels
     private JLabel Titre = new JLabel("Order research", JLabel.CENTER);
-    private JLabel CustomerTown = new JLabel("Customer Town", JLabel.CENTER);
-    private JLabel CustomerName = new JLabel("Customer Name", JLabel.CENTER);
+    private JLabel CustomerTown = new JLabel("Customer Town :", JLabel.CENTER);
+    private JLabel CustomerName = new JLabel("Customer Name :", JLabel.CENTER);
     private JLabel AnalysisName = new JLabel("Analysis Name", JLabel.CENTER);
     private JLabel OrderStatus = new JLabel("Order Status", JLabel.CENTER);
     private JLabel SamplesAnalysed = new JLabel("Analysed Samples", JLabel.CENTER);
-    private JLabel Nothing1;
-    private JLabel Nothing2;
-    private JLabel Extenser1;
-    private JLabel Extenser2;
+    private JLabel Nothing1 = new JLabel();
+    private JLabel Nothing2 = new JLabel();
+    private JLabel Extenser1 = new JLabel();
+    private JLabel Extenser2 = new JLabel();
     
     //JComboBox
     private JComboBox CustoNameCombo;
     private JComboBox CustoTownCombo;
     
     //TextArea
-    private JTextArea AnalNameText;
-    private JTextArea OrderStatusText;
-    private JTextArea SamplesAnalText;
+    private JTextArea AnalNameText = new JTextArea("None");
+    private JTextArea OrderStatusText = new JTextArea("None");
+    private JTextArea SamplesAnalText = new JTextArea("None");
     
     private final MenuWindow globalScreen;
 
     public InterfaceNico (MenuWindow screen) {
 
         this.setBackground(Color.WHITE);
+        this.setOpaque(true);
         this.setLayout(new GridBagLayout());
         globalScreen = screen;
         // Creation GridBagConstraints
@@ -63,64 +65,73 @@ public class InterfaceNico extends JLabel {
         GridBagConstraints gbCustoTown = new GridBagConstraints();
         gbCustoTown.gridx = 1;
         gbCustoTown.gridy = 2;
-        CustomerTown.setPreferredSize(new Dimension(50, 20));
+        gbCustoTown.insets = new Insets(10, 10, 10, 10);
+        CustomerTown.setPreferredSize(new Dimension(100, 20));
         
         GridBagConstraints gbCustoName = new GridBagConstraints();
         gbCustoName.gridx = 1;
         gbCustoName.gridy = 3;
-        CustomerName.setPreferredSize(new Dimension(50, 20));
+        
+        CustomerName.setPreferredSize(new Dimension(100, 20));
         
         GridBagConstraints gbAnalName = new GridBagConstraints();
         gbAnalName.gridx = 2;
         gbAnalName.gridy = 5;
-        AnalysisName.setPreferredSize(new Dimension(70, 20));
+        AnalysisName.setBorder(BorderFactory.createLineBorder(Color.black));
+        AnalysisName.setPreferredSize(new Dimension(140, 20));
         
         GridBagConstraints gbOrderStat = new GridBagConstraints();
         gbOrderStat.gridx = 3;
         gbOrderStat.gridy = 5;
-        OrderStatus.setPreferredSize(new Dimension(70, 20));
+        OrderStatus.setBorder(BorderFactory.createLineBorder(Color.black));
+        OrderStatus.setPreferredSize(new Dimension(140, 20));
         
         GridBagConstraints gbSampAnal = new GridBagConstraints();
         gbSampAnal.gridx = 4;
         gbSampAnal.gridy = 5;
-        SamplesAnalysed.setPreferredSize(new Dimension(70, 20));
+        SamplesAnalysed.setBorder(BorderFactory.createLineBorder(Color.black));
+        SamplesAnalysed.setPreferredSize(new Dimension(140, 20));
         
         GridBagConstraints gbCusNameCombo = new GridBagConstraints();
         gbCusNameCombo.gridx = 2;
         gbCusNameCombo.gridy = 3;
         CustoNameCombo = new JComboBox();
-        CustoNameCombo.setPreferredSize(new Dimension(50, 20));
+        CustoNameCombo.setPreferredSize(new Dimension(100, 20));
         
         GridBagConstraints gbCusTownCombo = new GridBagConstraints();
         gbCusTownCombo.gridx = 2;
         gbCusTownCombo.gridy = 2;
+        gbCusTownCombo.insets = new Insets(10, 10, 10, 10);
         CustoTownCombo = new JComboBox();
-        CustoTownCombo.setPreferredSize(new Dimension(50, 20));
+        CustoTownCombo.setPreferredSize(new Dimension(100, 20));
         
         GridBagConstraints gbAnalNameText = new GridBagConstraints();
         gbAnalNameText.gridx = 2;
         gbAnalNameText.gridy = 6;
-        AnalNameText.setPreferredSize(new Dimension(70, 200));
+        AnalNameText.setBorder(BorderFactory.createLineBorder(Color.black));
+        AnalNameText.setPreferredSize(new Dimension(140, 200));
         
         GridBagConstraints gbOrderStatText = new GridBagConstraints();
         gbOrderStatText.gridx = 3;
         gbOrderStatText.gridy = 6;
-        OrderStatusText.setPreferredSize(new Dimension(70, 200));
+        OrderStatusText.setBorder(BorderFactory.createLineBorder(Color.black));
+        OrderStatusText.setPreferredSize(new Dimension(140, 200));
         
         GridBagConstraints gbSamplesAnalText = new GridBagConstraints();
         gbSamplesAnalText.gridx = 4;
         gbSamplesAnalText.gridy = 6;
-        SamplesAnalText.setPreferredSize(new Dimension(70, 200));
+        SamplesAnalText.setBorder(BorderFactory.createLineBorder(Color.black));
+        SamplesAnalText.setPreferredSize(new Dimension(140, 200));
         
         GridBagConstraints gbNothing1 = new GridBagConstraints();
         gbNothing1.gridx = 3;
         gbNothing1.gridy = 1;
-        Nothing1.setPreferredSize(new Dimension(50, 70));
+        Nothing1.setPreferredSize(new Dimension(140, 50));
         
         GridBagConstraints gbNothing2 = new GridBagConstraints();
         gbNothing2.gridx = 3;
         gbNothing2.gridy = 4;
-        Nothing2.setPreferredSize(new Dimension(50, 60));
+        Nothing2.setPreferredSize(new Dimension(140, 50));
         
         GridBagConstraints gbExtenser1 = new GridBagConstraints();
         gbExtenser1.gridx = 0;
@@ -146,13 +157,9 @@ public class InterfaceNico extends JLabel {
         this.add(AnalNameText, gbAnalNameText);
         this.add(OrderStatusText, gbOrderStatText);
         this.add(SamplesAnalText, gbSamplesAnalText);
-        Nothing1 = new JLabel();
         this.add(Nothing1, gbNothing1);
-        Nothing2 = new JLabel();
         this.add(Nothing2, gbNothing2);
-        Extenser1 = new JLabel();
         this.add(Extenser1, gbExtenser1);
-        Extenser2 = new JLabel();
         this.add(Extenser2, gbExtenser2);
         //this.add(component, constraints);
         this.setVisible(true);
