@@ -41,6 +41,8 @@ public class MenuWindow extends JFrame {
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
+    private JMenuItem createMicroPlate;
+    private final JMenuItem researchOrder;
 
     /**
      * MenuWindow class constructor. Allow to create a window that show a menu.
@@ -131,6 +133,27 @@ public class MenuWindow extends JFrame {
             }
         });
         menuCreation.add(createSpecie);
+        
+        
+        createMicroPlate = new JMenuItem("MicroPlate");
+        createMicroPlate.setToolTipText("Create a new microplate.");
+        createMicroPlate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchCreateMicroPlate();
+            }
+        });
+        menuCreation.add(createMicroPlate);
+        
+        
+        researchOrder = new JMenuItem("Research Order");
+        researchOrder.setToolTipText("Research an order.");
+        researchOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                launchCreateMicroPlate();
+            }
+        });
+        menuCreation.add(researchOrder);
+        
 
         
         menuBar.add(menuCreation);
@@ -197,6 +220,28 @@ public class MenuWindow extends JFrame {
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
         CreateSpecieInterface aux = new CreateSpecieInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refreshMid();
+    }
+    
+    private void launchCreateMicroPlate() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        CreateMicroplateInterface aux = new CreateMicroplateInterface(this);
+        aux.setBackground(Color.white);
+        middle.add(aux, BorderLayout.CENTER);
+        refreshMid();
+    }
+    
+    private void launchResearchOrder() {
+        try {
+            middle.remove(0);
+        } catch (ArrayIndexOutOfBoundsException exc) {
+        }
+        InterfaceNico aux = new InterfaceNico(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
