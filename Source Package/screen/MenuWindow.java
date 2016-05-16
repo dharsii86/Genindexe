@@ -149,7 +149,7 @@ public class MenuWindow extends JFrame {
         researchOrder.setToolTipText("Research an order.");
         researchOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                launchCreateMicroPlate();
+                launchResearchOrder();
             }
         });
         menuCreation.add(researchOrder);
