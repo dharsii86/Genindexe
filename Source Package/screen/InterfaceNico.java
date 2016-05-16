@@ -50,10 +50,6 @@ public class InterfaceNico extends JLabel {
         this.setBackground(Color.WHITE);
         this.setLayout(new GridBagLayout());
         globalScreen = screen;
-
-        // Initialisation of the panels
-
-        
         // Creation GridBagConstraints
         
         GridBagConstraints gbTitre = new GridBagConstraints();
@@ -159,8 +155,8 @@ public class InterfaceNico extends JLabel {
         Extenser2 = new JLabel();
         this.add(Extenser2, gbExtenser2);
         //this.add(component, constraints);
-        
-        CustoTownCombo.addActionListener (new ActionListener()
+        this.setVisible(true);
+        /*CustoTownCombo.addActionListener (new ActionListener()
 	{
 		public void actionPerformed (ActionEvent e){
 		
@@ -172,7 +168,8 @@ public class InterfaceNico extends JLabel {
 		public void actionPerformed (ActionEvent e){
 		
 		}
-	});
+	});*/
+        
         
     }
 
