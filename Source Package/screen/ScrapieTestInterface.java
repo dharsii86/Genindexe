@@ -88,19 +88,19 @@ public class ScrapieTestInterface extends JPanel {
         gbTitle.gridwidth = 3;
         
         gblabBox.gridx = 0;
-        gblabBox.gridy = 4;
+        gblabBox.gridy = 2;
         gblabBox.anchor = GridBagConstraints.LINE_END;
         
         gbBox.gridx = 2;
-        gbBox.gridy = 4;
+        gbBox.gridy = 2;
         gbBox.anchor = GridBagConstraints.LINE_START;
         
         gblabPos.gridx = 0;
-        gblabPos.gridy = 2;
+        gblabPos.gridy = 4;
         gblabPos.anchor = GridBagConstraints.LINE_END;
         
         gbpos.gridx = 2;
-        gbpos.gridy = 2;
+        gbpos.gridy = 4;
         gbpos.anchor = GridBagConstraints.LINE_START;
         
         gblabVal.gridx = 0;
