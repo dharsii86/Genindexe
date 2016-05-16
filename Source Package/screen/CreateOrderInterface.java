@@ -178,7 +178,7 @@ public class CreateOrderInterface extends JPanel{
                         ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('Standby','"+ana+"','"+name+town+"');");
                         //création des samples
                         for(int i = 1; i <= nbS; i++){
-                            ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`) VALUES ('"+spec+"','"+IDorder+"');");
+                            ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`, `state`) VALUES ('"+spec+"','"+IDorder+"','1');");
                         } 
                     }
                 }else{
