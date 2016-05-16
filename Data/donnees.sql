@@ -45,6 +45,7 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('josaulnier','johnny.saulnier@lab.com','Johnny','Saulnier','js065Va','Validator'),
 ('GPhyPoitiers','quentin.bonenfant@mail.com','Quentin','Bonenfant','qb045Cu','Customer'),
 ('SNCFPoitiers','Jean-Christophe.greaux@mail.com','Jean-Christophe','Greaux','jg067Cu','Customer'),
+('SNCFLaRochelle','aye.assohoun@mail.com','Will','Assohoun','wa053Cu','Customer'),
 ('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
 
 
