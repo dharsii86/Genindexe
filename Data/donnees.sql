@@ -31,7 +31,7 @@ INSERT INTO `specie` (`Specie_Name`, `Category_Name`) VALUES
 ('Panthera tigris sumatrae', 'felines'),
 ('Archaeolacerta bedriagae', 'reptiles'),
 ('Coronella austriaca Laurenti', 'reptilEs');
-SET FOREIGN_KEY_CHECKS=1;
+
 
 INSERT INTO `status` (`Status_Name`) VALUES
 ('Secretary'),
@@ -59,13 +59,13 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
 
 insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Waiting','Sexing', 'SNCFFRance'),
-('Done','Scrapie', 'SNCFFRance'),
-('In Process','Sexing', 'SNCFPoitiers'),
-('Waiting','Scrapie', 'SNCFPoitiers'),
-('In Process','Scrapie', 'SNCFLaRochelle'),
-('In Process','Sexing', 'SNCFLaRochelle'),
-('Done','Sexing', 'GphyPoitiers'),
-('In Process','Scrapie', 'GphyPoitiers');
+('completed','Scrapie', 'SNCFFRance'),
+('inAnalysis','Sexing', 'SNCFPoitiers'),
+('toAnalyze','Scrapie', 'SNCFPoitiers'),
+('inAnalysis','Scrapie', 'SNCFLaRochelle'),
+('inAnalysis','Sexing', 'SNCFLaRochelle'),
+('completed','Sexing', 'GphyPoitiers'),
+('inAnalysis','Scrapie', 'GphyPoitiers');
 
 insert into `sample` (`Specie_Name`, `Order_ID`) values ('Lynx lynx lynx','1'),
 ('Lynx lynx lynx','1'),
@@ -92,4 +92,4 @@ insert into `sample` (`Specie_Name`, `Order_ID`) values ('Lynx lynx lynx','1'),
 ('Panthera tigris sumatrae','8'),
 ('Panthera tigris sumatrae','8');
 
-
+SET FOREIGN_KEY_CHECKS=1;
