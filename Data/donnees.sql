@@ -93,3 +93,4 @@ insert into `sample` (`Specie_Name`, `Order_ID`) values ('Lynx lynx lynx','1'),
 ('Panthera tigris sumatrae','8');
 
 SET FOREIGN_KEY_CHECKS=1;
+
