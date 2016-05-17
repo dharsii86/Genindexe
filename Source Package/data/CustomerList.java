@@ -96,9 +96,6 @@ public class CustomerList {
     }
     
     public static boolean exist(String name, String town){
-        boolean res = false;
-        System.out.println("name : "+name);
-        System.out.println("town : "+town);
             return customerList.get(town).get(name) == null;
     }
     
