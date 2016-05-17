@@ -115,11 +115,11 @@ public class CreateData {
                         String res1 = ligne.get(0);
                         String res2 = ligne.get(1);
                         String res3 = ligne.get(2);
-                        if(!res1.equals("null")){
+                        if(res1 != null){
                             newSpl.addResult(ResultDB.getResult(Integer.parseInt(res1),ana));
-                            if(!res2.equals("null")){
+                            if(res2 != null){
                                 newSpl.addResult(ResultDB.getResult(Integer.parseInt(res2),ana));
-                                if(!res3.equals("null")){
+                                if(res3 != null){
                                     newSpl.addResult(ResultDB.getResult(Integer.parseInt(res3),ana));
                                 }
                             }
