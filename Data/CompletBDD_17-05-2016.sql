@@ -98,16 +98,6 @@ CREATE TABLE IF NOT EXISTS `genindexe`.`specie` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `genindexe`.`samplestate`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `genindexe`.`samplestate` ;
-
-CREATE TABLE IF NOT EXISTS `genindexe`.`samplestate` (
-  `idState` INT NOT NULL AUTO_INCREMENT,
-  `State_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idState`))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -348,15 +338,6 @@ INSERT INTO `status` (`Status_Name`) VALUES
 ('Technician'),
 ('Validator'),
 ('Customer');
-
-INSERT INTO `samplestate`(`idState`, `State_name`) VALUES 
-(1,'First analysis pending'),
-(2,'First analysis done'),
-(3,'Second analysis pending'),
-(4,'Second analysis done'),
-(5,'Third analysis pending'),
-(6,'Third analysis done'),
-(7,'Done');
 
 
 INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_Password`,`Status_Name`) VALUES
