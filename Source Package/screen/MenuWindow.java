@@ -10,10 +10,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -30,6 +34,8 @@ public abstract class MenuWindow extends JFrame{
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
+    
+    private JMenuItem Deco;
 
     
     public MenuWindow(){
@@ -61,8 +67,21 @@ public abstract class MenuWindow extends JFrame{
 
         Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logoScrum.png"));
         this.setIconImage(logoTeam);
-
+        
+        Deco = new JMenuItem("Déconnexion");
+        Deco.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to Diconnect ?","Warning",dialogButton);
+                if(dialogResult == JOptionPane.YES_OPTION){
+                    close();
+                    connexionInterface cm = new connexionInterface();   
+                }
+            }
+        });
+        
         setMenu();
+        menuBar.add(Deco);
         this.setJMenuBar(menuBar);
         this.setVisible(true);
         
@@ -95,5 +114,8 @@ public abstract class MenuWindow extends JFrame{
         this.south.setText(action);
     }
 
+    public void close(){
+        this.dispose();
+    }
         
 }
