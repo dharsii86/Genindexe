@@ -175,16 +175,15 @@ public class CreateOrderInterface extends JPanel{
                         Customer cust = CustomerList.getCustomer(name,(String)  custTown.getSelectedItem());
                         ArrayList res = (ArrayList)ConnectionDB.requestStatic("show table status like 'order'").get(0);
                         int IDorder = Integer.parseInt((String) res.get(10));
-                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('Standby','"+ana+"','"+name+town+"');");
+                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('toAnalyze','"+ana+"','"+name+town+"');");
                         //création des samples
                         for(int i = 1; i <= nbS; i++){
-                            ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`, `state`) VALUES ('"+spec+"','"+IDorder+"','1');");
+                            ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`) VALUES ('"+spec+"','"+IDorder+"');");
                         } 
                     }
                 }else{
                     globalScreen.setSouth("You need to enter the number of samples");
                 }
-                
             }
         });
         cancel = new JButton("Cancel");
