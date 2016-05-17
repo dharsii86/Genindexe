@@ -6,6 +6,10 @@
 package database;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import nf.Customer;
+import nf.Order;
+import nf.OrderStatus;
 
 /**
  * This class contain the necessary functions to manage orders.
@@ -13,13 +17,27 @@ import java.util.ArrayList;
  * 
  * @author Quentin Bonenfant
  */
-public abstract class OrderDB {
+public class OrderDB {
 
-    public static void insertOrderDB(String analyseName, int customerId){
+    public static HashMap getOrder(Customer cust){
+        HashMap<Integer,Order> resultat = new HashMap<>();
         
-        ConnectionDB.requestInsert("insert into `order`  values ('','In progress','"+analyseName+"','"+customerId+"')");
+        String custId = cust.getName()+cust.getTown();
+        ArrayList<ArrayList> res = ConnectionDB.requestStatic("Select `Order_Id`, `Order_Status`, `Analysis_Name`, `Customer_Login` FROM `order`");
         
+        for(ArrayList<String> res2 : res){
+            Order ord = new Order(cust);
+            //ArrayList<ArrayList> listSamp = ConnectionDB.requestStatic("SELECT `Sample_Id`, `Specie_Name`, `result`, `state` FROM `sample` WHERE `Order_Id` = "+res.get(0));
+            ord.setStatus(OrderStatus.valueOf(res2.get(1)));
+            cust.addOrder(ord);
+            resultat.put(Integer.parseInt(res2.get(0)), ord);
+                    
+        }
+        return resultat;
     }
+    
+    
+    
 
     
     

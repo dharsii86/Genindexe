@@ -55,4 +55,8 @@ public class SpeciesList {
     public static HashMap getSpecies(){
         return speciesList;
     }
+    
+    public static Specie get(String s){
+        return speciesList.get(s);
+    }
 }

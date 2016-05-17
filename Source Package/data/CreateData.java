@@ -7,6 +7,7 @@ package data;
 
 import database.ConnectionDB;
 import database.CustomerDB;
+import database.OrderDB;
 import java.util.ArrayList;
 import java.util.HashMap;
 import nf.*;
@@ -31,6 +32,8 @@ public class CreateData {
             CategoryList.launchCategoryList();
             SpeciesList.launchSpeciesList();
             CustomerList.launchCustomerList();
+            OrderList.launchOrderList();
+            SampleList.launchSampleList();
 
             String[] catList = getCategory();
             System.out.println("category Creation");
@@ -62,13 +65,33 @@ public class CreateData {
                 nameList= CustomerDB.getCustomerName(town);
                 hashName = new HashMap<>(); 
                 for(String name: nameList){
-                       cust= new Customer(name,town);
-                       hashName.put(name,cust);
+                        cust= new Customer(name,town);
+                        hashName.put(name,cust);
+                        /////////////////////////////////
+                        ////Récupération order 
+                        //récupérer arraylist d'order pour ce customer
+                        HashMap<Integer,Order> hmOrd = OrderDB.getOrder(cust);
+                        // ajouter chaque élément de la liste à la liste d'order list
+                        for (Integer k: hmOrd.keySet()){
+                            OrderList.put(k, hmOrd.get(k));
+                            cust.addOrder(hmOrd.get(k));
+                        }                       
                 }
                 customerTownList.put(town,hashName);
             }
             CustomerList.put(customerTownList);
-            
+            /////////////////////////////////
+            ////Récupération Sample 
+            ArrayList<ArrayList> resultSpl= ConnectionDB.requestStatic("SELECT `Order_Id`, `Specie_Name`, `result`, `state` FROM `sample` WHERE 1");
+            for(ArrayList<String> res:resultSpl){
+                Order ord = OrderList.getOrder(Integer.parseInt(res.get(0)));
+                String ana = ConnectionDB.requestOneResult("SELECT `Analysis_Name` FROM `order` WHERE `Order_Id`="+res.get(0));
+                if (ana.equals("Sexing")){
+                    Sample newSpl = new Sample(null, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
+                }else {
+                    Sample newSpl = new Sample(null, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
+                }
+            }
             
             System.out.println("All the information have been created");
             possibilityToCreate = false;
