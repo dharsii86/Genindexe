@@ -42,13 +42,6 @@ public class SampleList {
     public static Sample get(int id){
         return sampleList.get(id);
     }
-    
-    public static ArrayList getList(Order ord){
-        ArrayList res = new ArrayList();
-        for(Integer k : sampleList.keySet()){
-            
-        }
-    }
-   
+
 }
 
