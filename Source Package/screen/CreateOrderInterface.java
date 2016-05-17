@@ -166,13 +166,13 @@ public class CreateOrderInterface extends JPanel{
                 
                 if(!nb.equals("")){
                     int nbS = Integer.parseInt(nb);
-                    if(name.equals("")){
+                    if(name==null){
                         globalScreen.setSouth("You need to choose a customer");
-                    }else if(ana.equals("")){
+                    }else if(ana==null){
                         globalScreen.setSouth("You need to choose an analysis");
                     }else{
                         // d'abord Créer l'order
-                        Customer cust = CustomerList.getCustomer(name,(String)  custTown.getSelectedItem());
+                        Customer cust = CustomerList.getCustomer(name, town);
                         ArrayList res = (ArrayList)ConnectionDB.requestStatic("show table status like 'order'").get(0);
                         int IDorder = Integer.parseInt((String) res.get(10));
                         ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('toAnalyze','"+ana+"','"+name+town+"');");
@@ -180,6 +180,8 @@ public class CreateOrderInterface extends JPanel{
                         for(int i = 1; i <= nbS; i++){
                             ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`) VALUES ('"+spec+"','"+IDorder+"');");
                         } 
+                        globalScreen.setSouth("Order successfully created");
+                        close();
                     }
                 }else{
                     globalScreen.setSouth("You need to enter the number of samples");
