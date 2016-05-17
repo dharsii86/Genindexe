@@ -96,7 +96,7 @@ public class CustomerList {
     }
     
     public static boolean exist(String name, String town){
-            return customerList.get(town).get(name) == null;
+            return customerList.get(town).get(name) != null;
     }
     
     public static Customer getCustomer(String name, String town){

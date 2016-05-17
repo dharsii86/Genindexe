@@ -24,24 +24,24 @@ public class ResultDB {
     public static Result getResult(int id, String analysis) {
         // initialisation
         Result result = null;
-        String request = "SELECT Result_FirstRead, Result_SecondRead, Result_Status, Result_Interpretation, Result_RD_pas_1,Result_RD_pas_2,Result_RD_val_1,Result_RD_val_2 from result where Result_Id =  '"+id+"'";
+        String request = "Select `RD_pos1`, `RD_val1`, `RD_pos2`, `RD_val2`, `Result_interpretation`, `FirstRead`, `SecondRead`, `Status` from result where Result_Id =  '"+id+"'";
         ArrayList<ArrayList> arrayResult; 
         arrayResult = ConnectionDB.requestStatic(request); // Creat
         
         if(arrayResult.size()==1){
             ArrayList<String> dbRes= arrayResult.get(0);
             
-            Boolean firstRead  = Boolean.parseBoolean( dbRes.get(0) );
-            Boolean secondRead = Boolean.parseBoolean( dbRes.get(1) );
-            String status = dbRes.get(2);
+            Boolean firstRead  = Boolean.parseBoolean( dbRes.get(5) );
+            Boolean secondRead = Boolean.parseBoolean( dbRes.get(6) );
+            String status = dbRes.get(7);
             ResultStatus Rstat = ResultStatus.valueOf(status); 
             
-            String interpretation = dbRes.get(3);
+            String interpretation = dbRes.get(4);
             
-            int rd_pas1 = Integer.parseInt(dbRes.get(4));
-            int rd_pas2 = Integer.parseInt(dbRes.get(5));
-            int rd_val1 = Integer.parseInt(dbRes.get(6));
-            int rd_val2 = Integer.parseInt(dbRes.get(7));
+            int rd_pas1 = Integer.parseInt(dbRes.get(0));
+            int rd_pas2 = Integer.parseInt(dbRes.get(2));
+            int rd_val1 = Integer.parseInt(dbRes.get(1));
+            int rd_val2 = Integer.parseInt(dbRes.get(3));
             
             RawData rd1 = new RawData(rd_pas1, rd_val1);
             RawData rd2 = new RawData(rd_pas2, rd_val2);
