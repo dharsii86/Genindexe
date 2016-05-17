@@ -8,6 +8,7 @@ package data;
 import database.ConnectionDB;
 import database.CustomerDB;
 import database.OrderDB;
+import database.ResultDB;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +84,7 @@ public class CreateData {
             CustomerList.put(customerTownList);
             /////////////////////////////////
             ////Récupération Sample 
-            ArrayList<ArrayList> resultSpl= ConnectionDB.requestStatic("SELECT `Order_Id`, `Specie_Name`, `result`, `state` FROM `sample` WHERE 1");
+            ArrayList<ArrayList> resultSpl= ConnectionDB.requestStatic("SELECT `Order_Id`, `Specie_Name`,`Sample_Id` FROM `sample` WHERE 1");
             for(ArrayList<String> res:resultSpl){//pour chaque ligne du resultat pour l'order
                 Order ord = OrderList.getOrder(Integer.parseInt(res.get(0)));
                 String ana = ConnectionDB.requestOneResult("SELECT `Analysis_Name` FROM `order` WHERE `Order_Id`="+res.get(0));
@@ -107,6 +108,25 @@ public class CreateData {
                 }else{
                     System.out.println("Erreur, analyse incorrecte : Create Data during sample creation");
                 }
+                
+                if(newSpl != null){
+                    ArrayList<ArrayList> allResult= ConnectionDB.requestStatic("SELECT `result1`, `result2`, `result3` FROM `sample` WHERE `Sample_Id` = "+res.get(2));
+                    for(ArrayList<String> ligne:allResult){
+                        String res1 = ligne.get(0);
+                        String res2 = ligne.get(1);
+                        String res3 = ligne.get(2);
+                        if(res1 != null){
+                            newSpl.addResult(ResultDB.getResult(Integer.parseInt(res1),ana));
+                            if(res2 != null){
+                                newSpl.addResult(ResultDB.getResult(Integer.parseInt(res2),ana));
+                                if(res3 != null){
+                                    newSpl.addResult(ResultDB.getResult(Integer.parseInt(res3),ana));
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 List listSample = ord.getSamples();
                 if(listSample == null){
                     ArrayList<Sample> listOfSamples = new ArrayList<>();

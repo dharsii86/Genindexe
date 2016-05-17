@@ -16,7 +16,14 @@ public class connexionUser {
     }
     public boolean checkMDP(String login, String mdp){
     
-        return true;
+        int Correct;
+        Correct = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `user` WHERE `User_Login` =  '" + login + "' AND `User_Password` =  '" + mdp + "'"));
+        if (Correct == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
             
     }
     

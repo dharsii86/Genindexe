@@ -18,6 +18,8 @@ public abstract class Result {
    * Must be 2 for validating the result
    */
   private int readNumber;
+  
+  
 
   public final ResultStatus getStatus() {
     return status;
@@ -64,9 +66,9 @@ public abstract class Result {
 			if (inter != null) {
 				interpretation = inter;
 				status = ResultStatus.READABLE;
-		} else
-			status = ResultStatus.UNREADABLE;
-		readNumber++;
+                        } else
+                                status = ResultStatus.UNREADABLE;
+                        readNumber++;
 	}
   }
 

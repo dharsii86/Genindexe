@@ -56,7 +56,10 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('GPhyPoitiers','quentin.bonenfant@mail.com','Quentin','Bonenfant','qb045Cu','Customer'),
 ('SNCFPoitiers','Jean-Christophe.greaux@mail.com','Jean-Christophe','Greaux','jg067Cu','Customer'),
 ('SNCFLaRochelle','aye.assohoun@mail.com','Will','Assohoun','wa053Cu','Customer'),
-('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
+('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer'),
+('s','test.mail@lab.com','FirstName','LastName','s','Secretary'),
+('t','test.mail@lab.com','FirstName','LastName','t','Technician'),
+('v','test.mail@lab.com','FirstName','LastName','v','Validator');
 
 insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values 
 ('inAnalysis','Sexing', 'SNCFFRance'),
