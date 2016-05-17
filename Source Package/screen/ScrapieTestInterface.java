@@ -173,4 +173,19 @@ public class ScrapieTestInterface extends JPanel {
             System.out.println("Ligne 145");
         }
     }
+    
+    public Specie getSpecie(){
+        String specieName;
+        specieName = (String) boxCategory.getSelectedItem();
+        SpeciesList sl = new SpeciesList();
+        return sl.get(specieName);
+    }
+    
+    public String getPosition(){
+        return position.getText();
+    }
+    
+    public String getValue(){
+        return value.getText();
+    }
 }

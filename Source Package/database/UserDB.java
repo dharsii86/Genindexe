@@ -27,7 +27,7 @@ public class UserDB {
 
         if (UserDB.checkUserDuplicates(login)) {
 
-            ConnectionDB.requestInsert("insert into `User` (`User_Login`, `User_Password`, `User_Mail`, `User_Name`, `User_LastName`, `Status_Name`) "
+            ConnectionDB.requestInsert("insert into `user` (`User_Login`, `User_Password`, `User_Mail`, `User_Name`, `User_LastName`, `Status_Name`) "
                     + "values ('" + login + "', '" + password + "', '" + mail + "', '" + name + "', '" + lastName + "', '" + status + "')");
             System.out.println("The customer has been added to the database");
             return true;
@@ -48,7 +48,7 @@ public class UserDB {
 
             String log = login.toUpperCase();
 
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `User` where `User_Login` = '" + log + "'"));
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `user` where `User_Login` = '" + log + "'"));
 
             switch (resultat) {
                 case 0:
@@ -77,7 +77,7 @@ public class UserDB {
 
             if (!checkUserDuplicates(login)) {
 
-                return ConnectionDB.requestOneResult("select `Status_Name` from `User` where `User_Login` = '" + log + "' "
+                return ConnectionDB.requestOneResult("select `Status_Name` from `user` where `User_Login` = '" + log + "' "
                         + "and `User_Password` = '" + pass + "'");
             }
         }

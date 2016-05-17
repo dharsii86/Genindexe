@@ -45,7 +45,7 @@ public class CustomerDB {
 
             String log = cust.getName() + cust.getTown();
             String pass = CustomerDB.createPassword();
-            ConnectionDB.requestInsert("insert into `Customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
+            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;
         }
@@ -125,7 +125,7 @@ public class CustomerDB {
             String log = login.toUpperCase();
             String pass = password.toUpperCase();
 
-           int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Customer` where `Customer_Login` = '" + log + "' "
+           int result = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `customer` where `Customer_Login` = '" + log + "' "
                         + "and `Customer_Password` = '" + pass + "'"));
             if (result == 1) {
                 return true;
