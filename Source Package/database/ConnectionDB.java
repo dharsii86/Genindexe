@@ -102,7 +102,7 @@ public class ConnectionDB {
      * @param req, the request to perform.
      */
     public static void requestInsert(String req) {
-        req = req.toLowerCase();
+ 
         Connection conn = null;
         Statement stmt = null;
         ResultSet result = null;
@@ -192,7 +192,7 @@ public class ConnectionDB {
      * @return res, a string that contains the result of the request.
      */
     public static String requestOneResult(String req) {
-        req = req.toLowerCase();
+
         Connection conn = null;
         Statement stmt = null;
         ResultSet result = null;
@@ -245,7 +245,7 @@ public class ConnectionDB {
      * list of the column values for the current line.
      */
     public static ArrayList requestStatic(String req) {
-        req = req.toLowerCase();
+       
         Connection conn = null;
         Statement stmt = null;
         ResultSet result = null;
