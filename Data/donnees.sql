@@ -58,7 +58,8 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('SNCFLaRochelle','aye.assohoun@mail.com','Will','Assohoun','wa053Cu','Customer'),
 ('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
 
-insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Waiting','Sexing', 'SNCFFRance'),
+insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values 
+('inAnalysis','Sexing', 'SNCFFRance'),
 ('completed','Scrapie', 'SNCFFRance'),
 ('inAnalysis','Sexing', 'SNCFPoitiers'),
 ('toAnalyze','Scrapie', 'SNCFPoitiers'),

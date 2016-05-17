@@ -151,6 +151,10 @@ DROP TABLE IF EXISTS `genindexe`.`relevant` ;
 CREATE TABLE IF NOT EXISTS `genindexe`.`relevant` (
   `Specie_Name` VARCHAR(45) NOT NULL,
   `Analysis_Name` VARCHAR(45) NOT NULL,
+  `Val1` INT default 340,
+  `Val2` INT default 55,
+  `Val3` INT default 356,
+  `Val4` INT default 34,
   PRIMARY KEY (`Specie_Name`, `Analysis_Name`),
   INDEX `fk_relevant_analysis_idx` (`Analysis_Name` ASC),
   CONSTRAINT `fk_relevant_specie`
