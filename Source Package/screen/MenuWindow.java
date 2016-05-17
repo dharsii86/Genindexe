@@ -251,7 +251,7 @@ public class MenuWindow extends JFrame {
             middle.remove(0);
         } catch (ArrayIndexOutOfBoundsException exc) {
         }
-        InterfaceNico aux = new InterfaceNico(this);
+        OrderResearch aux = new OrderResearch(this);
         aux.setBackground(Color.white);
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
