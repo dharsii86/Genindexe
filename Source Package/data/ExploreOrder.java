@@ -26,8 +26,8 @@ public class ExploreOrder {
         return ConnectionDB.requestOneResult("select `Order_Status` from `order` where (`Order_Id`="+OrderID+")");
     }
     
-    public static int getTotalAnalysis(){
-        return Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE (`Order_Status`='Done')"));
+    public static int getTotalAnalysis(int OrderID){
+        return Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `sample` WHERE (`Order_Id`="+OrderID+")"));
     } 
     
     public static int getAnalysisDone(int OrderID){

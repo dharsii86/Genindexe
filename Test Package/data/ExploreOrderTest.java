@@ -74,9 +74,10 @@ public class ExploreOrderTest {
     @Test
     public void testGetTotalAnalysis() {
         System.out.println("getTotalAnalysis");
+        int OrderID = 1;
         ExploreOrder instance = new ExploreOrder();
-        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `order` WHERE `Order_Status`='Done'"));
-        int result = instance.getTotalAnalysis();
+        int expResult = Integer.parseInt(ConnectionDB.requestOneResult("SELECT count(*) FROM `sample` WHERE (`Order_Id`="+OrderID+")"));
+        int result = instance.getTotalAnalysis(OrderID);
         if(expResult != result){
             fail("The Function is false.");
         }
