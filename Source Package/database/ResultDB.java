@@ -64,6 +64,7 @@ public class ResultDB {
             
             
             if(result != null){// ici création tel qu'il le faut
+                result.setInterpretation(interpretation);
                 if(Rstat == ResultStatus.UNREADABLE){
                     //unreadable
                     if(secondRead){

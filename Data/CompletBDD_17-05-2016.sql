@@ -330,7 +330,7 @@ INSERT INTO `specie` (`Specie_Name`, `Category_Name`) VALUES
 ('Panthera tigris altaica', 'felines'),
 ('Panthera tigris sumatrae', 'felines'),
 ('Archaeolacerta bedriagae', 'reptiles'),
-('Coronella austriaca Laurenti', 'reptilEs');
+('Coronella austriaca Laurenti', 'reptiles');
 
 
 INSERT INTO `status` (`Status_Name`) VALUES

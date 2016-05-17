@@ -8,6 +8,7 @@ package data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import nf.Order;
+import nf.Result;
 import nf.Sample;
 
 /**
@@ -22,8 +23,6 @@ public class SampleList {
     public static void launchSampleList(){
         SampleList.sampleList = new HashMap<>();
     }
-    
-    
     
     
     public static boolean add(Sample spl){
