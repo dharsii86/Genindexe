@@ -42,10 +42,11 @@ public class CustomerDB {
     public static boolean addCustomer(Customer cust) {
 
         if (CustomerDB.checkCustomerDuplicates(cust)) {
-
-            String log = cust.getName() + cust.getTown();
+            
+            String log = cust.getName().toLowerCase() + cust.getTown().toLowerCase();
+            
             String pass = CustomerDB.createPassword();
-            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
+            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + textFormat(cust.getName()) + "', '" + textFormat(cust.getTown()) + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;
         }
@@ -62,11 +63,10 @@ public class CustomerDB {
     public static boolean checkCustomerDuplicates(Customer cust) {
 
         if (cust.getName() != null && cust.getTown() != null) {
-
-            String n = cust.getName().toUpperCase();
-            String t = cust.getTown().toUpperCase();
-
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from customer where customer_name = '" + n + "' and customer_town = '" + t + "'"));
+            String n= cust.getName();
+            String t= cust.getTown();
+            int resultat;
+            resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from customer where customer_name = '" + n + "' and customer_town = '" + t + "'"));
 
             switch (resultat) {
                 case 0:
@@ -133,4 +133,17 @@ public class CustomerDB {
         }
         return false;
     }
+    /**
+     * Function to format text with an upper case letter first and lower case.
+     * Follow format: "Abcd"
+     * 
+     * @param s The string to treat
+     * @return The formatted string.
+     */
+    public static String textFormat(String s){
+        s =s.toLowerCase();
+        s = s.substring(0, 1).toUpperCase() + s.substring(1);
+        return(s);
+    }
+    
 }
