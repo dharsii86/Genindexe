@@ -31,4 +31,12 @@ public class connexionUser {
         return ConnectionDB.requestOneResult("SELECT  `Status_Name` FROM `user` WHERE ( `User_Login` ='"+login+"' and `User_Password` ='"+mdp+"' )");
     }
     
+    public String getName(String login, String mdp){
+        return ConnectionDB.requestOneResult("SELECT  `User_Name` FROM `user` WHERE ( `User_Login` ='"+login+"' and `User_Password` ='"+mdp+"' )");
+    }
+    
+    public String getLastName(String login, String mdp){
+        return ConnectionDB.requestOneResult("SELECT  `User_LastName` FROM `user` WHERE ( `User_Login` ='"+login+"' and `User_Password` ='"+mdp+"' )");
+    }
+    
 }

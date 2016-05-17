@@ -20,8 +20,8 @@ import screen.*;
  */
 public class MWSecretary extends MenuWindow {
 
-    public MWSecretary() {
-        super();
+    public MWSecretary(String name, String lastName, String Statut) {
+        super(name, lastName, Statut);
     }
 
     private JMenu menuCreation;

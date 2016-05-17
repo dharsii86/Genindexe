@@ -21,8 +21,8 @@ import screen.*;
 public class MWValidator extends MenuWindow {
 
     
-    public MWValidator() {
-        super();
+    public MWValidator(String name, String lastName, String Statut) {
+        super(name, lastName, Statut);
     }
     
     private JMenu menuCreation;

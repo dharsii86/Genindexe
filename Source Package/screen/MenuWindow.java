@@ -29,6 +29,7 @@ public abstract class MenuWindow extends JFrame{
     // Declarations 
     protected JLabel middle;
     private JLabel south;
+    private JLabel north;
 
     protected JMenuBar menuBar;
 
@@ -38,7 +39,7 @@ public abstract class MenuWindow extends JFrame{
     private JMenuItem Deco;
 
     
-    public MenuWindow(){
+    public MenuWindow(String name, String lastName, String Statut){
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Genindexe");
@@ -55,10 +56,17 @@ public abstract class MenuWindow extends JFrame{
         south = new JLabel();
         south.setOpaque(true);
         south.setBackground(Color.WHITE);
+        
+        
+        north = new JLabel("The user "+name+" "+lastName+" is connected has a "+Statut+".");
+        north.setOpaque(true);
+        north.setBackground(Color.WHITE);
+        
         south.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         middle.setLayout(new BorderLayout());
         this.add(middle, BorderLayout.CENTER);
         this.add(south, BorderLayout.SOUTH);
+        this.add(north, BorderLayout.NORTH);
 
         //Ajout logos
         logoGenindexe = new ImageIcon(this.getClass().getResource("../images/logoGenindexe.png"));

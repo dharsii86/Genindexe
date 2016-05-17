@@ -71,13 +71,15 @@ public class connexionInterface extends JFrame {
 
                 if (ok) {
                     String statut = con.getStatus(login.getText(), mdp.getText());
+                    String name = con.getName(login.getText(), mdp.getText());
+                    String lastName = con.getLastName(login.getText(), mdp.getText());
 
                     if (statut.equals("Validator")) {
-                        MWValidator mv = new MWValidator();
+                        MWValidator mv = new MWValidator(name,lastName,statut);
                     } else if (statut.equals("Technician")) {
-                        MWTechnician mt = new MWTechnician();
+                        MWTechnician mt = new MWTechnician(name,lastName,statut);
                     } else if (statut.equals("Secretary")) {
-                        MWSecretary ms = new MWSecretary();
+                        MWSecretary ms = new MWSecretary(name,lastName,statut);
                     }
                     myFrame.dispose();
                 } else {
