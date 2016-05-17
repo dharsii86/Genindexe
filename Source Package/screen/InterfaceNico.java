@@ -198,9 +198,12 @@ public class InterfaceNico extends JLabel {
                     
                     for (Integer i = 0; i < OrderList.size(); i++){
                         ArrayList ListAux = OrderList.get(i);
-                        AnalName += ExploreOrder.getAnalysisName(Integer.parseInt(ListAux.get(0).toString())) + "\n";
-                        OrderStat += ExploreOrder.getOrderStatus(Integer.parseInt(ListAux.get(0).toString())) + "\n";
-                        Statistic += ExploreOrder.getAnalysisDone(Integer.parseInt(ListAux.get(0).toString()))+ " / " + ExploreOrder.getTotalAnalysis()+ "\n";
+                        
+                        int id = Integer.parseInt(ListAux.get(0).toString());
+                        
+                        AnalName += ExploreOrder.getAnalysisName(id) + "\n";
+                        OrderStat += ExploreOrder.getOrderStatus(id) + "\n";
+                        Statistic += ExploreOrder.getAnalysisDone(id)+ " / " + ExploreOrder.getTotalAnalysis(id)+ "\n";
                     }
                     
                     //Insertion of the results in the right JTextArea
