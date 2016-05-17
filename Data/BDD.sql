@@ -163,10 +163,10 @@ DROP TABLE IF EXISTS `genindexe`.`result` ;
 
 CREATE TABLE IF NOT EXISTS `genindexe`.`result` (
   `Result_Id` INT NOT NULL AUTO_INCREMENT,
-  `RD_pos1` INT NOT NULL,
-  `RD_val1` INT NOT NULL,
-  `RD_pos2` INT NULL,
-  `RD_val2` INT NULL,
+  `RD_pos1` INT NOT NULL default 0,
+  `RD_val1` INT NOT NULL default 0,
+  `RD_pos2` INT NULL default 0,
+  `RD_val2` INT NULL default 0,
   `Result_interpretation` VARCHAR(150),
   `FirstRead` BOOLEAN not null,
   `SecondRead` BOOLEAN not null,

@@ -18,6 +18,8 @@ public abstract class Result {
    * Must be 2 for validating the result
    */
   private int readNumber;
+  
+  
 
   public final ResultStatus getStatus() {
     return status;
