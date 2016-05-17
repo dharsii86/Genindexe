@@ -37,20 +37,6 @@ public class OrderDB {
     }
     
     
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /**   
      *  Function to format the results from request containg a string column.  
      *  The results from requestStatic are ArrayList of ArrayList (two dimensional).
