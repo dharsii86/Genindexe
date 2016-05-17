@@ -21,7 +21,7 @@ public class ResultDB {
      */
     public static Result getResult(int id, String analysis) {
         // initialisation
-        Result result;
+        Result result = null;
         String request = "SELECT Result_FirstRead, Result_SecondRead, Result_Status, Result_Interpretation, Result_RD_pas_1,Result_RD_pas_2,Result_RD_val_1,Result_RD_val_2 from result where Result_Id =  '"+id+"'";
         ArrayList<ArrayList> arrayResult; 
         arrayResult = ConnectionDB.requestStatic(request); // Creat

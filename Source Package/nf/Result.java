@@ -5,7 +5,7 @@ package nf;
  * Must be read twice, and validated
  * Here is the influence of 21 CFR Part 11
  */
-abstract class Result {
+public abstract class Result {
   private ResultStatus status;
 
   /**
