@@ -10,6 +10,7 @@ import database.CustomerDB;
 import database.OrderDB;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import nf.*;
 /**
  *
@@ -83,14 +84,31 @@ public class CreateData {
             /////////////////////////////////
             ////Récupération Sample 
             ArrayList<ArrayList> resultSpl= ConnectionDB.requestStatic("SELECT `Order_Id`, `Specie_Name`, `result`, `state` FROM `sample` WHERE 1");
-            for(ArrayList<String> res:resultSpl){
+            for(ArrayList<String> res:resultSpl){//pour chaque ligne du resultat pour l'order
                 Order ord = OrderList.getOrder(Integer.parseInt(res.get(0)));
                 String ana = ConnectionDB.requestOneResult("SELECT `Analysis_Name` FROM `order` WHERE `Order_Id`="+res.get(0));
+                ArrayList<ArrayList> valueAna = ConnectionDB.requestStatic("SELECT `val1`, `val2`, `val3`, `val4` FROM `relevant` WHERE `Specie_Name` = '"+res.get(1)+"' and `Analysis_Name` = '"+ana+"';");
+                ArrayList<Integer> val = valueAna.get(0);
+                
+                SexingTest sex = new SexingTest(SpeciesList.get(res.get(1)), val.get(0), val.get(1), val.get(2), val.get(3));
+                ScrapieTest scp = new ScrapieTest(SpeciesList.get(res.get(1)),  val.get(0),  val.get(1));
+                Sample newSpl = null;
                 if (ana.equals("Sexing")){
-                    Sample newSpl = new Sample(null, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
-                }else {
-                    Sample newSpl = new Sample(null, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
+                    newSpl = new Sample(sex, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
+                }else if(ana.equals("Scrapie")){
+                    newSpl = new Sample(scp, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
+                }else{
+                    System.out.println("Erreur, analyse incorrecte : Create Data during sample creation");
                 }
+                List listSample = ord.getSamples();
+                ArrayList<Sample> listOfSamples = new ArrayList<>(listSample.size());
+                listOfSamples.addAll(listSample);
+                listOfSamples.add(newSpl);
+                OrderStatus aux = ord.getStatus();
+                ord.setSamples(listOfSamples);
+                ord.setStatus(aux);
+                
+                
             }
             
             System.out.println("All the information have been created");
