@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -73,9 +74,8 @@ public class CreateCategoryInterface extends JLabel {
 
                     cat = new SpecieCategory(name.getText());
 
-                    CategoryDB catDB = new CategoryDB();
+                    
                     ok = CategoryList.add(cat);
-                    //ok = catDB.addCategory(cat);
 
                     if (ok) {
                         globalScreen.setSouth("The category: "+name.getText()+" has been created");
@@ -98,15 +98,14 @@ public class CreateCategoryInterface extends JLabel {
         
         // Initialisation des Text area
         older = new JTextArea();
-        CategoryDB catDB = new CategoryDB();
-        ArrayList test;
-        test = catDB.getListCategory();
-        for(int i=0; i < test.size(); i++)
-        {   
-            String texte = older.getText().concat(test.get(i).toString())+'\n' + '\r';;
+        
+        String[] catList;
+        catList = CategoryList.getCategoryList();
+        for (String catList1 : catList) {
+            
+            String texte = older.getText().concat(catList1 + '\n' + '\r');
             texte = texte.replace('[',' ');
             texte = texte.replace(']',' ');
-
             older.setText(texte);
         }
         older.setLineWrap(true);

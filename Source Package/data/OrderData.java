@@ -18,29 +18,6 @@ public class OrderData {
     
     private static HashMap<String,SpecieCategory> categoryList;
 
-    /**
-     * Creation of the Category hashmap from the database
-     * 
-     */
-    /*
-    public static void create(){
-        
-        categoryList= new HashMap();
-        String[] catList = database.OrderDB.getCategory();
-        for (String cat: catList){
-            // creation of the new category
-            SpecieCategory category = new SpecieCategory(cat);
-            
-            String[] specList = database.OrderDB.getSpecies(cat);
-            for(String spec : specList){
-                System.out.println(spec);
-                category.addSpecie(new Specie(spec));
-                
-            }
-         categoryList.put(category.getName(),category);
-        }
-    }*/
-    
     public static HashMap getCategories(){
         return(categoryList);
     }

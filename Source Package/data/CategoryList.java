@@ -44,6 +44,15 @@ public class CategoryList {
         return categoryList.get(categoryName);
     }
     
+    public static HashMap getCategory(){
+        return categoryList;
+    }
+    
+    public static String[] getCategoryList(){
+        Set<String> catSet= categoryList.keySet();
+        String[] catlist= catSet.toArray( new String[catSet.size()] );
+        return catlist;
+    }
     
     public static void printInfoDebug(){
         System.out.println("category Information ");
@@ -60,9 +69,7 @@ public class CategoryList {
         categoryList.put(cat.getName(),cat);
     }
     
-    public static HashMap getCategory(){
-        return categoryList;
-    }
+
     
     public static String[] getListSpecieFromCat(String cat){
 	ArrayList<String> res = new ArrayList<>();

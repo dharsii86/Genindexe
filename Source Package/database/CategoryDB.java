@@ -23,17 +23,12 @@ public class CategoryDB {
      */
     public static boolean addCategory(SpecieCategory cat) {
         
-        if (CategoryDB.checkCategoryDuplicates(cat)) {
+        if (checkCategoryDuplicates(cat)) {
             ConnectionDB.requestInsert("insert into `category` (`Category_Name`) values ('" + cat.getName() + "')");
             return true;
         }
         return false;
     }
-    
-    
-    
-    
-    
 
     /**
      * Check if the category has a duplicate in the database.
