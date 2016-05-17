@@ -64,9 +64,9 @@ abstract class Result {
 			if (inter != null) {
 				interpretation = inter;
 				status = ResultStatus.READABLE;
-		} else
-			status = ResultStatus.UNREADABLE;
-		readNumber++;
+                        } else
+                                status = ResultStatus.UNREADABLE;
+                        readNumber++;
 	}
   }
 
