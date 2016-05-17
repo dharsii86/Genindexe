@@ -38,7 +38,7 @@ public class CustomerList {
      */
     public static boolean add(Customer cust){
         String name = cust.getName();
-        String town =  cust.getTown();
+        String town =  textFormat(cust.getTown());
         
         
         if(CustomerDB.addCustomer(cust)){
@@ -105,4 +105,18 @@ public class CustomerList {
         }
         return null;
     }
+    
+   /**
+     * Function to format text with an upper case letter first and lower case.
+     * Follow format: "Abcd"
+     * 
+     * @param s The string to treat
+     * @return The formatted string.
+     */
+    public static String textFormat(String s){
+        s =s.toLowerCase();
+        s = s.substring(0, 1).toUpperCase() + s.substring(1);
+        return(s);
+    }
+    
 }

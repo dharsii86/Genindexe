@@ -46,7 +46,7 @@ public class CustomerDB {
             String log = cust.getName().toLowerCase() + cust.getTown().toLowerCase();
             
             String pass = CustomerDB.createPassword();
-            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + textFormat(cust.getTown()) + "', '" + pass + "')");
+            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;
         }
@@ -133,17 +133,6 @@ public class CustomerDB {
         }
         return false;
     }
-    /**
-     * Function to format text with an upper case letter first and lower case.
-     * Follow format: "Abcd"
-     * 
-     * @param s The string to treat
-     * @return The formatted string.
-     */
-    public static String textFormat(String s){
-        s =s.toLowerCase();
-        s = s.substring(0, 1).toUpperCase() + s.substring(1);
-        return(s);
-    }
+ 
     
 }
