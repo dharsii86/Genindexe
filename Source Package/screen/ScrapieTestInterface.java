@@ -20,8 +20,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import nf.RawData;
+import nf.ScrapieResult;
+import nf.ScrapieTest;
 import nf.Specie;
 import nf.SpecieCategory;
+
 
 /**
  *
@@ -54,7 +58,9 @@ public class ScrapieTestInterface extends JPanel {
         
         //  box Category
         nameSpe = new JLabel("Name of the species");
-        boxCategory = new JComboBox();
+        Set<String> cat = SpeciesList.getSpecies().keySet();
+        String[] nameSpecies = cat.toArray(new String[cat.size()]);
+        boxCategory = new JComboBox(nameSpecies);
         boxCategory.setPreferredSize(new Dimension(200, 24));
         
         // Labels
@@ -69,7 +75,36 @@ public class ScrapieTestInterface extends JPanel {
         
         //  button validation
         validate = new JButton("Create");
-        
+        validate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String specieName;
+                ScrapieResult res;
+                RawData rowEntry, rowResult;
+                specieName = (String) boxCategory.getSelectedItem();
+                SpeciesList sl = new SpeciesList();
+                Specie sp = sl.get(specieName);
+                int pos = Integer.parseInt(position.getText());
+                int val = Integer.parseInt(value.getText());
+                
+                if(!specieName.equals("") && !position.getText().equals("") && !value.getText().equals("")){
+                    rowEntry = new RawData(pos,val);
+                    ScrapieTest scrapie = new ScrapieTest(sp,pos,val);
+                    res = (ScrapieResult) scrapie.newResult();
+                    rowResult = res.getScrapieValue();
+                    if(rowEntry == rowResult){
+                        globalScreen.setSouth("The scrapie Test with the position : "+position.getText()+" and the value : "+value.getText()+" is a success.");
+                        close();
+                    }else{
+                        globalScreen.setSouth("The scrapie Test with the position : "+position.getText()+" and the value : "+value.getText()+" has failed.");
+                    }
+                }else{
+                    globalScreen.setSouth("A field is empty.");
+                }
+                
+            }
+        });
         
         
         
@@ -174,7 +209,7 @@ public class ScrapieTestInterface extends JPanel {
         }
     }
     
-    public Specie getSpecie(){
+    /*public Specie getSpecie(){
         String specieName;
         specieName = (String) boxCategory.getSelectedItem();
         SpeciesList sl = new SpeciesList();
@@ -187,5 +222,5 @@ public class ScrapieTestInterface extends JPanel {
     
     public String getValue(){
         return value.getText();
-    }
+    }*/
 }
