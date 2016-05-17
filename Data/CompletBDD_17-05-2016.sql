@@ -109,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `genindexe`.`sample` (
   `Sample_Id` INT NOT NULL AUTO_INCREMENT,
   `Specie_Name` VARCHAR(45) NOT NULL,
   `Order_Id` INT NOT NULL,
-  `result1` int ,
-  `result2` int ,
-  `result3` int ,
+  `Result1` int ,
+  `Result2` int ,
+  `Result3` int ,
   PRIMARY KEY (`Sample_Id`),
   INDEX `fk_sample_specie_idx` (`Specie_Name` ASC),
   INDEX `fk_sample_order_idx` (`Order_Id` ASC),
@@ -354,37 +354,40 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 
 insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values 
 ('inAnalysis','Sexing', 'SNCFFRance'),
-('completed','Scrapie', 'SNCFFRance'),
+('completed','Scrapie', 'SNCFLaRochelle'),
 ('inAnalysis','Sexing', 'SNCFPoitiers'),
-('toAnalyze','Scrapie', 'SNCFPoitiers'),
-('inAnalysis','Scrapie', 'SNCFLaRochelle'),
-('inAnalysis','Sexing', 'SNCFLaRochelle'),
-('completed','Sexing', 'GphyPoitiers'),
-('inAnalysis','Scrapie', 'GphyPoitiers');
+('toAnalyze','Scrapie', 'SNCFPoitiers');
 
-insert into `sample` (`Specie_Name`, `Order_ID`) values ('Lynx lynx lynx','1'),
-('Lynx lynx lynx','1'),
-('Lynx lynx lynx','1'),
-('Lynx lynx lynx','1'),
-('Panthera tigris sumatrae','2'),
-('Panthera tigris sumatrae','2'),
-('Panthera tigris sumatrae','2'),
-('Panthera tigris sumatrae','3'),
-('Panthera tigris sumatrae','3'),
-('Panthera tigris sumatrae','3'),
-('Panthera tigris sumatrae','3'),
-('Panthera tigris sumatrae','4'),
-('Panthera tigris sumatrae','4'),
-('Panthera tigris sumatrae','4'),
-('Panthera tigris sumatrae','5'),
-('Panthera tigris sumatrae','5'),
-('Lynx lynx lynx','6'),
-('Lynx lynx lynx','6'),
-('Lynx lynx lynx','6'),
-('Lynx lynx lynx','7'),
-('Lynx lynx lynx','7'),
-('Panthera tigris sumatrae','8'),
-('Panthera tigris sumatrae','8'),
-('Panthera tigris sumatrae','8');
+insert into `sample` (`Specie_Name`, `Order_ID`,`Result1`,`Result2`) values 
+('Lynx lynx lynx','1','1',NULL),
+('Lynx lynx lynx','1','2',NULL),
+('Lynx lynx lynx','1','3',NULL),
+('Lynx lynx lynx','1','4','9'),
+('Panthera tigris sumatrae','2','5',NULL),
+('Panthera tigris sumatrae','2','6',NULL),
+('Panthera tigris sumatrae','2','7',NULL),
+('Lynx lynx lynx','3','8',NULL),
+('Lynx lynx lynx','3',NULL,NULL),
+('Lynx lynx lynx','3',NULL,NULL),
+('Lynx lynx lynx','3',NULL,NULL),
+('Lynx lynx lynx','3',NULL,NULL),
+('Panthera tigris sumatrae','4',NULL,NULL),
+('Panthera tigris sumatrae','4',NULL,NULL),
+('Panthera tigris sumatrae','4',NULL,NULL);
+
+INSERT INTO `result`(`RD_pos1`, `RD_val1`, `RD_pos2`, `RD_val2`, `Result_interpretation`, `FirstRead`, `SecondRead`, `Status`) VALUES 
+('100','45','','','Good','true','true','VALIDATED'),
+('100','47','','','Good','true','true','VALIDATED'),
+('100','39','','','Pretty good','true','true','VALIDATED'),
+('100','68','','','bad','true','false','UNREADABLE'),
+('120','47','120','50','Good','true','true','VALIDATED'),
+('120','47','120','50','Good','true','true','VALIDATED'),
+('120','47','120','50','Good','true','true','VALIDATED'),
+('130','42','','','Good','true','true','VALIDATED'),
+('100','39','','','Pretty good','true','true','VALIDATED');
+
+
+
+
 
 SET FOREIGN_KEY_CHECKS=1;
