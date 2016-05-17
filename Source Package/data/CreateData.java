@@ -88,11 +88,18 @@ public class CreateData {
                 Order ord = OrderList.getOrder(Integer.parseInt(res.get(0)));
                 String ana = ConnectionDB.requestOneResult("SELECT `Analysis_Name` FROM `order` WHERE `Order_Id`="+res.get(0));
                 ArrayList<ArrayList> valueAna = ConnectionDB.requestStatic("SELECT `val1`, `val2`, `val3`, `val4` FROM `relevant` WHERE `Specie_Name` = '"+res.get(1)+"' and `Analysis_Name` = '"+ana+"';");
-                ArrayList<Integer> val = valueAna.get(0);
+                ArrayList<String> val = valueAna.get(0);
                 
-                SexingTest sex = new SexingTest(SpeciesList.get(res.get(1)), val.get(0), val.get(1), val.get(2), val.get(3));
-                ScrapieTest scp = new ScrapieTest(SpeciesList.get(res.get(1)),  val.get(0),  val.get(1));
+                int val0 = Integer.parseInt(val.get(0));
+                int val1 = Integer.parseInt(val.get(1));
+                int val2 = Integer.parseInt(val.get(2));
+                int val3 = Integer.parseInt(val.get(3));
+                
+                SexingTest sex = new SexingTest(SpeciesList.get(res.get(1)), val0, val1, val2, val3);
+                
+                ScrapieTest scp = new ScrapieTest(SpeciesList.get(res.get(1)),  val0,  val1);
                 Sample newSpl = null;
+                
                 if (ana.equals("Sexing")){
                     newSpl = new Sample(sex, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
                 }else if(ana.equals("Scrapie")){
@@ -101,12 +108,20 @@ public class CreateData {
                     System.out.println("Erreur, analyse incorrecte : Create Data during sample creation");
                 }
                 List listSample = ord.getSamples();
-                ArrayList<Sample> listOfSamples = new ArrayList<>(listSample.size());
-                listOfSamples.addAll(listSample);
-                listOfSamples.add(newSpl);
-                OrderStatus aux = ord.getStatus();
-                ord.setSamples(listOfSamples);
-                ord.setStatus(aux);
+                if(listSample == null){
+                    ArrayList<Sample> listOfSamples = new ArrayList<>();
+                    listOfSamples.add(newSpl);
+                    OrderStatus aux = ord.getStatus();
+                    ord.setSamples(listOfSamples);
+                    ord.setStatus(aux);
+                }else{
+                    ArrayList<Sample> listOfSamples = new ArrayList<>(listSample.size());
+                    listOfSamples.addAll(listSample);
+                    listOfSamples.add(newSpl);
+                    OrderStatus aux = ord.getStatus();
+                    ord.setSamples(listOfSamples);
+                    ord.setStatus(aux);
+                }
                 
                 
             }
