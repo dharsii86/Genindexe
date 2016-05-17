@@ -119,12 +119,15 @@ CREATE TABLE IF NOT EXISTS `genindexe`.`sample` (
   `Sample_Id` INT NOT NULL AUTO_INCREMENT,
   `Specie_Name` VARCHAR(45) NOT NULL,
   `Order_Id` INT NOT NULL,
-  `result` VARCHAR(45) NULL,
-  `state` INT NOT NULL,
+  `result1` int ,
+  `result2` int ,
+  `result3` int ,
   PRIMARY KEY (`Sample_Id`),
   INDEX `fk_sample_specie_idx` (`Specie_Name` ASC),
   INDEX `fk_sample_order_idx` (`Order_Id` ASC),
-  INDEX `fk_sample_state_idx` (`state` ASC),
+  INDEX `fk_sample_result1_idx` (`result1` ASC),
+  INDEX `fk_sample_result2_idx` (`result2` ASC),
+  INDEX `fk_sample_result3_idx` (`result3` ASC),
   CONSTRAINT `fk_sample_specie`
     FOREIGN KEY (`Specie_Name`)
     REFERENCES `genindexe`.`specie` (`Specie_Name`)
@@ -135,13 +138,42 @@ CREATE TABLE IF NOT EXISTS `genindexe`.`sample` (
     REFERENCES `genindexe`.`order` (`Order_Id`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_sample_state`
-    FOREIGN KEY (`state`)
-    REFERENCES `genindexe`.`sampleState` (`idState`)
+  CONSTRAINT `fk_sample_result1`
+    FOREIGN KEY (`result1`)
+    REFERENCES `genindexe`.`result` (`Result_Id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_sample_result2`
+    FOREIGN KEY (`result2`)
+    REFERENCES `genindexe`.`result` (`Result_Id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_sample_result3`
+    FOREIGN KEY (`result3`)
+    REFERENCES `genindexe`.`result` (`Result_Id`)
     ON DELETE RESTRICT
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `genindexe`.`sample`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `genindexe`.`result` ;
+
+CREATE TABLE IF NOT EXISTS `genindexe`.`result` (
+  `Result_Id` INT NOT NULL AUTO_INCREMENT,
+  `RD_pos1` INT NOT NULL,
+  `RD_val1` INT NOT NULL,
+  `RD_pos2` INT NULL,
+  `RD_val2` INT NULL,
+  `Result_interpretation` VARCHAR(150),
+  `FirstRead` BOOLEAN not null,
+  `SecondRead` BOOLEAN not null,
+  `Status` Varchar(45) not null,
+  PRIMARY KEY (`Result_Id`)
+  )
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `genindexe`.`relevant`
