@@ -6,7 +6,6 @@
 
 <%@page import="java.sql.*" %> 
 <%@page import="java.io.*" %>
-<%@page import="nf.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -16,6 +16,7 @@ html, body {
 
 legend {
     display: block;
+    font-family: Verdana, serif;
     width: 100%;
     padding: 0;
     margin-bottom: 27px;
@@ -26,12 +27,21 @@ legend {
     border-bottom: 1px solid #e5e5e5;
 }
 
+h1 {
+font-family: Verdana, serif;
+}
+
+table {
+font-family: Verdana, serif;
+}
+
 button,
 input,
 select,
 textarea {
     margin: 0;
     font-size: 100%;
+    font-family: Verdana, serif;
     vertical-align: middle;
 }
 
@@ -52,6 +62,7 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
     display: inline-block;
+    font-family: Verdana, serif;
     height: 25px;
     padding: 4px;
     margin-bottom: 9px;
