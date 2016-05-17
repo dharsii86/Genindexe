@@ -5,6 +5,8 @@
  */
 package screen;
 
+import data.CustomerList;
+import data.ExploreOrder;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -22,6 +25,9 @@ import javax.swing.JTextArea;
  * @author DharSii
  */
 public class InterfaceNico extends JLabel {
+    
+    private String[] tabCustName = {""};
+    private String TownSelected = "";
 
     //JLabels
     private JLabel Titre = new JLabel("Order research", JLabel.CENTER);
@@ -58,8 +64,6 @@ public class InterfaceNico extends JLabel {
         gbTitre.gridx = 0;
         gbTitre.gridy = 0;
         gbTitre.gridwidth = 6;
-        //gbTitre.insets = new Insets(0, 0, 0, 10);
-        //gbTitre.anchor = GridBagConstraints.LAST_LINE_END;
         gbTitre.weightx = 0;
         
         GridBagConstraints gbCustoTown = new GridBagConstraints();
@@ -102,7 +106,7 @@ public class InterfaceNico extends JLabel {
         gbCusTownCombo.gridx = 2;
         gbCusTownCombo.gridy = 2;
         gbCusTownCombo.insets = new Insets(10, 10, 10, 10);
-        CustoTownCombo = new JComboBox();
+        CustoTownCombo = new JComboBox(CustomerList.getCustomerTowns());
         CustoTownCombo.setPreferredSize(new Dimension(100, 20));
         
         GridBagConstraints gbAnalNameText = new GridBagConstraints();
@@ -163,19 +167,48 @@ public class InterfaceNico extends JLabel {
         this.add(Extenser2, gbExtenser2);
         //this.add(component, constraints);
         this.setVisible(true);
-        /*CustoTownCombo.addActionListener (new ActionListener()
+        CustoTownCombo.addActionListener (new ActionListener()
 	{
 		public void actionPerformed (ActionEvent e){
-		
+                    //JComboBox cb = (JComboBox)e.getSource();
+                    TownSelected = (String)CustoTownCombo.getSelectedItem();
+                    //CustoNameCombo = new JComboBox(CustomerList.getCustomerNameByTown(town));
+                    tabCustName = CustomerList.getCustomerNameByTown(TownSelected);
+            
+                    DefaultComboBoxModel custModel = new DefaultComboBoxModel(tabCustName);
+                    CustoNameCombo.setModel( custModel );
 		}
 	});
         
         CustoNameCombo.addActionListener (new ActionListener()
 	{
 		public void actionPerformed (ActionEvent e){
-		
+                    String name = (String)CustoNameCombo.getSelectedItem();
+                    
+                    //Create the current login with the location and the customer name
+                    String login = name + TownSelected;
+                    
+                    //Attributes allowing to create the results for each JTextArea fields
+                    String AnalName = "";
+                    String OrderStat = "";
+                    String Statistic = "";
+                    
+                    //List of orders for the current login
+                    ArrayList<ArrayList> OrderList = ExploreOrder.getOrderList(login);
+                    
+                    for (Integer i = 0; i < OrderList.size(); i++){
+                        ArrayList ListAux = OrderList.get(i);
+                        AnalName += ExploreOrder.getAnalysisName(Integer.parseInt(ListAux.get(0).toString())) + "\n";
+                        OrderStat += ExploreOrder.getOrderStatus(Integer.parseInt(ListAux.get(0).toString())) + "\n";
+                        Statistic += ExploreOrder.getAnalysisDone(Integer.parseInt(ListAux.get(0).toString()))+ " / " + ExploreOrder.getTotalAnalysis()+ "\n";
+                    }
+                    
+                    //Insertion of the results in the right JTextArea
+                    AnalNameText.setText(AnalName);
+                    OrderStatusText.setText(OrderStat);
+                    SamplesAnalText.setText(Statistic);
 		}
-	});*/
+	});
         
         
     }

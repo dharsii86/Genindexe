@@ -58,4 +58,38 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('SNCFLaRochelle','aye.assohoun@mail.com','Will','Assohoun','wa053Cu','Customer'),
 ('SNCFFrance','nicolas.villeriot@mail.com','Nicolas','Villeriot','nv050Cu','Customer');
 
+insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Waiting','Sexing', 'SNCFFRance'),
+('Done','Scrapie', 'SNCFFRance'),
+('In Process','Sexing', 'SNCFPoitiers'),
+('Waiting','Scrapie', 'SNCFPoitiers'),
+('In Process','Scrapie', 'SNCFLaRochelle'),
+('In Process','Sexing', 'SNCFLaRochelle'),
+('Done','Sexing', 'GphyPoitiers'),
+('In Process','Scrapie', 'GphyPoitiers');
+
+insert into `sample` (`Specie_Name`, `Order_ID`) values ('Lynx lynx lynx','1'),
+('Lynx lynx lynx','1'),
+('Lynx lynx lynx','1'),
+('Lynx lynx lynx','1'),
+('Panthera tigris sumatrae','2'),
+('Panthera tigris sumatrae','2'),
+('Panthera tigris sumatrae','2'),
+('Panthera tigris sumatrae','3'),
+('Panthera tigris sumatrae','3'),
+('Panthera tigris sumatrae','3'),
+('Panthera tigris sumatrae','3'),
+('Panthera tigris sumatrae','4'),
+('Panthera tigris sumatrae','4'),
+('Panthera tigris sumatrae','4'),
+('Panthera tigris sumatrae','5'),
+('Panthera tigris sumatrae','5'),
+('Lynx lynx lynx','6'),
+('Lynx lynx lynx','6'),
+('Lynx lynx lynx','6'),
+('Lynx lynx lynx','7'),
+('Lynx lynx lynx','7'),
+('Panthera tigris sumatrae','8'),
+('Panthera tigris sumatrae','8'),
+('Panthera tigris sumatrae','8');
+
 
