@@ -46,7 +46,7 @@ public class CustomerDB {
             String log = cust.getName().toLowerCase() + cust.getTown().toLowerCase();
             
             String pass = CustomerDB.createPassword();
-            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + textFormat(cust.getName()) + "', '" + textFormat(cust.getTown()) + "', '" + pass + "')");
+            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + textFormat(cust.getTown()) + "', '" + pass + "')");
             //System.out.println("The customer has been added to the database");
             return true;
         }
