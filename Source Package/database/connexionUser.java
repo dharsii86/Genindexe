@@ -27,4 +27,8 @@ public class connexionUser {
             
     }
     
+    public String getStatus(String login, String mdp){
+        return ConnectionDB.requestOneResult("SELECT  `Status_Name` FROM `user` WHERE ( `User_Login` ='"+login+"' and `User_Password` ='"+mdp+"' )");
+    }
+    
 }
