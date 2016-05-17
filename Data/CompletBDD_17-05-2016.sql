@@ -353,10 +353,10 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('v','test.mail@lab.com','FirstName','LastName','v','Validator');
 
 insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values 
-('inAnalysis','Sexing', 'SNCFFRance'),
+('completed','Sexing', 'SNCFPoitiers'),
 ('completed','Scrapie', 'SNCFLaRochelle'),
 ('inAnalysis','Sexing', 'SNCFPoitiers'),
-('toAnalyze','Scrapie', 'SNCFPoitiers');
+('toAnalyze','Scrapie', 'SNCFFRance');
 
 insert into `sample` (`Specie_Name`, `Order_ID`,`Result1`,`Result2`) values 
 ('Lynx lynx lynx','1','1',NULL),
