@@ -26,7 +26,7 @@ public class SpecieDB {
 
         if (SpecieDB.checkSpecieDuplicates(spe)) {
 
-            ConnectionDB.requestInsert("insert into `Specie` (`Specie_Name`, `Category_Name`) values ('" + spe.getName() + "', '" + cat.getName() + "')");
+            ConnectionDB.requestInsert("insert into `specie` (`Specie_Name`, `Category_Name`) values ('" + spe.getName() + "', '" + cat.getName() + "')");
 
             return true;
         }
@@ -45,7 +45,7 @@ public class SpecieDB {
 
             String n = spe.getName().toUpperCase();
 
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Specie` where `Specie_Name` = '" + n + "'"));
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `specie` where `Specie_Name` = '" + n + "'"));
 
             switch (resultat) {
                 case 0:

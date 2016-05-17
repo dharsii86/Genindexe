@@ -40,6 +40,10 @@ public class ConnectionDB {
         }
     }
     
+    /**
+     * Function allowing connection to the database from a mac.
+     */
+    
     public static void changePort(){
         
         if(OS.indexOf("mac") >= 0){

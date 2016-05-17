@@ -23,7 +23,7 @@ public class AnalysisDB {
      */
     public static boolean addAnalysis(Analysis ana) {
         if (checkAnalysisDuplicates(ana)) {
-            ConnectionDB.requestInsert("insert into `Analysis` (`Analysis_Name`) values ('" + ana.getName() + "')");
+            ConnectionDB.requestInsert("insert into `analysis` (`Analysis_Name`) values ('" + ana.getName() + "')");
             return true;
         }
         return false;
@@ -74,7 +74,7 @@ public class AnalysisDB {
     public static boolean checkAnalysisDuplicates(Analysis ana) {
         if (ana.getName() != null) {
             String n = ana.getName().toUpperCase();
-            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `Analysis` where `Analysis_Name` = '" + n + "'"));
+            int resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `analysis` where `Analysis_Name` = '" + n + "'"));
             switch (resultat) {
                 case 0:
                     return true;
@@ -87,7 +87,7 @@ public class AnalysisDB {
     }
     
     public static String[] getAnalysis(String species){
-        String req = "SELECT Analysis_Name from Relevant WHERE Specie_Name = '"+ species+"'";
+        String req = "SELECT Analysis_Name from relevant WHERE Specie_Name = '"+ species+"'";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);    
     
@@ -97,7 +97,7 @@ public class AnalysisDB {
     } 
     
     public static String[] getAnalysis(){
-        String req = "SELECT Analysis_Name from Analysis";
+        String req = "SELECT Analysis_Name from analysis";
         ArrayList<ArrayList> arrayResult; // creating the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);    
     
