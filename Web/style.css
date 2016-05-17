@@ -1,0 +1,74 @@
+#page {
+    background-color: #F2F2F2;
+    width: 65%;
+    text-align: left;
+    margin: 20px auto auto;
+    text-align: left;
+}
+
+html, body {
+    height : 100%;
+    margin: 0px;
+}
+.container {
+    height: 100%;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 27px;
+    font-size: 19.5px;
+    line-height: 36px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: middle;
+}
+
+select,
+textarea,
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    display: inline-block;
+    height: 25px;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555555;
+}
+
+input[type="text"],
+input[type="number"],
+.uneditable-input {
+    display: inline-block;
+    height: 25px;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 18px;
+    width : 120px;
+    color: #555555;
+}

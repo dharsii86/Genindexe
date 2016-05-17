@@ -50,6 +50,7 @@ DROP TABLE IF EXISTS `genindexe`.`order` ;
 
 CREATE TABLE IF NOT EXISTS `genindexe`.`order` (
   `Order_Id` INT NOT NULL AUTO_INCREMENT,
+  `Order_Date` DATE NULL,
   `Order_Status` VARCHAR(45) NOT NULL,
   `Analysis_Name` VARCHAR(45) NOT NULL,
   `Customer_Login` VARCHAR(45) NOT NULL,
@@ -352,11 +353,11 @@ INSERT INTO `user` (`User_Login`,`User_Mail`,`User_Name`,`User_LastName`,`User_P
 ('t','test.mail@lab.com','FirstName','LastName','t','Technician'),
 ('v','test.mail@lab.com','FirstName','LastName','v','Validator');
 
-insert into `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values 
-('completed','Sexing', 'SNCFPoitiers'),
-('completed','Scrapie', 'SNCFLaRochelle'),
-('inAnalysis','Sexing', 'SNCFPoitiers'),
-('toAnalyze','Scrapie', 'SNCFFRance');
+insert into `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values 
+('2015-08-10' ,'completed','Sexing', 'SNCFPoitiers'),
+('2015-10-04' ,'completed','Scrapie', 'SNCFLaRochelle'),
+('2016-01-24' ,'inAnalysis','Sexing', 'SNCFPoitiers'),
+('2016-03-12' ,'toAnalyze','Scrapie', 'SNCFFRance');
 
 insert into `sample` (`Specie_Name`, `Order_ID`,`Result1`,`Result2`) values 
 ('Lynx lynx lynx','1','1',NULL),

@@ -12,64 +12,70 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
         <title>Explore order</title>
     </head>
     <body>
 
-        <jsp:useBean id = "sessionB"scope = "session" class = "bean.SessionBean" /> 
+        <div id="page" class="container">
 
-        <%
-            try {
-                String connectionURL = "jdbc:mysql://localhost/genindexe";
-                Connection connection = null;
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                connection = DriverManager.getConnection(connectionURL, "root", "root");
+            <jsp:useBean id = "sessionB" scope = "session" class = "bean.SessionBean" /> 
 
-                String user = sessionB.getUsername();
-
-                Statement stmt = null;
-                ResultSet result = null;
-                stmt = connection.createStatement();
-                result = stmt.executeQuery("select * from `Order` where `Customer_Login` = '" + user + "'");
-        %>
-
-        <table BORDER="1">
-            <caption> Orders </caption> 
-            <tr>
-                <th> Order id </th> 
-                <th> Date </th> 
-                <th> Analysis </th> 
-                <th> Status </th> 
-                <th> Specie </th>
-            </tr>
+            <center>
+                <h1> Orders </h1>
+            </center>
 
             <%
-                while (result.next()) {
+                try {
+                    String connectionURL = "jdbc:mysql://localhost/genindexe";
+                    Connection connection = null;
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    connection = DriverManager.getConnection(connectionURL, "root", "root");
+
+                    String user = sessionB.getUsername();
+
+                    Statement stmt = null;
+                    ResultSet result = null;
+                    stmt = connection.createStatement();
+                    result = stmt.executeQuery("select * from `Order` where `Customer_Login` = '" + user + "'");
             %>
-            <tr>
-                <td> <%out.println(result.getString("Order_Id"));%> </td>
-                <td> <%//out.println(result.getString("Order_Date"));%> </td>
-                <td> <%out.println(result.getString("Analysis_Name"));%> </td>
-                <td> <%out.println(result.getString("Order_Status"));%> </td>
+
+            <table BORDER="1">
+                <tr>
+                    <th> Order id </th> 
+                    <th> Date </th> 
+                    <th> Analysis </th> 
+                    <th> Status </th> 
+                    <th> Specie </th>
+                </tr>
+
                 <%
-                    Statement stmtS = connection.createStatement();
-                    ResultSet resultS = stmtS.executeQuery("select `Specie_Name` from `Sample` where `Order_Id` = " + result.getString("Order_Id") + "");
-                    resultS.next();
+                    while (result.next()) {
                 %>
-                <td> <%out.println(resultS.getString(1));%> </td>
-            </tr> 
+                <tr>
+                    <td> <%out.println(result.getString("Order_Id"));%> </td>
+                    <td> <%//out.println(result.getString("Order_Date"));%> </td>
+                    <td> <%out.println(result.getString("Analysis_Name"));%> </td>
+                    <td> <%out.println(result.getString("Order_Status"));%> </td>
+                    <%
+                        Statement stmtS = connection.createStatement();
+                        ResultSet resultS = stmtS.executeQuery("select `Specie_Name` from `Sample` where `Order_Id` = " + result.getString("Order_Id") + "");
+                        resultS.next();
+                    %>
+                    <td> <%out.println(resultS.getString(1));%> </td>
+                </tr> 
+                <%
+                    }
+                %>
+            </table> 
             <%
+                    connection.close();
+                } catch (SQLException ex) {
+                    out.println("SQLException: " + ex.getMessage());
+                    out.println("SQLState: " + ex.getSQLState());
+                    out.println("VendorError: " + ex.getErrorCode());
                 }
             %>
-        </table> 
-        <%
-                connection.close();
-            } catch (SQLException ex) {
-                out.println("SQLException: " + ex.getMessage());
-                out.println("SQLState: " + ex.getSQLState());
-                out.println("VendorError: " + ex.getErrorCode());
-            }
-        %>
-
+        </div>
     </body>
 </html>

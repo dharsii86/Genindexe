@@ -12,20 +12,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
         <title>Login form</title>
     </head>
     <body>
 
-        <jsp:useBean id = "sessionB" scope = "session" class = "bean.SessionBean" /> 
+        <div id="page" class="container">
 
-        <form id="op" name ="Connection" method="POST" action="ExploreOrder.jsp">
-            <br/>
-            <label>Username : </label> <input type="text" name="login" placeholder="your username"/>
-            <br/>
-            <label>Password : </label> <input type="text" name="password" placeholder="your password"/>
-            <br/>
-            <input type="submit" name="validate" value="Validate" class="bouton">
-            <br/>
+            <jsp:useBean id = "sessionB" scope = "session" class = "bean.SessionBean" />
+
+            <center>
+                <h1> Connection </h1>
+            </center>
 
             <%
                 if (request.getParameter("validate") != null) {
@@ -47,18 +45,31 @@
                         if (result.getString(1).equals("1")) {
 
                             sessionB.setUsername(request.getParameter("login"));
-                            out.println(sessionB.getUsername());
-
+            %> 
+            <meta http-equiv="refresh" content="0; URL=ExploreOrder.jsp">
+            <%
                         } else {
                             out.println("Wrong password or username");
                         }
 
                         connection.close();
-                    } catch (Exception ex) {
-                        out.println("Unable to connect to database");
+                    } catch (SQLException ex) {
+                        out.println("SQLException: " + ex.getMessage());
+                        out.println("SQLState: " + ex.getSQLState());
+                        out.println("VendorError: " + ex.getErrorCode());
                     }
                 }
-            %>           
+            %>   
 
+            <form id="op" name ="Connection" method="POST" action="#">
+                <br/>
+                <legend>Username : </legend> <input type="text" name="login" placeholder="your username"/>
+                <br/>
+                <legend>Password : </legend> <input type="text" name="password" placeholder="your password"/>
+                <br/>
+                <input type="submit" name="validate" value="Validate" class="bouton">
+                <br/>           
+            </form>
+        </div>
     </body>
 </html>
