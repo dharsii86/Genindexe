@@ -28,6 +28,7 @@ public class OrderResearch extends JLabel {
     
     private String[] tabCustName = {""};
     private String TownSelected = "";
+    private String NameSelected = "";
 
     //JLabels
     private JLabel Titre = new JLabel("Order research", JLabel.CENTER);
@@ -177,6 +178,32 @@ public class OrderResearch extends JLabel {
             
                     DefaultComboBoxModel custModel = new DefaultComboBoxModel(tabCustName);
                     CustoNameCombo.setModel( custModel );
+                    
+                    //Create the current login with the location and the customer name
+                    String login = NameSelected + TownSelected;
+                    
+                    //Attributes allowing to create the results for each JTextArea fields
+                    String AnalName = "";
+                    String OrderStat = "";
+                    String Statistic = "";
+                    
+                    //List of orders for the current login
+                    ArrayList<ArrayList> OrderList = ExploreOrder.getOrderList(login);
+                    
+                    for (Integer i = 0; i < OrderList.size(); i++){
+                        ArrayList ListAux = OrderList.get(i);
+                        
+                        int id = Integer.parseInt(ListAux.get(0).toString());
+                        
+                        AnalName += ExploreOrder.getAnalysisName(id) + "\n";
+                        OrderStat += ExploreOrder.getOrderStatus(id) + "\n";
+                        Statistic += ExploreOrder.getAnalysisDone(id)+ " / " + ExploreOrder.getTotalAnalysis(id)+ "\n";
+                    }
+                    
+                    //Insertion of the results in the right JTextArea
+                    AnalNameText.setText(AnalName);
+                    OrderStatusText.setText(OrderStat);
+                    SamplesAnalText.setText(Statistic);
 		}
 	});
         
@@ -184,9 +211,10 @@ public class OrderResearch extends JLabel {
 	{
 		public void actionPerformed (ActionEvent e){
                     String name = (String)CustoNameCombo.getSelectedItem();
+                    NameSelected = name;
                     
                     //Create the current login with the location and the customer name
-                    String login = name + TownSelected;
+                    String login = NameSelected + TownSelected;
                     
                     //Attributes allowing to create the results for each JTextArea fields
                     String AnalName = "";
