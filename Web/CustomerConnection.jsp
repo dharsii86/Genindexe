@@ -9,13 +9,15 @@
 <%@page import="nf.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login form</title>
     </head>
     <body>
+
+        <jsp:useBean id = "sessionB" scope = "session" class = "bean.SessionBean" /> 
+
         <form id="op" name ="Connection" method="POST" action="ExploreOrder.jsp">
             <br/>
             <label>Username : </label> <input type="text" name="login" placeholder="your username"/>
@@ -40,21 +42,15 @@
                         result = stmt.executeQuery("select count(*) from `Customer` where `Customer_Login` = '" + request.getParameter("login") + "'"
                                 + " and `Customer_Password` = '" + request.getParameter("password") + "'");
 
-                        while (result.next()) {
+                        result.next();
 
-                            if (result.getString(1).equals("1")) {
-            %>
+                        if (result.getString(1).equals("1")) {
 
-            <jsp:useBean id = "session"
-                         scope = "session"
-                         class = "bean.SessionBean">  
-                <jsp:setProperty name="session" property="username" param="login"/>
-            </jsp:useBean>
+                            sessionB.setUsername(request.getParameter("login"));
+                            out.println(sessionB.getUsername());
 
-            <%
-                            } else {
-                                out.println("Wrong password or username");
-                            }
+                        } else {
+                            out.println("Wrong password or username");
                         }
 
                         connection.close();

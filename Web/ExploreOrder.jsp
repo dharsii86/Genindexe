@@ -16,6 +16,8 @@
     </head>
     <body>
 
+        <jsp:useBean id = "sessionB"scope = "session" class = "bean.SessionBean" /> 
+
         <%
             try {
                 String connectionURL = "jdbc:mysql://localhost/genindexe";
@@ -23,7 +25,7 @@
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 connection = DriverManager.getConnection(connectionURL, "root", "root");
 
-                String user = "";
+                String user = sessionB.getUsername();
 
                 Statement stmt = null;
                 ResultSet result = null;
@@ -46,13 +48,15 @@
             %>
             <tr>
                 <td> <%out.println(result.getString("Order_Id"));%> </td>
-                <td> <%out.println(result.getString("Order_Date"));%> </td>
+                <td> <%//out.println(result.getString("Order_Date"));%> </td>
                 <td> <%out.println(result.getString("Analysis_Name"));%> </td>
                 <td> <%out.println(result.getString("Order_Status"));%> </td>
                 <%
-                    ResultSet resultSpecie = stmt.executeQuery("select `Specie_Name` from `Sample` where `Order_Id` = '" + result.getString("Order_Id") + "'");
+                    Statement stmtS = connection.createStatement();
+                    ResultSet resultS = stmtS.executeQuery("select `Specie_Name` from `Sample` where `Order_Id` = " + result.getString("Order_Id") + "");
+                    resultS.next();
                 %>
-                <td> <%out.println(resultSpecie.getString(1));%> </td>
+                <td> <%out.println(resultS.getString(1));%> </td>
             </tr> 
             <%
                 }
@@ -60,8 +64,10 @@
         </table> 
         <%
                 connection.close();
-            } catch (Exception ex) {
-                out.println("Unable to connect to database.");
+            } catch (SQLException ex) {
+                out.println("SQLException: " + ex.getMessage());
+                out.println("SQLState: " + ex.getSQLState());
+                out.println("VendorError: " + ex.getErrorCode());
             }
         %>
 
