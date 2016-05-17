@@ -361,6 +361,13 @@ public class CreateOrderInterface extends JPanel{
             this.setVisible(false);
             this.setVisible(true);
     }
-
+    
+    private void close() {
+        try {
+            globalScreen.delMiddle();
+        } catch (NullPointerException ex) {
+            System.out.println("Ligne 145");
+        }
     }
 
+}

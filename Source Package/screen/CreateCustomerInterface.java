@@ -68,17 +68,17 @@ public class CreateCustomerInterface extends JLabel {
 
                 if (!(name.getText().equals("") || town.getText().equals(""))) {
                     
-                    ok = CustomerList.add(new Customer(name.getText(), town.getText()));
+                    ok = CustomerList.add(new Customer(name.getText(), textFormat(town.getText() ) ) );
                     
                   
                   //  CustomerDB custDB = new CustomerDB();
                   //ok = custDB.addCustomer(cust);
 
                     if (ok) {
-                        globalScreen.setSouth("The customer: "+name.getText()+" / "+town.getText()+" has been created");
+                        globalScreen.setSouth("The customer: "+name.getText()+" / "+textFormat(town.getText())+" has been created");
                         close();
                     } else if (!ok) {
-                        globalScreen.setSouth("The customer : "+name.getText()+" / "+town.getText()+" already exists.");
+                        globalScreen.setSouth("The customer : "+name.getText()+" / "+textFormat(town.getText())+" already exists.");
                     }
 
                 } else {
@@ -186,6 +186,19 @@ public class CreateCustomerInterface extends JLabel {
         } catch (NullPointerException ex) {
             System.out.println("Ligne 145");
         }
+    }
+    
+   /**
+     * Function to format text with an upper case letter first and lower case.
+     * Follow format: "Abcd"
+     * 
+     * @param s The string to treat
+     * @return The formatted string.
+     */
+    public static String textFormat(String s){
+        s =s.toLowerCase();
+        s = s.substring(0, 1).toUpperCase() + s.substring(1);
+        return(s);
     }
 
 }

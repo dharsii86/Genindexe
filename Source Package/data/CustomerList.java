@@ -38,7 +38,7 @@ public class CustomerList {
      */
     public static boolean add(Customer cust){
         String name = cust.getName();
-        String town =  textFormat(cust.getTown());
+        String town =  cust.getTown();
         
         
         if(CustomerDB.addCustomer(cust)){
