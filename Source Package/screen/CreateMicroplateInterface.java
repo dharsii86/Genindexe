@@ -105,31 +105,31 @@ public class CreateMicroplateInterface extends JPanel{
     private void launchRecordInfoSample(String ana){
         ArrayList<Integer> listID = new ArrayList();
         System.out.println("Analysis : "+ana);
-        int nb3 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from sample where state=3"));
+        int nb3 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from Sample where state=3"));
         if (nb3 < 8){//dans le cas ou on a pas assez de valeur en 3
-            ArrayList res3 = ConnectionDB.requestStatic("Select sample_id from sample where state=3");
+            ArrayList res3 = ConnectionDB.requestStatic("Select sample_id from Sample where state=3");
             for(int i = 0; i <= nb3; i++){
                 listID.add((int)((ArrayList)res3.get(0)).get(0));
             }
-            int nb2 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from sample where state=2"));
+            int nb2 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from Sample where state=2"));
             if(nb2+nb3 < 8){
-                ArrayList res2 = ConnectionDB.requestStatic("Select sample_id from sample where state=2 ");
+                ArrayList res2 = ConnectionDB.requestStatic("Select sample_id from Sample where state=2 ");
                 for(int i = 0; i <= nb3; i++){
                     listID.add((int)((ArrayList)res2.get(0)).get(0));
                 } 
-                int nb1 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from sample where state=1"));
-                ArrayList res1 = ConnectionDB.requestStatic("Select sample_id from sample where state=1 limit "+(8-(nb3+nb2)));
+                int nb1 = Integer.parseInt(ConnectionDB.requestOneResult("Select count(*) from Sample where state=1"));
+                ArrayList res1 = ConnectionDB.requestStatic("Select sample_id from Sample where state=1 limit "+(8-(nb3+nb2)));
                 for(int i = 0; i <= nb3; i++){
                     listID.add((int)((ArrayList)res1.get(0)).get(0));
                 }
             }else{
-               ArrayList res2 = ConnectionDB.requestStatic("Select sample_id from sample where state=2 limit "+(8-nb3));
+               ArrayList res2 = ConnectionDB.requestStatic("Select sample_id from Sample where state=2 limit "+(8-nb3));
                 for(int i = 0; i <= nb3; i++){
                     listID.add((int)((ArrayList)res2.get(0)).get(0));
                 } 
             }
         }else{//finit le remplissage de la liste
-            ArrayList res3 = ConnectionDB.requestStatic("Select sample_id from sample where state=3 limit 8");
+            ArrayList res3 = ConnectionDB.requestStatic("Select sample_id from Sample where state=3 limit 8");
             for(int i = 0; i <= nb3; i++){
                 listID.add((int)((ArrayList)res3.get(0)).get(0));
             }
