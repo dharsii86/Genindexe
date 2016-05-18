@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -32,6 +33,7 @@ public abstract class MenuWindow extends JFrame{
     private JLabel north;
 
     protected JMenuBar menuBar;
+    private JMenu Log;
 
     private ImageIcon logoGenindexe;
     private ImageIcon logo1;
@@ -76,7 +78,8 @@ public abstract class MenuWindow extends JFrame{
         Image logoTeam = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("../images/logoScrum.png"));
         this.setIconImage(logoTeam);
         
-        Deco = new JMenuItem("Déconnexion");
+        Log = new JMenu("Log");
+        Deco = new JMenuItem("Disconnect");
         Deco.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -89,7 +92,8 @@ public abstract class MenuWindow extends JFrame{
         });
         
         setMenu();
-        menuBar.add(Deco);
+        Log.add(Deco);
+        menuBar.add(Log);
         this.setJMenuBar(menuBar);
         this.setVisible(true);
         
