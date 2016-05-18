@@ -19,29 +19,30 @@ import javax.swing.SwingConstants;
 import nf.SpecieCategory;
 
 /**
- * Manage the interface for the creation of a customer done by the secretary.
- *
+ * Manage the interface for the creation of a customer.
+ * This interface is only accessible to the secretary.
+ * 
  * @author SCRUM Group 2.
  */
 public class CreateCategoryInterface extends JLabel {
 
     // Panels
-    private JPanel centre;
+    private final JPanel centre;
 
     // Text fields
     private JTextField name;
     
     // Text Area
-    private JTextArea older;
+    private final JTextArea older;
 
     // Labels
-    private JLabel nameLabel;
-    private JLabel titleLabel;
-    private JLabel pan1;
-    private JLabel pan2;
+    private final JLabel nameLabel;
+    private final JLabel titleLabel;
+    private final JLabel pan1;
+    private final JLabel pan2;
 
     // Buttons
-    private JButton validateButton;
+    private final JButton validateButton;
 
     private MenuWindow globalScreen;
 
@@ -62,29 +63,23 @@ public class CreateCategoryInterface extends JLabel {
         // Initialisation of the buttons
         validateButton = new JButton("Validate");
         validateButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent event) {
 
                 boolean ok;
                 SpecieCategory cat;
-
                 if (!(name.getText().equals(""))) {
-
-                    cat = new SpecieCategory(name.getText());
-
-                    
+                    cat = new SpecieCategory(name.getText());         
                     ok = CategoryList.add(cat);
-
                     if (ok) {
                         globalScreen.setSouth("The category: "+name.getText()+" has been created");
                         close();
                     } else if (!ok) {
                         globalScreen.setSouth("The category : "+name.getText()+" already exists.");
                     }
-
                 } else {
                     globalScreen.setSouth("The field is empty.");
                 }
-                
             }
         });
         
@@ -93,9 +88,9 @@ public class CreateCategoryInterface extends JLabel {
         name.setPreferredSize(new Dimension(200, 24));
         name.setToolTipText("Enter the name of the category.");
         
+        
         // Initialisation des Text area
         older = new JTextArea();
-        
         String[] catList;
         catList = CategoryList.getCategoryList();
         for (String catList1 : catList) {
@@ -105,18 +100,17 @@ public class CreateCategoryInterface extends JLabel {
             texte = texte.replace(']',' ');
             older.setText(texte);
         }
+        
         older.setLineWrap(true);
         older.setEditable(false);
-       // older.setEditable(false);
-       JScrollPane text = new JScrollPane(older);
-       text.setPreferredSize(new Dimension(200, 200));
-       
-        
+        // older.setEditable(false);
+        JScrollPane text = new JScrollPane(older);
+        text.setPreferredSize(new Dimension(200, 200));
         older.setToolTipText("Name of the categories already existing.");
         older.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLACK, (int) 2 ));
 
 
-        // Panels modification
+        // Panels modification and GBC settings
         centre.setLayout(new GridBagLayout());
 
         GridBagConstraints gbNameLab = new GridBagConstraints();
@@ -177,14 +171,28 @@ public class CreateCategoryInterface extends JLabel {
         this.setVisible(true);
     }
 
+    /**
+     * Getter for 'name' JTextField, containing the name of the category.
+     * 
+     * @return  The name of the category to create.
+     */
     public String getCustomerName() {
         return name.getName();
     }
 
+    /**
+     * Set the content of the 'name' JTextField, containing 
+     * the name of the category to create.
+     * 
+     * @param name The name to enter.
+     */
     public void setCustomerName(String name) {
         this.name.setText(name);
     }
 
+    /**
+     * Function to close the category creation interface 
+     */
     private void close() {
         try {
             globalScreen.delMiddle();
