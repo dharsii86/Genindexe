@@ -5,7 +5,11 @@
  */
 package database;
 
+import java.util.HashMap;
+import data.CreateData;
+import data.CustomerList;
 import nf.Order;
+import nf.Customer;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,85 +48,20 @@ public class OrderDBTest {
      */
     @Test
     public void testGetOrder() {
-        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Machin','')");
-    }
-    
-    /**
-     * Test of getCategory method, of class OrderDB.
-     */
-    @Test
-    public void testGetCategory() {
-        //Delete in the database information which can hinder the test
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Machin' or Category_Name = 'Truc' or Category_Name = 'Bidule'");
-        //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into category values ('Machin')");
-        ConnectionDB.requestInsert("insert into category values ('Truc')");
-        ConnectionDB.requestInsert("insert into category values ('Bidule')");
-        //Try the tested method and collect results
-        String[] listCategory = OrderDB.getCategory();
-        //Delete in the database inforamtion used for the test
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Machin' or Category_Name = 'Truc' or Category_Name = 'Bidule'");
-        //Test the results
-        if (listCategory.length != 3){
-            fail("The function getCategory() doesn't return the good results!");
-        }
-    }
-
-    /**
-     * Test of getSpecies method, of class OrderDB.
-     */
-    @Test
-    public void testGetSpecies() {
-        //Delete in the database information which can hinder the test
-        ConnectionDB.requestInsert("delete from specie where Specie_Name = 'Lolo' or Specie_Name = 'Lala' or Specie_Name = 'Machin'");
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Truc' or Category_Name = 'Trac'");
-        //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into category values('Truc')");
-        ConnectionDB.requestInsert("insert into category values('Trac')");
-        ConnectionDB.requestInsert("insert into specie values('Lolo','Trac')");
-        ConnectionDB.requestInsert("insert into specie values('Lala','Truc')");
-        ConnectionDB.requestInsert("insert into specie values('Machin','Truc')");
-        //Try the tested method and collect results
-        String[] listSpecies = OrderDB.getSpecies("Truc");
-        //Delete in the database inforamtion used for the test
-        ConnectionDB.requestInsert("delete from specie where Specie_Name = 'Lolo' or Specie_Name = 'Lala' or Specie_Name = 'Machin'");
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Truc' or Category_Name = 'Trac'");
-        //Test the results
-        if (listSpecies.length != 2){
-            fail("The function getSpecies() doesn't return the good results!");
-        }
-    }
-
-    /**
-     * Test of getAnalysis method, of class OrderDB.
-     */
-    @Test
-    public void testGetAnalysis() {
-        //Delete in the database information which can hinder the test
-        ConnectionDB.requestInsert("delete from relevant where Analysis_Name = 'Lolo' or Analysis_Name = 'Lala' or Analysis_Name = 'Lulu'");
-        ConnectionDB.requestInsert("delete from analysis where Analysis_Name = 'Lolo' or Analysis_Name = 'Lala' or Analysis_Name = 'Lulu'");
-        ConnectionDB.requestInsert("delete from specie where Specie_Name = 'Truc' or Specie_Name = 'Trac'");
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Machin'");
-        //Insert in the database information needed for the test
-        ConnectionDB.requestInsert("insert into category values('Machin')");
-        ConnectionDB.requestInsert("insert into specie values('Truc','Machin')");
-        ConnectionDB.requestInsert("insert into specie values('Trac','Machin')");
-        ConnectionDB.requestInsert("insert into analysis values('Lolo')");
-        ConnectionDB.requestInsert("insert into relevant values('Truc','Lolo')");
-        ConnectionDB.requestInsert("insert into analysis values('Lala')");
-        ConnectionDB.requestInsert("insert into relevant values('Truc','Lala')");
-        ConnectionDB.requestInsert("insert into analysis values('Lulu')");
-        ConnectionDB.requestInsert("insert into relevant values('Trac','Lulu')");
-        //Try the tested method and collect results
-        String[] listAnalysis = OrderDB.getAnalysis("Truc");
-        //Delete in the database inforamtion used for the test
-        ConnectionDB.requestInsert("delete from relevant where Analysis_Name = 'Lolo' or Analysis_Name = 'Lala' or Analysis_Name = 'Lulu'");
-        ConnectionDB.requestInsert("delete from analysis where Analysis_Name = 'Lolo' or Analysis_Name = 'Lala' or Analysis_Name = 'Lulu'");
-        ConnectionDB.requestInsert("delete from specie where Specie_Name = 'Truc' or Specie_Name = 'Trac'");
-        ConnectionDB.requestInsert("delete from category where Category_Name = 'Machin'");
-        //Test the results
-        if (listAnalysis.length != 2){
-            fail("The function getAnalysis() doesn't return the good results!");
+        ConnectionDB.requestInsert("DELETE FROM `order` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        ConnectionDB.requestInsert("DELETE FROM `customer` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        ConnectionDB.requestInsert("INSERT INTO `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('XX','X','X','X')");
+        ConnectionDB.requestInsert("INSERT INTO `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('YY','Y','Y','Y')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-01','completed','Sexing','X')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-04','completed','Scrapie','Y')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-16','toAnalyze','Scrapie','X')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-02-13','inProgress','Sexing','X')");
+        
+        HashMap<Integer, Order> orderList = OrderDB.getOrder(new Customer("X","X"));
+        ConnectionDB.requestInsert("DELETE FROM `order` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        ConnectionDB.requestInsert("DELETE FROM `customer` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        if (orderList.size() != 3 ){
+            fail("The function getOrder doesn't all the good results");
         }
     }
 
