@@ -26,6 +26,7 @@ public class MWValidator extends MenuWindow {
     }
     
     private JMenu menuCreation;
+    private JMenu menuResearch;
     private JMenuItem homePage;
     private JMenuItem createScrapieTest;
     private JMenuItem researchOrder;
@@ -37,7 +38,8 @@ public class MWValidator extends MenuWindow {
         menuBar = new JMenuBar();
         
         //Build the Customer's menu.
-        menuCreation = new JMenu("Research");
+        menuCreation = new JMenu("Creation");
+        menuResearch = new JMenu("Research");
         
         // Build the Home page Menu
         homePage = new JMenuItem("Home Page");
@@ -65,9 +67,10 @@ public class MWValidator extends MenuWindow {
                 launchResearchOrder();
             }
         });
-        menuCreation.add(researchOrder);
+        menuResearch.add(researchOrder);
         
         menuBar.add(menuCreation);
+        menuBar.add(menuResearch);
     }
     
     private void launchResearchOrder() {
