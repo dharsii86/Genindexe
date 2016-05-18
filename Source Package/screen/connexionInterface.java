@@ -3,7 +3,7 @@
  */
 package screen;
 
-import database.connexionUser;
+import database.ConnectionUser;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -66,8 +66,8 @@ public class connexionInterface extends JFrame {
             public void actionPerformed(ActionEvent event) {
 
                 boolean ok;
-                connexionUser con = new connexionUser();
-                ok = connexionUser.checkMDP(login.getText(), mdp.getText());
+                ConnectionUser con = new ConnectionUser();
+                ok = ConnectionUser.checkMDP(login.getText(), mdp.getText());
 
                 if (ok) {
                     String statut = con.getStatus(login.getText(), mdp.getText());

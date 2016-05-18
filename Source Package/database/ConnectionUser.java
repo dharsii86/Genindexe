@@ -7,7 +7,7 @@ package database;
  *
  * @author SCRUM Group 2.
  */
-public class connexionUser {
+public class ConnectionUser {
     
     /**
      * Check if the user can connect.
