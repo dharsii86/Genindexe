@@ -37,7 +37,7 @@ public class MWValidator extends MenuWindow {
         menuBar = new JMenuBar();
         
         //Build the Customer's menu.
-        menuCreation = new JMenu("Creation");
+        menuCreation = new JMenu("Research");
         
         // Build the Home page Menu
         homePage = new JMenuItem("Home Page");
