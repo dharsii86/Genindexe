@@ -26,6 +26,7 @@ import database.CustomerDB;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.DefaultComboBoxModel;
 import nf.Customer;
@@ -167,7 +168,12 @@ public class CreateOrderInterface extends JPanel {
                         Customer cust = CustomerList.getCustomer(name, town);
                         ArrayList res = (ArrayList) ConnectionDB.requestStatic("show table status like 'order'").get(0);
                         int IDorder = Integer.parseInt((String) res.get(10));
-                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`) VALUES ('toAnalyze','" + ana + "','" + name + town + "');");
+                        
+                        SimpleDateFormat formater = null;
+                        Date aujourdhui = new Date();
+                        formater = new SimpleDateFormat("yyyy-MM-dd");
+                        
+                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`, `Order_Date`) VALUES ('toAnalyze','" + ana + "','" + name + town + "','"+formater.format(aujourdhui)+"');");
                         //création des samples
                         for (int i = 1; i <= nbS; i++) {
                             ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`) VALUES ('" + spec + "','" + IDorder + "');");
