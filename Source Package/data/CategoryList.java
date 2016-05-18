@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import database.CategoryDB;
@@ -14,63 +9,90 @@ import nf.Specie;
 import nf.SpecieCategory;
 
 /**
- *
- * @author DharSii
+ * This class manage the list of categories.
+ * 
+ * @author SCRUM Group 2.
  */
 public class CategoryList {
     
-    private static HashMap<String,SpecieCategory> categoryList;
+    private static HashMap<String, SpecieCategory> categoryList;
 
-    
+    /**
+     * Create the static list of the categories.
+     */
     public static void launchCategoryList(){
+        
         CategoryList.categoryList = new HashMap<String, SpecieCategory>();
     }
     
     /**
-     * Insert a new species category to the application and into the database
-     * @param cat 
+     * Insert a new specie category in the list and in the database.
+     * 
+     * @param cat, the category to insert. 
      */
-    public static boolean add(SpecieCategory cat){
+    public static boolean add(SpecieCategory cat){        
         if(CategoryDB.addCategory(cat)){
             categoryList.put(cat.getName(),cat);
-            //printInfoDebug();
             return true;
         }else{
             return false;
         }
     }
     
+    /**
+     * Return the SpecieCategory using the category name.
+     * 
+     * @param categoryName, the name of the category to retrieve. 
+     * @return the SpecieCategory to retrieve.
+     */
     public static SpecieCategory getCategory(String categoryName){
         return categoryList.get(categoryName);
     }
     
+    /**
+     * Return the list of categories in a HashMap.
+     * 
+     * @return the HashMap containing the categories.
+     */
     public static HashMap getCategory(){
         return categoryList;
     }
     
+    /**
+     * Return the list of categories in a String table.
+     * 
+     * @return the String[] containing the categories.
+     */
     public static String[] getCategoryList(){
-        Set<String> catSet= categoryList.keySet();
-        String[] catlist= catSet.toArray( new String[catSet.size()] );
+        Set<String> catSet = categoryList.keySet();
+        String[] catlist = catSet.toArray( new String[catSet.size()] );
         return catlist;
     }
     
+    /**
+     * Print the categories of the list and their information.
+     */
     public static void printInfoDebug(){
-        System.out.println("category Information ");
-        for(String k : categoryList.keySet()){
+        System.out.println("Category Information ");
+        for (String k : categoryList.keySet()) {
             System.out.println("category : "+k);
         }
     }
     
     /**
-     * Insert a new species category only on the application
-     * @param cat 
+     * Insert a new specie category only in the application
+     * 
+     * @param cat, the category to insert.
      */
     public static void put(SpecieCategory cat){
         categoryList.put(cat.getName(),cat);
     }
     
-
-    
+    /**
+     * Return the list of specie of a category.
+     * 
+     * @param cat, the category to retrieve the species from.
+     */
     public static String[] getListSpecieFromCat(String cat){
 	ArrayList<String> res = new ArrayList<>();
 	SpecieCategory sCat = categoryList.get(cat);

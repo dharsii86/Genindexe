@@ -5,7 +5,6 @@
  */
 package screen;
 
-import data.AnalysisList;
 import database.AnalysisDB;
 import database.ConnectionDB;
 import java.awt.Color;

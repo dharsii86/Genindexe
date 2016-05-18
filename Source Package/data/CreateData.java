@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import database.ConnectionDB;
@@ -13,16 +8,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import nf.*;
+
 /**
- *
- * @author Quentin Bonenfant
+ * .
+ * 
+ * @author SCRUM Group 2.
  */
 public class CreateData {
     
     private static boolean possibilityToCreate = true;
     
+    /**
+ * .
+ */
     public static void createAllInfo(){
-        //create order
+        // Create an order
         /*
         1- Category
         2- Species
@@ -30,6 +30,7 @@ public class CreateData {
         4- Customer
         */
         if(possibilityToCreate){
+            
             System.out.println("Creation of all the information");
             CategoryList.launchCategoryList();
             SpeciesList.launchSpeciesList();
@@ -38,20 +39,20 @@ public class CreateData {
             SampleList.launchSampleList();
 
             String[] catList = getCategory();
-            System.out.println("category Creation");
+            System.out.println("Category creation");
 
             for (String cat: catList){
-                // creation of the new category
+                // Creation of the new category.
                 SpecieCategory category = new SpecieCategory(cat);
-                // the object category is created
-                String[] specList = getSpecies(cat);// get the species for that category
-                //add the species for this category
+                // The category is created.
+                String[] specList = getSpecies(cat); // Get the species for that category
+                // Add the species for this category
                 for(String spec : specList){
                     Specie sp = new Specie(spec);
                     SpeciesList.put(sp);
                     category.addSpecie(sp);
                 }
-                //Add the object category
+                // Add the category
                 CategoryList.put(category);
             }
             
