@@ -9,26 +9,30 @@ import nf.Specie;
 import nf.SpecieCategory;
 
 /**
- * This class manage the list of categories.
+ * This class manage the static list of categories.
+ * It is used to access categories objects through the whole application.
+ * The methods used to access the list are also static.
  * 
  * @author SCRUM Group 2.
  */
 public class CategoryList {
     
+    // The Static hashmap of categories
     private static HashMap<String, SpecieCategory> categoryList;
 
+    
     /**
-     * Create the static list of the categories.
+     * Initialise the static list of the categories.
      */
     public static void launchCategoryList(){
-        
-        CategoryList.categoryList = new HashMap<String, SpecieCategory>();
+        CategoryList.categoryList = new HashMap<>();
     }
     
     /**
      * Insert a new specie category in the list and in the database.
      * 
      * @param cat, the category to insert. 
+     * @return Success or fail of the insertion.
      */
     public static boolean add(SpecieCategory cat){        
         if(CategoryDB.addCategory(cat)){
@@ -70,7 +74,8 @@ public class CategoryList {
     }
     
     /**
-     * Print the categories of the list and their information.
+     * Print the categories in the list and their information.
+     * This function is used for debug.
      */
     public static void printInfoDebug(){
         System.out.println("Category Information ");
@@ -92,6 +97,7 @@ public class CategoryList {
      * Return the list of specie of a category.
      * 
      * @param cat, the category to retrieve the species from.
+     * @return 
      */
     public static String[] getListSpecieFromCat(String cat){
 	ArrayList<String> res = new ArrayList<>();
