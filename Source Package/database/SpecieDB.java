@@ -4,8 +4,10 @@ import nf.Specie;
 import nf.SpecieCategory;
 
 /**
+ * This class contain the functions to manage species. The goal is to manage the
+ * interface of inputs and outputs.
  *
- * @author JCGx
+ * @author SCRUM Group 2.
  */
 public class SpecieDB {
 
@@ -57,4 +59,5 @@ public class SpecieDB {
             return false;
         }
     }
+
 }

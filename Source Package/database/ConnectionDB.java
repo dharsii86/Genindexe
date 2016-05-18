@@ -15,13 +15,14 @@ import java.util.ArrayList;
  */
 public class ConnectionDB {
 
-    Connection conn = null; // set in the constructor, create the connection with the database
+    Connection conn = null; // Set in the constructor, create the connection with the database
     Statement stmt = null;
     ResultSet result = null;
     static String DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost/genindexe";
     static final String DRIVERCONNECTION_USER = "root";
     static final String DRIVERCONNECTION_PWD = "root";
     private static String OS = System.getProperty("os.name").toLowerCase();
+
     /**
      * ConnexionDB class constructor. Create a connexion to the database.
      */
@@ -39,16 +40,15 @@ public class ConnectionDB {
             System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
-    
+
     /**
-     * Function allowing connection to the database from a mac.
+     * Allow the connection to the database from a mac.
      */
-    
-    public static void changePort(){
-        
-        if(OS.indexOf("mac") >= 0){
+    public static void changePort() {
+
+        if (OS.indexOf("mac") >= 0) {
             DRIVERCONNECTION_ROAD = "jdbc:mysql://localhost:8889/genindexe";
-            System.out.println("C'est sur un MAC");
+            System.out.println("This is a MAC");
         }
     }
 
@@ -102,7 +102,7 @@ public class ConnectionDB {
      * @param req, the request to perform.
      */
     public static void requestInsert(String req) {
- 
+
         Connection conn = null;
         Statement stmt = null;
         ResultSet result = null;
@@ -184,7 +184,7 @@ public class ConnectionDB {
             }
         }
     }
-    
+
     /**
      * Allow to perform a request on the database and get a single result.
      *
@@ -245,7 +245,7 @@ public class ConnectionDB {
      * list of the column values for the current line.
      */
     public static ArrayList requestStatic(String req) {
-       
+
         Connection conn = null;
         Statement stmt = null;
         ResultSet result = null;

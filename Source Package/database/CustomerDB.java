@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import nf.Customer;
 
 /**
+ * This class contain the functions to manage customers.
+ * The goal is to manage the interface of inputs and outputs.
  *
- * @author thomas
+ * @author SCRUM Group 2.
  */
 public class CustomerDB {
+    
     private static final Random RANDOM = new SecureRandom();
+    
     /**
      * CustomerDB class constructor.
      */
@@ -19,8 +23,9 @@ public class CustomerDB {
     }
     
     /**
-     * Return a password that contains alpha numerics character
-     * @return a password
+     * Create a password that contains alpha numeric characters.
+     * 
+     * @return res, the password.
      */
     private static String createPassword(){
         char[] symbol = "abcdefghijklmnopqrstuvwxyzAZERTYUIOPQSDFGHJKLMWXCVBN0123456789".toCharArray();
@@ -32,7 +37,6 @@ public class CustomerDB {
         return res;
     }
     
-
     /**
      * Add a customer in the database.
      *
@@ -46,18 +50,17 @@ public class CustomerDB {
             String log = cust.getName().toLowerCase() + cust.getTown().toLowerCase();
             
             String pass = CustomerDB.createPassword();
-            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
-            //System.out.println("The customer has been added to the database");
+            ConnectionDB.requestInsert("insert into `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) "
+                    + "values ('" + log + "', '" + cust.getName() + "', '" + cust.getTown() + "', '" + pass + "')");
             return true;
         }
-        //System.out.println("This customer already exist in the database");
         return false;
     }
 
     /**
      * Check if the customer has a duplicate in the database.
      *
-     * @param cust, the customer to add.
+     * @param cust, the customer to check.
      * @return true if there is duplicate and false if not.
      */
     public static boolean checkCustomerDuplicates(Customer cust) {
@@ -66,7 +69,8 @@ public class CustomerDB {
             String n= cust.getName();
             String t= cust.getTown();
             int resultat;
-            resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from customer where customer_name = '" + n + "' and customer_town = '" + t + "'"));
+            resultat = Integer.parseInt(ConnectionDB.requestOneResult("select count(*) from `customer` where `Customer_Name` = '" + n + "' "
+                    + "and `Customer_Town` = '" + t + "'"));
 
             switch (resultat) {
                 case 0:
@@ -80,14 +84,13 @@ public class CustomerDB {
     }
 
     /**
-     * Get the list of customers living places in the database, in order to list
-     * them on the interface.
+     * Get the list of customers' living places from the database.
      *
-     * @return ArrayList of string containing the available customers
+     * @return ArrayList of string containing the available customers' living places.
      */
     public static String[] getCustomerTown() {
-        String req = "SELECT customer_town from customer group by customer_town";
-        ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+        String req = "select `Customer_Town` from `customer` group by `Customer_Town`";
+        ArrayList<ArrayList> arrayResult; // Create the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);
 
         String[] result = formatResult(arrayResult);
@@ -96,14 +99,14 @@ public class CustomerDB {
     }
 
     /**
-     * Get the list of the customer that live in a defined town
+     * Get the list of customers who live in a defined town.
      *
-     * @param town The town (as a string) where the customers lives
-     * @return An arraylist of customer living in this town.
+     * @param town, The town (as a string) where the customers live.
+     * @return an arraylist of customers living in this town.
      */
     public static String[] getCustomerName(String town) {
-        String req = "SELECT customer_name from customer WHERE customer_town ='" + town + "'";
-        ArrayList<ArrayList> arrayResult; // creating the result ArrayList
+        String req = "select `Customer_Name` from `customer` where `Customer_Town` ='" + town + "'";
+        ArrayList<ArrayList> arrayResult; // Create the result ArrayList
         arrayResult = ConnectionDB.requestStatic(req);
 
         String[] result = formatResult(arrayResult);
@@ -133,6 +136,5 @@ public class CustomerDB {
         }
         return false;
     }
- 
-    
+     
 }

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import nf.SpecieCategory;
 
 /**
- *
- * @author thoma
+ * This class contain the functions to manage categories.
+ * The goal is to manage the interface of inputs and outputs.
+ * 
+ * @author SCRUM Group 2.
  */
 public class CategoryDB {
 
@@ -55,6 +57,11 @@ public class CategoryDB {
         }
     }
     
+    /**
+     * Return all the categories of the database in an ArrayList.
+     *
+     * @return an ArrayList containing the categories.
+     */
     public ArrayList getListCategory()
     {
         ArrayList results;

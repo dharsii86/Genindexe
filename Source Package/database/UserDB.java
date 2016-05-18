@@ -1,8 +1,10 @@
 package database;
 
 /**
+ * This class contain the functions to manage the users. The goal is to manage the
+ * interface of inputs and outputs.
  *
- * @author thoma
+ * @author SCRUM Group 2.
  */
 public class UserDB {
 
