@@ -1,4 +1,4 @@
-/*
+/**
  * Class of the interface of a technician.
  */
 package screen;
@@ -60,7 +60,9 @@ public class MWTechnician extends MenuWindow {
         menuBar.add(menuCreation);
     }
 
-    // Launch the interface of the creation of a customer
+    /**
+     * Launch the interface of the creation of a customer
+     */
     private void launchCreateMicroPlate() {
         try {
             middle.remove(0);

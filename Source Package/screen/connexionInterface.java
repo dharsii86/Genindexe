@@ -1,4 +1,4 @@
-/*
+/**
  * Allow the user to connect to the software.
  */
 package screen;

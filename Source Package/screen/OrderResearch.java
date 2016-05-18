@@ -1,4 +1,4 @@
-/*
+/**
  * Interface allowing users to research an order.
  */
 package screen;
@@ -242,7 +242,9 @@ public class OrderResearch extends JLabel {
 
     }
 
-    // Close the panel
+    /**
+     * Close the panel
+     */
     private void close() {
         try {
             globalScreen.delMiddle();

@@ -1,4 +1,4 @@
-/*
+/**
  * Interface which allow user to create a scrapie test.
  */
 package screen;
@@ -192,7 +192,9 @@ public class ScrapieTestInterface extends JPanel {
 
     }
 
-    // Close the panel
+    /**
+     * Close the panel
+     */
     private void close() {
         try {
             globalScreen.delMiddle();

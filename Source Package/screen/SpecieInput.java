@@ -1,4 +1,4 @@
-/*
+/**
 * Class allowing the creation of a new specie.
 */
 

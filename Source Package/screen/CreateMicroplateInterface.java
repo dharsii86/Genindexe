@@ -1,4 +1,4 @@
-/*
+/**
  * Interface which allow users to create a Microplate.
  */
 package screen;
@@ -43,7 +43,9 @@ public class CreateMicroplateInterface extends JPanel{
         this.setVisible(true);
     }
     
-    
+    /**
+     * Show the interface
+     */
     private void showCreationInterface(){
         boxAnalysis = new JComboBox(AnalysisDB.getAnalysis());
         JButton boutCreation = new JButton("Creation of the microplate");

@@ -165,7 +165,9 @@ public class CreateSpecieInterface extends JPanel {
         this.add(pos4, gbpan4);
     }
     
-    // Close the panel
+    /**
+     * Close the panel
+     */
     private void close() {
         try {
             globalScreen.delMiddle();

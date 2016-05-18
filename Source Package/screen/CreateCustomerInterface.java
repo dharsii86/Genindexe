@@ -1,4 +1,4 @@
-/*
+/**
 *Interface which allow users to create a customer.
 */
 

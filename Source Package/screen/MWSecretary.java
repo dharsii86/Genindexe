@@ -91,7 +91,9 @@ public class MWSecretary extends MenuWindow {
         menuBar.add(menuCreation);
     }
 
-    // Launch the Creation of a customer
+    /**
+     * Launch the Creation of a customer
+     */
     private void launchCreateCustomer() {
         try {
             middle.remove(0);
@@ -103,7 +105,9 @@ public class MWSecretary extends MenuWindow {
         refreshMid();
     }
 
-    // Launch the Creation of a category
+    /**
+     * Launch the Creation of a category
+     */
     private void launchCreateCategory() {
         try {
             middle.remove(0);
@@ -115,7 +119,9 @@ public class MWSecretary extends MenuWindow {
         refreshMid();
     }
 
-    // Launch the Creation of an order
+    /**
+     * Launch the Creation of an order
+     */
     private void launchCreateOrder() {
         try {
             middle.remove(0);
@@ -127,7 +133,9 @@ public class MWSecretary extends MenuWindow {
         refreshMid();
     }
 
-    // Launch the Creation of a specie
+    /**
+     * Launch the Creation of a specie
+     */
     private void launchCreateSpecie() {
         try {
             middle.remove(0);

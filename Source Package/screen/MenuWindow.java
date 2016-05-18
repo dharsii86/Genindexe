@@ -1,4 +1,4 @@
-/*
+/**
  * Class containing the creation of the global interface.
  */
 package screen;
@@ -98,22 +98,30 @@ public abstract class MenuWindow extends JFrame {
         this.setVisible(true);
     }
 
-    // Launch the creation of the menu (depending of the user status)
+    /**
+     * Launch the creation of the menu (depending of the user status)
+     */
     public abstract void setMenu();
 
-    // Refresh the mid panel
+    /**
+     * Refresh the mid panel
+     */
     protected void refreshMid() {
         middle.setVisible(false);
         middle.setVisible(true);
     }
 
-    // Refresh the frame
+    /**
+     * Refresh the frame
+     */
     private void refresh() {
         this.setVisible(false);
         this.setVisible(true);
     }
 
-    // Cleaning the mid panel
+    /**
+     * Cleaning the mid panel
+     */
     protected void delMiddle() {
         System.out.println("Debug close in del Middle");
         try {
@@ -124,12 +132,17 @@ public abstract class MenuWindow extends JFrame {
 
     }
 
-    // Modification of the information panel
+    /**
+     * Modification of the information panel
+     * @param action The String you want to add in the information panel
+     */
     public void setSouth(String action) {
         this.south.setText(action);
     }
 
-    // Close the frame
+    /**
+     * Close the frame
+     */
     public void close() {
         this.dispose();
     }

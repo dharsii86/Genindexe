@@ -1,4 +1,4 @@
-/*
+/**
  * Class of the interface of a Validator.
  */
 package screen;
@@ -75,7 +75,9 @@ public class MWValidator extends MenuWindow {
         menuBar.add(menuResearch);
     }
 
-    // Launch the research of an order
+    /**
+     * Launch the research of an order
+     */
     private void launchResearchOrder() {
         try {
             middle.remove(0);
@@ -87,7 +89,9 @@ public class MWValidator extends MenuWindow {
         refreshMid();
     }
 
-    // Launch the creation of a scrapie test
+    /**
+     * Launch the creation of a scrapie test
+     */
     private void launchScrapieTest() {
         try {
             middle.remove(0);
