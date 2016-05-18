@@ -10,41 +10,60 @@ import java.util.List;
 import nf.*;
 
 /**
- * .
+ * This class initialise all the objects when the application start.
+ * The creation process use the database scripts to retrieve information.
+ * Objects are stored in dedicated classes, in static lists.
  * 
  * @author SCRUM Group 2.
  */
 public class CreateData {
     
+    // Needed to know if object have been initialised once.
     private static boolean possibilityToCreate = true;
     
+    // used to print useful information if debug is needed
+    private final static boolean debug = false;
+    
     /**
- * .
- */
+     * Object initialisation / creation function.
+     * This is the core function of this class.
+     * It convert information from the database in objects.
+     */
     public static void createAllInfo(){
-        // Create an order
-        /*
+        /* 
+        Objects created here:
+       
         1- Category
         2- Species
-        3- Analysis
-        4- Customer
+        3- Customer 
+        4- Order
+        5- Samples and Analysis
+        6- Result
         */
+        
+        // If the script have never been launched before.
         if(possibilityToCreate){
             
-            System.out.println("Creation of all the information");
+            // Initialisation
+            if(debug){System.out.println("Creation of all the information");}
+            
             CategoryList.launchCategoryList();
             SpeciesList.launchSpeciesList();
             CustomerList.launchCustomerList();
             OrderList.launchOrderList();
             SampleList.launchSampleList();
-
             String[] catList = getCategory();
-            System.out.println("Category creation");
-
+            
+            // 1 - Category Creation
+            
+            if(debug){System.out.println("Category creation");}
             for (String cat: catList){
                 // Creation of the new category.
                 SpecieCategory category = new SpecieCategory(cat);
                 // The category is created.
+                
+                // 2- Species creation, linked to categories
+                
                 String[] specList = getSpecies(cat); // Get the species for that category
                 // Add the species for this category
                 for(String spec : specList){
@@ -56,25 +75,30 @@ public class CreateData {
                 CategoryList.put(category);
             }
             
-            // 4- Creation of customer objects and lists
+            
+            // 3 - Creation of customer objects and lists
+            
             // Initialisation
             HashMap<String,HashMap> customerTownList = new HashMap<>();
             HashMap<String,Customer> hashName;
             String[] nameList;
             String[] townList = CustomerDB.getCustomerTown();
             Customer cust;
-            // filling
+            
+            // Filling the lists
             for(String town:townList){
                 nameList= CustomerDB.getCustomerName(town);
                 hashName = new HashMap<>(); 
                 for(String name: nameList){
                         cust= new Customer(name,town);
                         hashName.put(name,cust);
-                        /////////////////////////////////
-                        ////Récupération order 
-                        //récupérer arraylist d'order pour ce customer
+                        
+                        // 4- Order List creation
+                        
+                        // Get the list of orders for the customer
                         HashMap<Integer,Order> hmOrd = OrderDB.getOrder(cust);
-                        // ajouter chaque élément de la liste à la liste d'order list
+                        
+                        // Append each element to the global order list.
                         for (Integer k: hmOrd.keySet()){
                             OrderList.put(k, hmOrd.get(k));
                             cust.addOrder(hmOrd.get(k));
@@ -83,8 +107,9 @@ public class CreateData {
                 customerTownList.put(town,hashName);
             }
             CustomerList.put(customerTownList);
-            /////////////////////////////////
-            ////Récupération Sample 
+            
+            // 5 - Sample list creation, for each analysis
+            
             ArrayList<ArrayList> resultSpl= ConnectionDB.requestStatic("SELECT `Order_Id`, `Specie_Name`,`Sample_Id` FROM `sample` WHERE 1");
             for(ArrayList<String> res:resultSpl){//pour chaque ligne du resultat pour l'order
                 Order ord = OrderList.getOrder(Integer.parseInt(res.get(0)));
@@ -97,19 +122,27 @@ public class CreateData {
                 int val2 = Integer.parseInt(val.get(2));
                 int val3 = Integer.parseInt(val.get(3));
                 
+                // Analysis selection for samples
+                
                 SexingTest sex = new SexingTest(SpeciesList.get(res.get(1)), val0, val1, val2, val3);
                 
                 ScrapieTest scp = new ScrapieTest(SpeciesList.get(res.get(1)),  val0,  val1);
                 Sample newSpl = null;
                 
-                if (ana.equals("Sexing")){
-                    newSpl = new Sample(sex, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
-                }else if(ana.equals("Scrapie")){
-                    newSpl = new Sample(scp, SpeciesList.get(res.get(1)), ord);//Attention ici problème il faut normalement une Analyse
-                }else{
-                    System.out.println("Erreur, analyse incorrecte : Create Data during sample creation");
+                
+                switch (ana) {
+                    case "Sexing":
+                        newSpl = new Sample(sex, SpeciesList.get(res.get(1)), ord);
+                        break;
+                    case "Scrapie":
+                        newSpl = new Sample(scp, SpeciesList.get(res.get(1)), ord);
+                        break;
+                    default:
+                        System.out.println("Erreur, analyse incorrecte : Create Data during sample creation");
+                        break;
                 }
                 
+                // 6- Result creation
                 if(newSpl != null){
                     ArrayList<ArrayList> allResult= ConnectionDB.requestStatic("SELECT `result1`, `result2`, `result3` FROM `sample` WHERE `Sample_Id` = "+res.get(2));
                     for(ArrayList<String> ligne:allResult){
@@ -142,23 +175,18 @@ public class CreateData {
                     OrderStatus aux = ord.getStatus();
                     ord.setSamples(listOfSamples);
                     ord.setStatus(aux);
-                }
-                
-                
+                }  
             }
-            
-            System.out.println("All the information have been created");
+            if(debug){System.out.println("All the information have been created");}
             possibilityToCreate = false;
         }else{
             System.out.println("All the data are already created");
         }
-        
-        
     }
     
     
    /**
-    * Get the existing category from the database
+    * Get the existing categories from the database
     * 
     * @return The string array containing the existing categories.
     */
@@ -211,10 +239,5 @@ public class CreateData {
         result = tmp.toArray(result);
         
         return(result);
-  }
-    
-    
-    
+   }   
 }
-
-
