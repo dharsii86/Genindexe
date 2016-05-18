@@ -40,6 +40,14 @@ public class OrderDBTest {
     }
     
     /**
+     * Test of getGetOrder method, of class OrderDB.
+     */
+    @Test
+    public void testGetOrder() {
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Status`, `Analysis_Name`, `Customer_Login`) values ('Machin','')");
+    }
+    
+    /**
      * Test of getCategory method, of class OrderDB.
      */
     @Test
