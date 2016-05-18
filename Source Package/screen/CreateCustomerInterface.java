@@ -168,22 +168,41 @@ public class CreateCustomerInterface extends JLabel {
         this.setVisible(true);
     }
 
+    /**
+     * Get the name of the customer
+     * @return the name of the customer
+     */
     public String getCustomerName() {
         return name.getName();
     }
 
+    /**
+     * Modify the name of the customer
+     * @param name the new name
+     */
     public void setCustomerName(String name) {
         this.name.setText(name);
     }
 
+    /**
+     * Get the customer place
+     * @return The place of the customer
+     */
     public String getCustomerPlace() {
         return town.getName();
     }
 
+    /**
+     * Modify the town of the customer
+     * @param town The new town
+     */
     public void setCustomerPlace(String town) {
         this.town.setName(town);
     }
 
+    /**
+     * Close the panel.
+     */
     private void close() {
         try {
             globalScreen.delMiddle();

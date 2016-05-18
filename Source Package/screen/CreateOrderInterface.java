@@ -28,8 +28,8 @@ import javax.swing.DefaultComboBoxModel;
 import nf.Customer;
 
 /**
- *Interface for the creation of an order done by the secretary
- * 
+ * Interface for the creation of an order done by the secretary
+ *
  * @author SCRUM Group 2.
  */
 public class CreateOrderInterface extends JPanel {
@@ -55,7 +55,7 @@ public class CreateOrderInterface extends JPanel {
     @SuppressWarnings("Convert2Lambda")
     public CreateOrderInterface(MenuWindow jf) {
         globalScreen = jf;
-        
+
         /*Initialisation*/
         title = new JLabel("Order Creation", SwingConstants.CENTER);
         this.setBackground(Color.white);
@@ -90,7 +90,6 @@ public class CreateOrderInterface extends JPanel {
         /*
          *   Adding the action listeners for the combo boxes
          */
-        
         // Listener for category selection
         category.addActionListener(new ActionListener() {
             @Override
@@ -162,12 +161,12 @@ public class CreateOrderInterface extends JPanel {
                         Customer cust = CustomerList.getCustomer(name, town);
                         ArrayList res = (ArrayList) ConnectionDB.requestStatic("show table status like 'order'").get(0);
                         int IDorder = Integer.parseInt((String) res.get(10));
-                        
+
                         SimpleDateFormat formater = null;
                         Date aujourdhui = new Date();
                         formater = new SimpleDateFormat("yyyy-MM-dd");
-                        
-                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`, `Order_Date`) VALUES ('toAnalyze','" + ana + "','" + name + town + "','"+formater.format(aujourdhui)+"');");
+
+                        ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `order`(`Order_Status`, `Analysis_Name`, `Customer_Login`, `Order_Date`) VALUES ('toAnalyze','" + ana + "','" + name + town + "','" + formater.format(aujourdhui) + "');");
                         //création des samples
                         for (int i = 1; i <= nbS; i++) {
                             ConnectionDB.requestUpdateCaseSensitive("INSERT INTO `sample`( `Specie_Name`, `Order_Id`) VALUES ('" + spec + "','" + IDorder + "');");
@@ -324,45 +323,7 @@ public class CreateOrderInterface extends JPanel {
         this.setPreferredSize(new Dimension(200, 100));
         this.setVisible(true);
     }
-
-    /**
-    *
-     * @param S
-    */
-    public void setAbleEspece(String[] S) {
-        nameSpecies = S;
-        this.setVisible(false);
-        this.setVisible(true);
-    }
-
-       /**
-        * 
-        * @param S 
-        */
-    public void setAbleAnalysis(String[] S) {
-        nameAnalysis = S;
-        this.setVisible(false);
-        this.setVisible(true);
-    }
-
-    /**
-     * 
-     * @param S 
-     */
-    public void setAbleDemandeur(String[] S) {
-        this.setVisible(false);
-        this.setVisible(true);
-    }
-
-    /**
-     * 
-     * @param S 
-     */
-    public void setAbleSpecies(String[] S) {
-        this.setVisible(false);
-        this.setVisible(true);
-    }
-
+    
     /**
      * Close the panel
      */

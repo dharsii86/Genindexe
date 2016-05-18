@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Allow the user to connect to the software.
  */
 package screen;
 
@@ -24,27 +22,28 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author willa
+ * @author SCRUM Group 2.
  */
 public class connexionInterface extends JFrame {
 
+    // Declarations
     private JFrame myFrame;
 
-    private JLabel labelLogin;
-    private JLabel labelMdp;
-    private JLabel titre;
+    private final JLabel labelLogin;
+    private final JLabel labelMdp;
+    private final JLabel titre;
     private JLabel result;
 
     private JTextField login;
     private JTextField mdp;
 
-    private JButton Validate;
+    private final JButton Validate;
 
-    private JPanel pan1;
-    private JPanel pan2;
-    private JPanel pan3;
-    private JPanel pan4;
-    private JPanel pan5;
+    private final JPanel pan1;
+    private final JPanel pan2;
+    private final JPanel pan3;
+    private final JPanel pan4;
+    private final JPanel pan5;
 
     public connexionInterface() {
 
@@ -63,11 +62,12 @@ public class connexionInterface extends JFrame {
         mdp.setPreferredSize(new Dimension(200, 24));
         Validate = new JButton("Validate");
         Validate.addActionListener(new ActionListener() {
+            @SuppressWarnings("ConvertToStringSwitch")
             public void actionPerformed(ActionEvent event) {
 
                 boolean ok;
                 connexionUser con = new connexionUser();
-                ok = con.checkMDP(login.getText(), mdp.getText());
+                ok = connexionUser.checkMDP(login.getText(), mdp.getText());
 
                 if (ok) {
                     String statut = con.getStatus(login.getText(), mdp.getText());

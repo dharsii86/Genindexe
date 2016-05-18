@@ -107,7 +107,6 @@ public class CreateCategoryInterface extends JLabel {
         
         older.setLineWrap(true);
         older.setEditable(false);
-        // older.setEditable(false);
         JScrollPane text = new JScrollPane(older);
         text.setPreferredSize(new Dimension(200, 200));
         older.setToolTipText("Name of the categories already existing.");
