@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Interface which allow users to create a Microplate.
  */
 package screen;
 
@@ -16,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -24,7 +21,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author DharSii
+ * @author SCRUM Group 2.
  */
 public class CreateMicroplateInterface extends JPanel{
     

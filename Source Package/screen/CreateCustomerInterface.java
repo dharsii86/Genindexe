@@ -1,7 +1,10 @@
+/*
+*Interface which allow users to create a customer.
+*/
+
 package screen;
 
 import data.CustomerList;
-import database.CustomerDB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,20 +28,20 @@ import nf.Customer;
 public class CreateCustomerInterface extends JLabel {
 
     // Panels
-    private JPanel centre;
+    private final JPanel centre;
 
     // Text fields
     private JTextField name;
     private JTextField town;
 
     // Labels
-    private JLabel nameLabel;
-    private JLabel townLabel;
-    private JLabel titleLabel;
-    private JLabel pan;
+    private final JLabel nameLabel;
+    private final JLabel townLabel;
+    private final JLabel titleLabel;
+    private final JLabel pan;
 
     // Buttons
-    private JButton validateButton;
+    private final JButton validateButton;
 
     private MenuWindow globalScreen;
 
@@ -99,6 +102,7 @@ public class CreateCustomerInterface extends JLabel {
         // Panels modification
         centre.setLayout(new GridBagLayout());
 
+        // Grid Bag configuration
         GridBagConstraints gbNameLab = new GridBagConstraints();
         gbNameLab.gridx = 0;
         gbNameLab.gridy = 2;
@@ -184,12 +188,12 @@ public class CreateCustomerInterface extends JLabel {
         try {
             globalScreen.delMiddle();
         } catch (NullPointerException ex) {
-            System.out.println("Ligne 145");
+            System.out.println("Ligne 187");
         }
     }
     
    /**
-     * Function to format text with an upper case letter first and lower case.
+     * Function to format the text with an upper case letter first and lower case.
      * Follow format: "Abcd"
      * 
      * @param s The string to treat

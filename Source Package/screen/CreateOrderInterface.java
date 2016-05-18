@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Interface which allow users to create an order.
  */
 package screen;
 
@@ -17,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-// Test
 import data.CustomerList;
 import database.AnalysisDB;
 import database.ConnectionDB;
@@ -32,27 +28,23 @@ import javax.swing.DefaultComboBoxModel;
 import nf.Customer;
 
 /**
- *
- * @author Angscrum
+ *Interface for the creation of an order done by the secretary
+ * 
+ * @author SCRUM Group 2.
  */
 public class CreateOrderInterface extends JPanel {
 
-    /**
-     * Interface for the addition of a customer done by the secretary
-     *
-     * @author Angscrum
-     */
     private MenuWindow globalScreen;
 
     private JTextField nbSpl;
 
-    private JLabel labelNbSamples, title;
+    private final JLabel labelNbSamples, title;
 
-    private JPanel posSpl;
+    private final JPanel posSpl;
 
     private JComboBox analyse, category, espece, custName, custTown;
 
-    private JButton validate, cancel;
+    private final JButton validate;
 
     String[] nameCategory = {""};
     String[] nameAnalysis = {""};
@@ -60,14 +52,15 @@ public class CreateOrderInterface extends JPanel {
     String[] tabCustTown = {""};
     String[] tabCustName = {""};
 
+    @SuppressWarnings("Convert2Lambda")
     public CreateOrderInterface(MenuWindow jf) {
         globalScreen = jf;
+        
         /*Initialisation*/
         title = new JLabel("Order Creation", SwingConstants.CENTER);
         this.setBackground(Color.white);
         title.setFont(title.getFont().deriveFont(24.0f));
         labelNbSamples = new JLabel("Number of Samples");
-        //labelNbSamples.setPreferredSize(new Dimension(60,10));
 
         // Creation of the category combo box
         Set<String> cat = CategoryList.getCategory().keySet();
@@ -95,8 +88,9 @@ public class CreateOrderInterface extends JPanel {
         custName = new JComboBox(tabCustName);
 
         /*
-            Adding the action listeners for the combo boxes
+         *   Adding the action listeners for the combo boxes
          */
+        
         // Listener for category selection
         category.addActionListener(new ActionListener() {
             @Override
@@ -186,7 +180,7 @@ public class CreateOrderInterface extends JPanel {
                 }
             }
         });
-        cancel = new JButton("Cancel");
+
         nbSpl = new JTextField();
         nbSpl.setColumns(5);
 
@@ -323,7 +317,6 @@ public class CreateOrderInterface extends JPanel {
         this.add(panright, gbpanright);
         this.add(panleft, gbpanleft);
         this.add(validate, gbValid);
-        //this.add(title,gbCancel);
 
         /*Gestion de la page*/
         this.setBackground(Color.GRAY);
@@ -332,30 +325,47 @@ public class CreateOrderInterface extends JPanel {
         this.setVisible(true);
     }
 
+    /**
+    *
+     * @param S
+    */
     public void setAbleEspece(String[] S) {
         nameSpecies = S;
         this.setVisible(false);
         this.setVisible(true);
     }
 
+       /**
+        * 
+        * @param S 
+        */
     public void setAbleAnalysis(String[] S) {
         nameAnalysis = S;
         this.setVisible(false);
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @param S 
+     */
     public void setAbleDemandeur(String[] S) {
-        //tab = S;
         this.setVisible(false);
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @param S 
+     */
     public void setAbleSpecies(String[] S) {
-        //nameSpecies = S;
         this.setVisible(false);
         this.setVisible(true);
     }
 
+    /**
+     * Close the panel
+     */
     private void close() {
         try {
             globalScreen.delMiddle();

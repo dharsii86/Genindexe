@@ -1,8 +1,12 @@
+/*
+* Class allowing the creation of a new specie.
+*/
+
 package screen;
 
 /**
  *
- * @author thoma
+ * @author SCRUM Group 2.
  */
 public class SpecieInput {
 

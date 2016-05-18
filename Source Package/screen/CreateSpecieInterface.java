@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Interface allowing users to create a specie.
  */
 package screen;
 
@@ -25,72 +23,69 @@ import nf.SpecieCategory;
 
 /**
  *
- * @author DharSii
+ * @author SCRUM Group 2.
  */
-public class CreateSpecieInterface extends JPanel{
-    
+public class CreateSpecieInterface extends JPanel {
+
     private final MenuWindow globalScreen;
-    
-    private String[] category;
-    
-    private JLabel title, nameSpe, labCategory;
-    
+
+    private final JLabel title, nameSpe, labCategory;
+
     private JTextField speciesName;
-    
+
     private JComboBox boxCategory;
-   
+
     private final JButton validate;
 
     public CreateSpecieInterface(final MenuWindow globalScreen) {
         super();
         this.globalScreen = globalScreen;
         this.setLayout(new GridBagLayout());
-        
+
         /*Initialisation*/
         //  title
-        title = new JLabel("Species creation",SwingConstants.CENTER);
+        title = new JLabel("Species creation", SwingConstants.CENTER);
         this.setBackground(Color.white);
         title.setFont(title.getFont().deriveFont(24.0f));
-        
+
         //  Champ input and name
         nameSpe = new JLabel("Name of the species");
         speciesName = new JTextField();
-        speciesName.setPreferredSize(new Dimension(100,20));
-        
+        speciesName.setPreferredSize(new Dimension(100, 20));
+
         //  box Category
         labCategory = new JLabel("The category of the species");
         Set<String> cat = CategoryList.getCategory().keySet();
         String[] nameCategory = cat.toArray(new String[cat.size()]);
         boxCategory = new JComboBox(nameCategory);
-        
-        
+
         //  button validation
         validate = new JButton("Create");
-        
+
         validate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selected = (String) boxCategory.getSelectedItem();
                 SpecieCategory cat = CategoryList.getCategory(selected);
+
                 //maintenant on récupère l'espèce et on la créé
                 String sSpe = speciesName.getText();
-                if(!sSpe.equals("")){
+                if (!sSpe.equals("")) {
                     Specie spe = new Specie(sSpe);
-                    if(SpeciesList.add(spe,cat)){
+                    if (SpeciesList.add(spe, cat)) {
                         cat.addSpecie(spe);
-                        globalScreen.setSouth("The specie : "+spe.getName()+" in the category "+cat.getName()+" has been created.");
+                        globalScreen.setSouth("The specie : " + spe.getName() + " in the category " + cat.getName() + " has been created.");
                         close();
-                    }else{
-                        globalScreen.setSouth("The specie : "+spe.getName()+" in the category "+cat.getName()+" Already exist.");
+                    } else {
+                        globalScreen.setSouth("The specie : " + spe.getName() + " in the category " + cat.getName() + " Already exist.");
                     }
-                }else{
+                } else {
                     globalScreen.setSouth("Enter the name of the species.");
                 }
-                
+
             }
         });
-        
-        
+
         //////////////////////////////////
         // Grid Bag Constraints
         GridBagConstraints gbTitle = new GridBagConstraints();
@@ -99,82 +94,78 @@ public class CreateSpecieInterface extends JPanel{
         GridBagConstraints gblabBox = new GridBagConstraints();
         GridBagConstraints gbBox = new GridBagConstraints();
         GridBagConstraints gbValidate = new GridBagConstraints();
-        
+
         gbTitle.gridx = 0;
         gbTitle.gridy = 0;
         gbTitle.gridwidth = 3;
-        
+
         gblabSpe.gridx = 0;
         gblabSpe.gridy = 4;
         gblabSpe.anchor = GridBagConstraints.LINE_END;
-        
+
         gbSpe.gridx = 2;
         gbSpe.gridy = 4;
         gbSpe.anchor = GridBagConstraints.LINE_START;
-        
+
         gblabBox.gridx = 0;
         gblabBox.gridy = 2;
         gblabBox.anchor = GridBagConstraints.LINE_END;
-        
+
         gbBox.gridx = 2;
         gbBox.gridy = 2;
         gbBox.anchor = GridBagConstraints.LINE_START;
-        
+
         gbValidate.gridx = 0;
         gbValidate.gridy = 6;
         gbValidate.gridwidth = 3;
-        
-        this.add(title,gbTitle);
-        this.add(nameSpe,gblabSpe);
-        this.add(speciesName,gbSpe);
-        this.add(labCategory,gblabBox);
-        this.add(boxCategory,gbBox);
-        this.add(validate,gbValidate);
-        
-        
+
+        this.add(title, gbTitle);
+        this.add(nameSpe, gblabSpe);
+        this.add(speciesName, gbSpe);
+        this.add(labCategory, gblabBox);
+        this.add(boxCategory, gbBox);
+        this.add(validate, gbValidate);
+
         //panneau orga
         GridBagConstraints gbpan1 = new GridBagConstraints();
-        
+
         gbpan1.gridx = 1;
         gbpan1.gridy = 1;
         JPanel pos1 = new JPanel();
-        pos1.setPreferredSize(new Dimension(50,10));
+        pos1.setPreferredSize(new Dimension(50, 10));
         pos1.setBackground(Color.white);
-        
+
         GridBagConstraints gbpan2 = new GridBagConstraints();
-        
+
         gbpan2.gridx = 1;
         gbpan2.gridy = 2;
         JPanel pos2 = new JPanel();
-        pos2.setPreferredSize(new Dimension(30,10));
+        pos2.setPreferredSize(new Dimension(30, 10));
         pos2.setBackground(Color.white);
-                
+
         GridBagConstraints gbpan3 = new GridBagConstraints();
-        
+
         gbpan3.gridx = 1;
         gbpan3.gridy = 3;
         JPanel pos3 = new JPanel();
-        pos3.setPreferredSize(new Dimension(30,10));
+        pos3.setPreferredSize(new Dimension(30, 10));
         pos3.setBackground(Color.white);
-        
+
         GridBagConstraints gbpan4 = new GridBagConstraints();
-        
+
         gbpan4.gridx = 1;
         gbpan4.gridy = 5;
         JPanel pos4 = new JPanel();
-        pos4.setPreferredSize(new Dimension(50,10));
+        pos4.setPreferredSize(new Dimension(50, 10));
         pos4.setBackground(Color.white);
-        
-        this.add(pos1,gbpan1);
-        this.add(pos2,gbpan2);
-        this.add(pos3,gbpan3);
-        this.add(pos4,gbpan4);
-        
-        
-        
-        
+
+        this.add(pos1, gbpan1);
+        this.add(pos2, gbpan2);
+        this.add(pos3, gbpan3);
+        this.add(pos4, gbpan4);
     }
     
+    // Close the panel
     private void close() {
         try {
             globalScreen.delMiddle();
@@ -182,7 +173,4 @@ public class CreateSpecieInterface extends JPanel{
             System.out.println("Ligne 145");
         }
     }
-    
-    
-    
 }

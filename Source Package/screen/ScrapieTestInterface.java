@@ -1,11 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Interface which allow user to create a scrapie test.
  */
 package screen;
 
-import data.CategoryList;
 import data.SpeciesList;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,19 +21,16 @@ import nf.RawData;
 import nf.ScrapieResult;
 import nf.ScrapieTest;
 import nf.Specie;
-import nf.SpecieCategory;
 
 /**
  *
- * @author willa
+ * @author SCRUM Group 2.
  */
 public class ScrapieTestInterface extends JPanel {
 
     private final MenuWindow globalScreen;
 
-    private String[] specie;
-
-    private JLabel labValue, nameSpe, labPosition, title;
+    private final JLabel labValue, nameSpe, labPosition, title;
 
     private JTextField position, value;
 
@@ -72,7 +66,7 @@ public class ScrapieTestInterface extends JPanel {
         value.setToolTipText("Enter the value of the scrapie test.");
         value.setPreferredSize(new Dimension(200, 24));
 
-        //  button validation
+        // Button validation
         validate = new JButton("Test");
         validate.addActionListener(new ActionListener() {
             @Override
@@ -80,9 +74,9 @@ public class ScrapieTestInterface extends JPanel {
 
                 String specieName;
                 specieName = (String) boxCategory.getSelectedItem();
-                
+
                 if (!specieName.equals("") && !position.getText().equals("") && !value.getText().equals("")) {
-          
+
                     ScrapieResult res;
                     RawData rowEntry, rowResult;
                     Specie sp = SpeciesList.get(specieName);
@@ -158,7 +152,7 @@ public class ScrapieTestInterface extends JPanel {
         this.add(value, gbval);
         this.add(validate, gbValidate);
 
-        //panneau orga
+        // organisation panel
         GridBagConstraints gbpan1 = new GridBagConstraints();
 
         gbpan1.gridx = 1;
@@ -198,6 +192,7 @@ public class ScrapieTestInterface extends JPanel {
 
     }
 
+    // Close the panel
     private void close() {
         try {
             globalScreen.delMiddle();
@@ -205,19 +200,4 @@ public class ScrapieTestInterface extends JPanel {
             System.out.println("Ligne 145");
         }
     }
-
-    /*public Specie getSpecie(){
-        String specieName;
-        specieName = (String) boxCategory.getSelectedItem();
-        SpeciesList sl = new SpeciesList();
-        return sl.get(specieName);
-    }
-    
-    public String getPosition(){
-        return position.getText();
-    }
-    
-    public String getValue(){
-        return value.getText();
-    }*/
 }

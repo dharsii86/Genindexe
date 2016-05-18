@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Class of an interface of a secretary.
  */
 package screen;
 
@@ -16,7 +14,7 @@ import screen.*;
 
 /**
  *
- * @author willa
+ * @author SCRUM Group 2.
  */
 public class MWSecretary extends MenuWindow {
 
@@ -31,13 +29,12 @@ public class MWSecretary extends MenuWindow {
     private JMenuItem createCat;
     private JMenuItem homePage;
     private JMenuItem createSpecie;
-    
+
     @Override
     public void setMenu() {
-     
+
         // Create the menu bar.
         menuBar = new JMenuBar();
-        
 
         // Build the Home page Menu
         homePage = new JMenuItem("Home Page");
@@ -51,7 +48,7 @@ public class MWSecretary extends MenuWindow {
 
         //Build the Customer's menu.
         menuCreation = new JMenu("Creation");
-        
+
         itemAddCust = new JMenuItem("Customer");
         itemAddCust.setToolTipText("Create a new Customer.");
         itemAddCust.addActionListener(new ActionListener() {
@@ -80,9 +77,8 @@ public class MWSecretary extends MenuWindow {
             }
         });
         menuCreation.add(createCat);
-        
+
         // Build the Creation menu.
-        
         createSpecie = new JMenuItem("Specie");
         createSpecie.setToolTipText("Create a new Specie.");
         createSpecie.addActionListener(new ActionListener() {
@@ -91,11 +87,12 @@ public class MWSecretary extends MenuWindow {
             }
         });
         menuCreation.add(createSpecie);
-        
+
         menuBar.add(menuCreation);
     }
-    
-     private void launchCreateCustomer() {
+
+    // Launch the Creation of a customer
+    private void launchCreateCustomer() {
         try {
             middle.remove(0);
         } catch (ArrayIndexOutOfBoundsException exc) {
@@ -105,8 +102,9 @@ public class MWSecretary extends MenuWindow {
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
     }
-    
-      private void launchCreateCategory() {
+
+    // Launch the Creation of a category
+    private void launchCreateCategory() {
         try {
             middle.remove(0);
         } catch (ArrayIndexOutOfBoundsException exc) {
@@ -117,6 +115,7 @@ public class MWSecretary extends MenuWindow {
         refreshMid();
     }
 
+    // Launch the Creation of an order
     private void launchCreateOrder() {
         try {
             middle.remove(0);
@@ -127,7 +126,8 @@ public class MWSecretary extends MenuWindow {
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
     }
-    
+
+    // Launch the Creation of a specie
     private void launchCreateSpecie() {
         try {
             middle.remove(0);
@@ -138,5 +138,5 @@ public class MWSecretary extends MenuWindow {
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
     }
-    
+
 }

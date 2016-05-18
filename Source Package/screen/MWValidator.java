@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Class of the interface of a Validator.
  */
 package screen;
 
@@ -16,31 +14,33 @@ import screen.*;
 
 /**
  *
- * @author willa
+ * @author SCRUM Group 2.
  */
 public class MWValidator extends MenuWindow {
 
-    
+    // Constructor which allow us to show the name and the status of the user connected
     public MWValidator(String name, String lastName, String Statut) {
         super(name, lastName, Statut);
     }
-    
+
+    // Declarations
     private JMenu menuCreation;
     private JMenu menuResearch;
     private JMenuItem homePage;
     private JMenuItem createScrapieTest;
     private JMenuItem researchOrder;
-    
+
+    // Cretaion of the menu
     @Override
     public void setMenu() {
-        
+
         // Create the menu bar.
         menuBar = new JMenuBar();
-        
+
         //Build the Customer's menu.
         menuCreation = new JMenu("Creation");
         menuResearch = new JMenu("Research");
-        
+
         // Build the Home page Menu
         homePage = new JMenuItem("Home Page");
         homePage.setToolTipText("Return to the Homepage.");
@@ -50,7 +50,8 @@ public class MWValidator extends MenuWindow {
             }
         });
         menuBar.add(homePage);
-        
+
+        // Build teh menu of the creation of a scrapie test
         createScrapieTest = new JMenuItem("Scrapie Test");
         createScrapieTest.setToolTipText("Create a Scrapie Test.");
         createScrapieTest.addActionListener(new ActionListener() {
@@ -59,7 +60,8 @@ public class MWValidator extends MenuWindow {
             }
         });
         menuCreation.add(createScrapieTest);
-        
+
+        // Build the menu of the research of an order
         researchOrder = new JMenuItem("Research Order");
         researchOrder.setToolTipText("Research an order.");
         researchOrder.addActionListener(new ActionListener() {
@@ -68,11 +70,12 @@ public class MWValidator extends MenuWindow {
             }
         });
         menuResearch.add(researchOrder);
-        
+
         menuBar.add(menuCreation);
         menuBar.add(menuResearch);
     }
-    
+
+    // Launch the research of an order
     private void launchResearchOrder() {
         try {
             middle.remove(0);
@@ -83,7 +86,8 @@ public class MWValidator extends MenuWindow {
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
     }
-    
+
+    // Launch the creation of a scrapie test
     private void launchScrapieTest() {
         try {
             middle.remove(0);
@@ -94,6 +98,4 @@ public class MWValidator extends MenuWindow {
         middle.add(aux, BorderLayout.CENTER);
         refreshMid();
     }
-    
-    
 }

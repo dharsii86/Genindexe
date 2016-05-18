@@ -1,3 +1,7 @@
+/*
+* Interface which allow users to create a category.
+*/
+
 package screen;
 
 import data.CategoryList;
@@ -112,7 +116,8 @@ public class CreateCategoryInterface extends JLabel {
 
         // Panels modification and GBC settings
         centre.setLayout(new GridBagLayout());
-
+        
+        // Grid Bag Configuration
         GridBagConstraints gbNameLab = new GridBagConstraints();
         gbNameLab.gridx = 0;
         gbNameLab.gridy = 2;
