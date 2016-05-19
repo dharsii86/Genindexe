@@ -35,7 +35,8 @@ public class OrderList {
     /**
      * Insert a new order only in the application
      * 
-     * @param cat, the category to insert.
+     * @param  id The id of the sample in the database.
+     * @param ord The order object to insert
      */
     public static void put(int id,Order ord  ){  
         orderList.put(id, ord);
