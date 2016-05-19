@@ -5,7 +5,7 @@ import nf.Sample;
 
 /**
  * This class manage the static list of samples.
- * It is used to access categories objects through the whole application.
+ * It is used to access samples objects through the whole application.
  * The methods used to access the list are also static.
  * 
  * @author SCRUM Group 2.
