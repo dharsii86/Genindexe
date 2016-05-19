@@ -1,34 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import nf.Order;
-import nf.Result;
 import nf.Sample;
 
 /**
- *
- * @author DharSii
+ * This class manage the static list of samples.
+ * It is used to access categories objects through the whole application.
+ * The methods used to access the list are also static.
+ * 
+ * @author SCRUM Group 2.
  */
 public class SampleList {
-    
+    // Static Hashmap of samples, the key is the sample id (in database)
     private static HashMap<Integer,Sample> sampleList;
-    //la clé est l'id dans la DB
-
+ 
+    /**
+     * Initialisation of the sample hashmap.
+     */
     public static void launchSampleList(){
         SampleList.sampleList = new HashMap<>();
     }
-    
-    
-    public static boolean add(Sample spl){
-        return false;
-    }
-
+ 
+     /**
+     * Print the categories in the list and their information.
+     * This function is used for debug.
+     */
     public static void printInfoDebug(){
         System.out.println("List order ");
         for(int k : sampleList.keySet()){
@@ -36,10 +32,22 @@ public class SampleList {
         }
     }
     
+    /**
+     * Insert a new sample only in the application
+     * 
+     * @param id The id of the sample in database
+     * @param spl The sample object to add.
+     */
     public static void put(int id,Sample spl  ){  
         sampleList.put(id, spl);
     }
     
+    /**
+     * Getter for hashmap  elements of the sample list.
+     * 
+     * @param id The id of the sample
+     * @return The sample object
+     */
     public static Sample get(int id){
         return sampleList.get(id);
     }
