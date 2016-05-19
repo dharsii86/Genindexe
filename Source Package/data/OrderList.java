@@ -1,33 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
-import database.OrderDB;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import nf.Order;
 
 /**
- *
- * @author DharSii
+ * This class manage the static list of orders.
+ * It is used to access order objects through the whole application.
+ * The methods used to access the list are also static.
+ * 
+ * @author SCRUM Group 2.
  */
 public class OrderList {
+    // Static Hashmap of order, the key is the order id (in database)
     private static HashMap<Integer,Order> orderList;
-    //la clé est l'id dans la DB
-
+    
+    /**
+     * Initialisation of the Order hashmap.
+     */
     public static void launchOrderList(){
         OrderList.orderList = new HashMap<>();
     }
-    
-    
-    public static boolean add(Order ord){
-        return false;
-    }
-
+ 
+     /**
+     * Print the categories in the list and their information.
+     * This function is used for debug.
+     */
     public static void printInfoDebug(){
         System.out.println("List order ");
         for(int k : orderList.keySet()){
@@ -35,10 +32,20 @@ public class OrderList {
         }
     }
     
+    /**
+     * Insert a new order only in the application
+     * 
+     * @param cat, the category to insert.
+     */
     public static void put(int id,Order ord  ){  
         orderList.put(id, ord);
     }
     
+    /**
+     * Return the list of order in a HashMap.
+     * 
+     * @return the HashMap containing the categories.
+     */
     public static Order getOrder(int id){
         return orderList.get(id);
     }

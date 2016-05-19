@@ -28,7 +28,7 @@ public class ExploreOrder {
      */
     public static String getAnalysisName(int OrderID){
         // Complex request to get  the number of validated samples results.
-        String res=ConnectionDB.requestOneResult("select count(*) from sample JOIN result ON (sample.Result1 = result.Result_Id or sample.Result2 = result.Result_Id or sample.Result3 = result.Result_Id ) where( Order_Id="+ OrderID +" and Status= \"VALIDATED\")");
+        String res=ConnectionDB.requestOneResult("SELECT Analysis_Name from genindexe.order where Order_Id ="+ OrderID );
         return(res);
     }
     
