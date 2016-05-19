@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author nicolas
+ * @author SCRUM Group 2
  */
 public class OrderDBTest {
     
@@ -52,15 +52,15 @@ public class OrderDBTest {
         ConnectionDB.requestInsert("DELETE FROM `customer` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
         ConnectionDB.requestInsert("INSERT INTO `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('XX','X','X','X')");
         ConnectionDB.requestInsert("INSERT INTO `customer` (`Customer_Login`, `Customer_Name`, `Customer_Town`, `Customer_Password`) values ('YY','Y','Y','Y')");
-        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-01','completed','Sexing','X')");
-        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-04','completed','Scrapie','Y')");
-        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-16','toAnalyze','Scrapie','X')");
-        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-02-13','inProgress','Sexing','X')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-01','completed','Sexing','XX')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-04','completed','Scrapie','YY')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-01-16','toAnalyze','Scrapie','XX')");
+        ConnectionDB.requestInsert("INSERT INTO `order` (`Order_Date`, `Order_Status`, `Analysis_Name`, `Customer_Login`) values ('2016-02-13','inProgress','Sexing','XX')");
         
         //CreateData.createAllInfo();
         HashMap<Integer, Order> orderList = OrderDB.getOrder(new Customer("X","X"));
-        //ConnectionDB.requestInsert("DELETE FROM `order` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
-        //ConnectionDB.requestInsert("DELETE FROM `customer` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        ConnectionDB.requestInsert("DELETE FROM `order` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
+        ConnectionDB.requestInsert("DELETE FROM `customer` WHERE `Customer_Login` = 'XX' OR `Customer_Login` = 'YY'");
         if (orderList.size() != 3 ){
             fail("The function getOrder doesn't all the good results");
         }

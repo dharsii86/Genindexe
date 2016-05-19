@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author nicolas
+ * @author SCRUM Group 2
  */
 public class AnalysisDBTest {
     

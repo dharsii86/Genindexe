@@ -104,6 +104,7 @@ public class CustomerDBTest {
 
     /**
      * Test of getCustomerTown method, of class OrderDB.
+     * Test if the function return all the location registered
      */
     @Test
     public void testGetCustomerTown() {
@@ -126,6 +127,7 @@ public class CustomerDBTest {
 
     /**
      * Test of getCustomerName method, of class OrderDB.
+     * Test if the function return the all the customer registered.
      */
     @Test
     public void testGetCustomerName() {
